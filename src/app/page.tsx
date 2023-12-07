@@ -1,10 +1,11 @@
 import Hero from '@/components/Hero'
-import Image from 'next/image'
+import FeaturePost from '@/components/Post/FeaturePost'
 
-export default function Home() {
+export default function HomePage() {
   return (
-   <main className='bg-gray-500 h-full'>
+   <main className='h-full flex flex-col gap-10'>
     <Hero/>
+    <FeaturePost/>
    </main>
   )
 }
