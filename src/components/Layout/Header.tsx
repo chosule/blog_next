@@ -7,7 +7,6 @@ export function Header() {
         <nav className='flex gap-5 justify-between py-5'>
             <Link href="/">
                 <div className='flex items-center gap-1'>
-                    {/* <RiHeart2Line style={{color:"#B15EFF",fontSize:"22px",backgroundColor:"#B15EFF"}}/>  */}
                     <h1 className="text-2xl font-bold">💜Chosule Blog</h1>
                 </div>
             </Link>

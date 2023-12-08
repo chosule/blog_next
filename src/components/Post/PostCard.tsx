@@ -11,7 +11,7 @@ export default function PostCard({post :{path,date,image,title}}:Props) {
      
      return(
         <Link href={`/posts/${path}`}>
-            <Image src={`/featureImg/${image}`} alt="feature이미지" width={200} height={150} className="w-full rounded-t-lg	"/>
+            <Image src={`/featureImg/${image}`} alt="feature이미지" width={220} height={120} className="rounded-t-lg w-full	"/>
             <div className="flex flex-col gap-4 p-5">
                 <div className="flex items-center gap-2">
                     <CiCalendarDate/>

@@ -25,3 +25,25 @@ export async function getFeaturedPost():Promise<Posts[]>{
   return post.filter((item) => item.feature === true);
 }
 
+
+export async function getCategoryPost() {
+ const posts = await getAllpost();
+ 
+ const groupedByCategory = posts.reduce((acc,item) => {
+  const {category} = item;
+  if(!acc[category]){
+    acc[category] = [];
+  }
+  acc[category].push(item);
+  return acc;
+ })
+
+ //출력
+ for(const category in groupedByCategory){
+  if(groupedByCategory.hasOwnProperty(category)){
+    console.log(`category:${category}`);
+  }
+ }
+ return groupedByCategory;
+
+}
