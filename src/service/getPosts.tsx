@@ -3,47 +3,24 @@ import path from "path";
 import { sync } from "glob";
 
 export type Posts = {
-  title: string,
-  descriptopn:string,
-  date :string,
-  category:string,
-  path:string,
-  feature:boolean,
-  image:string
+  title: string;
+  descriptopn: string;
+  date: string;
+  category: string;
+  path: string;
+  feature: boolean;
+  image: string;
 };
 
-
-export async function getAllpost():Promise<Posts[]> {
-  const filePath = path.join(process.cwd(),'data','blog.json');
-  return await promises.readFile(filePath,'utf-8')
-  .then<Posts[]>(JSON.parse)
-  .then((posts) => posts.sort((a,b) => (a.date) > (b.date) ? -1 :1))
+export async function getAllpost(): Promise<Posts[]> {
+  const filePath = path.join(process.cwd(), "data", "blog.json");
+  return await promises
+    .readFile(filePath, "utf-8")
+    .then<Posts[]>(JSON.parse)
+    .then((posts) => posts.sort((a, b) => (a.date > b.date ? -1 : 1)));
 }
 
-export async function getFeaturedPost():Promise<Posts[]>{
+export async function getFeaturedPost(): Promise<Posts[]> {
   const post = await getAllpost();
   return post.filter((item) => item.feature === true);
-}
-
-
-export async function getCategoryPost() {
- const posts = await getAllpost();
- 
- const groupedByCategory = posts.reduce((acc,item) => {
-  const {category} = item;
-  if(!acc[category]){
-    acc[category] = [];
-  }
-  acc[category].push(item);
-  return acc;
- })
-
- //출력
- for(const category in groupedByCategory){
-  if(groupedByCategory.hasOwnProperty(category)){
-    console.log(`category:${category}`);
-  }
- }
- return groupedByCategory;
-
 }

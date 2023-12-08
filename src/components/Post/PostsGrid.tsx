@@ -4,17 +4,19 @@ import { CiCalendarDate } from "react-icons/ci";
 import PostCard from "./PostCard";
 
 type Props = {
-    post: Posts
-}
-export default function PostsGrid({posts}:Props) {
-    
-     return(
-        <ul className="grid grid-cols-2 sm:grid-cols-2 gap-8">
-            {posts?.map((post)=>(
-                <li key={post.path} className="w-96 h-full rounded-xl bg-neutral-100 transition-transform transform hover:-translate-y-1 drop-shadow-xl">
-                    <PostCard post={post}/>
-                </li>
-            ))}
-        </ul>
-     )
+  post: Posts;
+};
+export default function PostsGrid({ posts }: Props) {
+  return (
+    <ul className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+      {posts?.map((post) => (
+        <li
+          key={post.path}
+          className="h-full w-full transform rounded-xl bg-neutral-100 drop-shadow-xl transition-transform hover:-translate-y-1"
+        >
+          <PostCard post={post} />
+        </li>
+      ))}
+    </ul>
+  );
 }
