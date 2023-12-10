@@ -66,8 +66,8 @@
     "title": "nextjs",
     "descriptopn": "에러과정 다시보기",
     "date": "2023-05-12",
-    "category": "nodejs",
-    "path": "test-03",
+    "category": "nextjs",
+    "path": "test-05",
     "feature": false,
     "image": "next_img.png"
   },
@@ -76,7 +76,7 @@
     "descriptopn": "useEffect hook을 알아보자",
     "date": "2023-06-06",
     "category": "react",
-    "path": "test-03",
+    "path": "test-0333",
     "feature": false,
     "image": "react_img.png"
   },
@@ -84,8 +84,8 @@
     "title": "react",
     "descriptopn": "react오류",
     "date": "2023-05-12",
-    "category": "nodejs",
-    "path": "test-03",
+    "category": "react",
+    "path": "test-02222453",
     "feature": false,
     "image": "react_img.png"
   }
