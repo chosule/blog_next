@@ -1,18 +1,27 @@
-import { getAllpost } from "@/service/getPosts"
+import { getAllpost, getPostData } from "@/service/getPosts"
+import { MDXRemote } from "next-mdx-remote";
 import { redirect } from "next/navigation";
 
-type Props ={
-
+type Props = {
+   params:{
+      slug: string
+   }
 }
 
-export default async function PostPage({params:{slug}}:{slug:Props}){
-   console.log('slug',slug)
-   const post = await getAllpost(slug);
+export default async function PostPage({params:{slug}}:Props){
+   const post = await getPostData(slug);
    if(!post){
       redirect('/blog');
    }
+ 
    return(
-      <div>{post?.name}</div>
+      <div>
+         <div>{post.title}</div>
+         <div className="prose">
+            <MDXRemote {...mdx}/>
+            {/* <MDXRemote>{post.content}</MDX> */}
+         </div>
+      </div>
    )
 }
 

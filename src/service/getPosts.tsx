@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import fs from "fs";
 import matter from "gray-matter";
 import readingTime from "reading-time";
+import serializeMdx from "./mdx";
 
 export type Posts = {
   title: string;
@@ -16,44 +17,8 @@ export type Posts = {
   image: string;
 };
 
-const BASE_PATH = '/posts';
-const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
 
-const parsePost = (postPath:string) => {
-  try{
-      //파일조회
-      const file = fs.readFileSync(postPath,{ encoding:'utf-8'})
-      const {content,data} = matter(file);
-      const grayMatter = data;
-
-      if(grayMatter.draft){
-          return;
-      }
-      return {
-        ...grayMatter,
-        tags: grayMatter.tags.filter(Boolean),
-        date: dayjs(grayMatter.date).format('YYYY-MM-DD'),
-        content,
-        slug: postPath.slice(postPath.indexOf(BASE_PATH)).replace('.mdx', ''),
-        readingMinutes: Math.ceil(readingTime(content).minutes),
-        wordCount: content.split(/\s+/gu).length,
-      }
-  }catch(e){
-    console.error(e)
-  }
-}
-//디렉토리 파싱
-export const getAllposts = () =>{
-  const postPaths:string[] = sync(`${POSTS_PATH}/**/*.mdx`);
-  return postPaths.reduce((ac,postPath)=>{
-    const post = parsePost(postPath);
-    if(!post) return ac;
-    return [...ac , post]
-  },[])
-}
-
-
-
+export type PostData = Posts & {content:string};
 
 export async function getAllpost(): Promise<Posts[]> {
   const filePath = path.join(process.cwd(), "data", "blog.json");
@@ -66,4 +31,20 @@ export async function getAllpost(): Promise<Posts[]> {
 export async function getFeaturedPost(): Promise<Posts[]> {
   const post = await getAllpost();
   return post.filter((item) => item.feature === true);
+}
+
+
+export async function getPostData(fileName:string):Promise<PostData>{
+  //내가 클릭한 path와 fiulname이 같을경우 보여줘야함 
+  const filePath = path.join(process.cwd(),'data','posts',`${fileName}.md`);
+  const metaData = await getAllpost()
+  .then((posts) => posts.find((post) => post.path === fileName))
+
+  if(!metaData)
+    throw new Error(`${fileName}에 해당하는 포스트를 찾을수 없습니다.`)
+
+  const content = await promises.readFile(filePath, "utf-8");  //md파일을 html로 변환?? 
+  const mdx = await serializeMdx(content);
+  
+  return { ...metaData, mdx}
 }

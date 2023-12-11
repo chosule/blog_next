@@ -11,7 +11,7 @@ export default function PostCard({
   post: { path, date, image, title },
 }: Props) {
   return (
-    <Link href={`/posts/${path}`}>
+    <Link href={`/blog/${path}`}>
       <Image
         src={`/featureImg/${image}`}
         alt="feature이미지"

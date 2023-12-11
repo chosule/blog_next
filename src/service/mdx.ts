@@ -6,7 +6,7 @@ export default function serializeMdx(source:string) {
     mdxOptions:{
         remarkPlugins:[],
         rehypePlugins:[],
-        format:'mdx'
+        format:'md'
     }
     })
 }
