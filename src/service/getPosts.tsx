@@ -12,6 +12,18 @@ export type Posts = {
   image: string;
 };
 
+const BASE_PATH = '/posts';
+const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
+
+//디렉토리 파싱
+const getAllposts = () =>{
+  const postPath = sync(`${POSTS_PATH}/**/*.mdx`);
+  return postPath.map((path) =>{
+    return{
+      slug:
+    }
+  })
+}
 export async function getAllpost(): Promise<Posts[]> {
   const filePath = path.join(process.cwd(), "data", "blog.json");
   return await promises

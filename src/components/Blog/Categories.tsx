@@ -8,15 +8,15 @@ type Props = {
 };
 
 export default function Categories({ categories, selected, onClick }: Props) {
+
   return (
     <ul className="grid grid-cols-6">
       {categories.map((category, index) => (
         <li
           key={index}
           onClick={() => onClick(category)}
-          className="my-20 flex flex-col items-center gap-4"
+          className="my-20 flex flex-col items-center gap-4 cursor-pointer"
         >
-          {/* <Link href={`/blog/${category}`} key={index}> */}
           <Image
             className="transform transition-transform hover:-translate-y-1"
             src={forder_img}
@@ -24,8 +24,7 @@ export default function Categories({ categories, selected, onClick }: Props) {
             width={130}
             height={130}
           />
-          <h3 className="text-lg font-bold">{category}</h3>
-          {/* </Link> */}
+          <h3 className={`text-lg font-bold ${category === selected && 'text-orange-500'}`}>{category}</h3>
         </li>
       ))}
     </ul>

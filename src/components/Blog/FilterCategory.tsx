@@ -10,7 +10,7 @@ type Props = {
   categories: string[];
 };
 
-const ALLPOSTS = "all-post";
+const ALLPOSTS = "all post";
 
 export default function FilterCategory({ posts, categories }: Props) {
   const [selected, setSelected] = useState(ALLPOSTS);
@@ -28,6 +28,7 @@ export default function FilterCategory({ posts, categories }: Props) {
         selected={selected}
         onClick={(selected) => setSelected(selected)}
       />
+      <h1 className="text-2xl font-black italic mb-7">{selected}</h1>
       <PostsGrid posts={filtered} />
     </section>
   );
