@@ -18,11 +18,5 @@ const config: Config = {
   ],
 }
 
-// postcss.config.js
-module.exports = {
-  plugins: {
-    'tailwindcss/nesting': 'postcss-nesting',
-  }
-}
 
 export default config
