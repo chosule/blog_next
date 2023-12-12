@@ -1,7 +1,6 @@
 import { promises, readFile } from "fs";
 import path from "path";
 
-
 export type Posts = {
   title: string;
   descriptopn: string;
@@ -56,6 +55,3 @@ export async function getPostData(fileName: string): Promise<PostData> {
 
   return { ...metaData, content };
 }
-
-
-
