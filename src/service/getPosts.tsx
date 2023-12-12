@@ -1,13 +1,6 @@
 import { promises, readFile } from "fs";
 import path from "path";
-import { sync } from "glob";
-import dayjs from "dayjs";
-import fs from "fs";
-import matter from "gray-matter";
-import readingTime from "reading-time";
-import serializeMdx from "./mdx";
-import { serialize } from "v8";
-import { compileMDX } from "next-mdx-remote/rsc";
+
 
 export type Posts = {
   title: string;
@@ -63,3 +56,6 @@ export async function getPostData(fileName: string): Promise<PostData> {
 
   return { ...metaData, content };
 }
+
+
+

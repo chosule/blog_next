@@ -16,7 +16,7 @@ export default async function PostPage({ params: { slug } }: Props) {
   }
   const mdxSource = await serializeMdx(post.content);
   if (post) {
-    console.log("madSoure??", mdxSource);
+    console.log("post??", post);
   }
 
   return (
