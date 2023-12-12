@@ -2,23 +2,28 @@ import fs, { promises } from "fs";
 import matter from "gray-matter";
 import readingTime from 'reading-time';
 import path from "path";
-import { sync } from "glob";
+import { glob, sync } from "glob";
 import dayjs from "dayjs";
+import { promisify } from "util";
 
 
 const BASE_PATH = '/posts';
 // POSTS_PATh : 전체 포스트 경로를 나타내며, 현재 작업 디렉토리와 BASE_PATH를 결합하여 만들어진다.
 const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
 
-export const getAllPosts = async() =>{
-    //sync 함수를 사용하여 POSTS_PATH 디렉토리 내의 모든 .mdx 확장자를 가진 파일의 경로를 가져온다
-    const postPaths = sync(`${POSTS_PATH}/**/*.mdx`);
-    return await promises.readFile(postPaths,"utf-8")
-   
-}
+const globAsync = promisify(glob);
+
+export const getAllPosts = async() => {
+    try{
+        const postPaths = await globAsync(`${POSTS_PATH}/**/*.mdx`,{});
+        return postPaths.map(parsePost);
+    }catch(error){
+        console.error(error)
+    }
+  };
 
 
-export const parsePost = (postPath:string) => {
+export const parsePost = async(postPath:string) => {
     try{
         const file = fs.readFileSync(postPath,{encoding:'utf-8'});
         const {content, data} = matter(file);

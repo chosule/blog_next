@@ -10,9 +10,9 @@ export async function PostsPage({params}) {
     
     console.log('slugs',slug);
     const posts = await getAllPosts();
+    console.log('posts?', posts)
     
     const post = posts.find((v) => v.slug == slug);
-    console.log('posts?', post)
     // const mdx = await serializeMdx(post.content);
     return(
         <div>
@@ -21,11 +21,12 @@ export async function PostsPage({params}) {
      )
 }
 
-// export const generateStaticParams = async() =>{
-//     const posts = await getAllPosts();
-//     return posts.map((post) => ({
-//         params:{slug : post.slug}
-//     }))
-// }
+export const generateStaticParams = async() =>{
+    const posts = await getAllPosts();
+    console.log('posts',posts)
+    return posts.map((post) => ({
+        params:{slug : post.slug}
+    }))
+}
 
 export default PostsPage;
