@@ -1,6 +1,4 @@
 import { getAllpost, getPostData } from "@/service/getPosts";
-import serializeMdx from "@/service/mdx";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { redirect } from "next/navigation";
 
 type Props = {
@@ -14,17 +12,12 @@ export default async function PostPage({ params: { slug } }: Props) {
   if (!post) {
     redirect("/blog");
   }
-  const mdxSource = await serializeMdx(post.content);
-  if (post) {
-    console.log("post??", post);
-  }
 
   return (
     <div>
       <div className="bg-orange-500">{post.title}</div>
       <div className="bg-orange-500">
-        <MDXRemote {...mdxSource} />
-        {/* {post.content} */}
+        {post.content}
       </div>
     </div>
   );

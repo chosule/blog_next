@@ -4,14 +4,24 @@ import readingTime from "reading-time";
 import path from "path";
 import { glob, sync, globSync } from "glob";
 import dayjs from "dayjs";
+import { promisify } from "util";
 
 const BASE_PATH = "/posts";
 const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
 
-export const getAllPosts = async () => {
-  //동기적으로 패턴 매칭을 수행하며 일치하는 파일이나 디렉터리의 목록을 반환
-  const postPaths = globSync(`${POSTS_PATH}/**/*.mdx`);
-  console.log('postpath',postPaths)
-};
+const globAsync = promisify(glob);
 
+export const getAllPosts = async () => {
+    try {
+      const postPaths = await globAsync(`${POSTS_PATH}/**/*.mdx`);
+      console.log('postPaths?',postPaths);
+      return postPaths.map((filePath) => {
+        const slug = filePath.slice(filePath.indexOf(BASE_PATH)).replace('.mdx', '');
+        return { slug };
+      });
+    } catch (error) {
+      console.error('Error while getting posts:', error);
+      throw error; // Handle the error appropriately for your application
+    }
+  };
 export default getAllPosts;
