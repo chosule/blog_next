@@ -1,4 +1,4 @@
-import fs  from "fs";
+import fs, { promises }  from "fs";
 import { sync } from "glob";
 import matter from "gray-matter";
 import path from "path";
@@ -7,11 +7,38 @@ type Slugs = {
     slug:string
 }
 
+type PostMatter ={
+    title:string;
+    description:string;
+    tags: string[];
+    draft?:boolean;
+    date:string;
+}
 const BASE_PATH = '/posts';
 const POST_PATH = path.join(process.cwd(),BASE_PATH);
 
 
-export async function getAllPosts():Promise<Slugs[]>{
+export async function getAllPosts() {
+    const postPaths = sync(`${POST_PATH}/**/*.mdx`);
+    // const posts = await Promise.all(
+    //     postPaths.map(async(postPath) => {
+    //         const parsePost = await parsePosts(postPath);
+    //         return parsePost;
+    //     })
+    // )
+    console.log('getAllPosts',getAllPosts);
+    // return posts;
+    // return postPaths.reduce((ac,postPath) =>{
+    //     const post = await parsePosts(postPath);
+    //     if(!post) return ac;
+    //     return [...ac,post];
+    // },[])
+}
+
+
+
+
+export async function getAllPostsPath():Promise<Slugs[]>{
     const postPaths = sync(`${POST_PATH}/**/*.mdx`);
     const paths = postPaths.map((postPath) => {
         // const startIndx = postPath.indexOf(BASE_PATH);
@@ -28,7 +55,7 @@ export async function getAllPosts():Promise<Slugs[]>{
 
 
 export async function getPosts(params:any):Promise<Slugs | undefined>{
-    const filePaths = await getAllPosts();
+    const filePaths = await getAllPostsPath();
     const {slugs}  = params ;
     const slug = `posts/${slugs.join('/')}`
     const postsFind = filePaths.find((filePath) => filePath.slug === slug);
@@ -36,17 +63,25 @@ export async function getPosts(params:any):Promise<Slugs | undefined>{
 }
 
 
-export async function parsePosts(fileName:string){
+export async function parsePosts(postPaths:string){
     try{
-        const postPath = await getPosts(fileName); // {slug: 'posts/2023/11/test'}
-        const postPathFileSlug = postPath.slug
-        const markdownFile = fs.readFileSync(`${postPathFileSlug}.mdx`, "utf-8");
-        const {data:fontMatter,content} = matter(markdownFile);
+        // const postPath = await getPosts(fileName); // {slug: 'posts/2023/11/test'}
+        const allFile = fs.readFileSync(postPaths,{encoding:'utf8'});
+        const {content, data} = matter(allFile);
+        const grayMatter = data as PostMatter;
         return{
-            fontMatter,
-            fileName,
-            content
+            ...grayMatter,
+            content,
+
         }
+        // const postPathFileSlug = postPath.slug
+        // const markdownFile = fs.readFileSync(`${postPathFileSlug}.mdx`, "utf-8");
+        // const {data:fontMatter,content} = matter(markdownFile);
+        // return{
+        //     fontMatter,
+        //     fileName,
+        //     content
+        // }
     }catch(e){
         console.error(e)
     }

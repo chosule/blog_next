@@ -1,4 +1,4 @@
-import { getAllPosts, getPosts, parsePosts } from "@/service/getPostsNew";
+import { getAllPostsPath, getPosts, parsePosts } from "@/service/getPostsNew";
 import { redirect } from "next/navigation";
 
 export type Slugs = {
@@ -21,7 +21,7 @@ export default async function Page({params}:any){
     )
 }
 export async function generateStaticParams() {
-    const posts = await getAllPosts(); 
+    const posts = await getAllPostsPath(); 
     const slugs =  posts.map((post)=>({
         slug: post.slug 
     }));
