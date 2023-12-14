@@ -6,7 +6,7 @@ import { getAllpost } from "@/service/getPosts";
 export default async function BlogPage() {
   const posts = await getAllpost();
   const categories = [...new Set(posts.map((post) => post.category))];
-  console.log("categories?", categories);
+  // console.log("categories?", categories);
   return (
     <div className="my-9">
       <TitleTexts

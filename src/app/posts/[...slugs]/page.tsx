@@ -5,6 +5,11 @@ import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import path from "path";
 
+export type Slugs = {
+    slugs:string[];
+}
+
+
 const BASE_PATH = '/posts';
 const POST_PATH = path.join(process.cwd(),BASE_PATH);
 
@@ -33,15 +38,19 @@ const POST_PATH = path.join(process.cwd(),BASE_PATH);
 
 export async function generateStaticParams() {
     const posts = await getAllPosts(); 
-    console.log('generate post',posts)
-    return posts.map((post)=>({
+    const slugs =  posts.map((post)=>({
         slug: post.slug 
     }));
+    return slugs;
 }
 
 
-export default async function Page({params}){
-
+export default async function Page({params}:any){
+    const {slugs}:Slugs = params;
+    const test = await getAllPosts();
+    console.log('getAllPosts',test)
+    const markdownFile = await parsePosts(params);
+    console.log('markdown',markdownFile)
     // const markdownFile = fs.readFileSync(slug,"utf-8")
     return(
         <article className="prose prose-sm md:prose-base lg:prose-lg prose-slate">
@@ -50,6 +59,8 @@ export default async function Page({params}){
             <h1>{props.fontMatter.description}</h1>
             <MDXRemote source={props.content}/> */}
             {/* {params.slug} */}
+            <h1>{markdownFile?.fontMatter.title}</h1>
+            {slugs}
         </article>
     )
 }

@@ -9,6 +9,7 @@ type Props = {
 
 export default async function PostPage({ params: { slug } }: Props) {
   const post = await getPostData(slug);
+  console.log('slug',slug)
   if (!post) {
     redirect("/blog");
   }
