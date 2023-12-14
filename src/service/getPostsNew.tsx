@@ -20,13 +20,11 @@ const POST_PATH = path.join(process.cwd(),BASE_PATH);
 
 export async function getAllPosts() {
     const postPaths = sync(`${POST_PATH}/**/*.mdx`);
-    // const posts = await Promise.all(
-    //     postPaths.map(async(postPath) => {
-    //         const parsePost = await parsePosts(postPath);
-    //         return parsePost;
-    //     })
-    // )
+    const test =  postPaths.map(async(postPath) =>{
+        return await(parsePosts(postPath))
+    })
     console.log('getAllPosts',getAllPosts);
+    return test;
     // return posts;
     // return postPaths.reduce((ac,postPath) =>{
     //     const post = await parsePosts(postPath);
