@@ -1,4 +1,4 @@
-import { promises, readFile } from "fs";
+import { promises } from "fs";
 import path from "path";
 
 export type Posts = {
@@ -26,20 +26,6 @@ export async function getFeaturedPost(): Promise<Posts[]> {
   return post.filter((item) => item.feature === true);
 }
 
-// export async function getPostData(fileName:string):Promise<PostData>{
-//   //내가 클릭한 path와 fiulname이 같을경우 보여줘야함
-//   const filePath = path.join(process.cwd(),'data','posts',`${fileName}.mdx`);
-//   const metaData = await getAllpost()
-//   .then((posts) => posts.find((post) => post.path === fileName))
-
-//   if(!metaData)
-//     throw new Error(`${fileName}에 해당하는 포스트를 찾을수 없습니다.`)
-
-//   const content = await promises.readFile(filePath, "utf-8");  //md파일을 html로 변환??
-//   const mdx = await serializeMdx(content);
-
-//   return { ...metaData, mdx}
-// }
 
 export async function getPostData(fileName: string): Promise<PostData> {
   //내가 클릭한 path와 fiulname이 같을경우 보여줘야함

@@ -1,8 +1,6 @@
-import { Slugs } from "@/app/posts/[...slugs]/page";
 import fs  from "fs";
 import { sync } from "glob";
 import matter from "gray-matter";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import path from "path";
 
 type Slugs = {
@@ -22,10 +20,9 @@ export async function getAllPosts():Promise<Slugs[]>{
             // slug:postPath.replace('.mdx','')
         }
     })
-    // 결과
     //  { slug: '/posts/blog' },
-    //{ slug: '/posts/2023/11/test' },
-    //{ slug: '/posts/2023/11/blog' }
+    //  { slug: '/posts/2023/11/test' },
+    //  { slug: '/posts/2023/11/blog' }
     return paths;
 }
 
