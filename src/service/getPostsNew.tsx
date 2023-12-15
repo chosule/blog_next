@@ -16,7 +16,6 @@ type PostMatter ={
 }
 const BASE_PATH = '/posts';
 const POST_PATH = path.join(process.cwd(),BASE_PATH);
-console.log('postPath?',POST_PATH)
 
 
 export async function getAllPosts() {
@@ -25,7 +24,6 @@ export async function getAllPosts() {
     const test =  postPaths.map(async(postPath) =>{
         return await(parsePosts(postPath))
     })
-    console.log('getAllPosts',getAllPosts);
     return test;
     // return posts;
     // return postPaths.reduce((ac,postPath) =>{
@@ -40,13 +38,13 @@ export async function getAllPosts() {
 
 export async function getAllPostsPath():Promise<Slugs[]>{
     const postPaths = sync(`${POST_PATH}/**/*.mdx`);
-    console.log('테스트',postPaths);
     const paths = postPaths.map((path) => {
         const parts = path.split(path.sep);
-        console.log('sep',parts);
+        
         const slugStart = parts.indexOf(BASE_PATH.split(path.sep)[0]);
         const slug = parts.slice(slugStart).join('');
         // const startIndx = postPath.indexOf(BASE_PATH);
+        console.log('slug',slug)
         return{
             slug: slug.replace('.mdx','')
             // slug:path.replace('.mdx','')
