@@ -11,6 +11,8 @@ export default async function Page({params}:any){
 
 
     const postsFind = await getPosts(params);
+
+    console.log('postsFindpostsFind', postsFind?.slug,)
  
  
     // const allPsth = await getAllPosts();

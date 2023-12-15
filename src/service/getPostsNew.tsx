@@ -19,6 +19,7 @@ const BASE_PATH = '/posts';
 const POST_PATH = path.join(process.cwd(),BASE_PATH);
 
 
+
 export async function getAllPosts() {
     const postPaths = sync(`${POST_PATH}/**/*.mdx`);
     console.log('sync 포스트패스',postPaths)
@@ -48,7 +49,7 @@ export async function getAllPostsPath():Promise<Slugs[]>{
           relativePath = relativePath.replace(/\.mdx$/, ''); // 확장자 제거
     
           return {
-            slug: relativePath,
+            slug: `posts/${relativePath}`,
           };
         });
       } catch (error) {
