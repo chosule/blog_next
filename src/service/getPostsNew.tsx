@@ -1,8 +1,7 @@
-import fs, { promises }  from "fs";
+import fs  from "fs";
 import { globSync, sync } from "glob";
 import matter from "gray-matter";
 import path from "path";
-import { CiGlass } from "react-icons/ci";
 
 type Slugs = {
     slug:string
@@ -18,15 +17,20 @@ type PostMatter ={
 const BASE_PATH = '/posts';
 const POST_PATH = path.join(process.cwd(),BASE_PATH);
 
-
-
+// 모든파일들을 가져와서 gray-matter로 파싱 
 export async function getAllPosts() {
     const postPaths = sync(`${POST_PATH}/**/*.mdx`);
-    console.log('sync 포스트패스',postPaths)
-    const test =  postPaths.map(async(postPath) =>{
-        return await(parsePosts(postPath))
-    })
-    return test;
+    console.log('postPaths?',postPaths)
+    const allPosts = await Promise.all(
+        //parsePosts가 비동기일필요가 없어서 수정필요
+        postPaths.map(async(path) =>{
+            console.log('path?',path)
+            const pathString = path.toString();
+            const allPost = await(parsePosts(pathString));
+            return allPost;
+        })
+    ) 
+    return allPosts;
     // return posts;
     // return postPaths.reduce((ac,postPath) =>{
     //     const post = await parsePosts(postPath);
@@ -37,55 +41,56 @@ export async function getAllPosts() {
 
 
 
-
+// 모든 파일을 읽어와서 .mdx을 없애는 프로그래밍
 export async function getAllPostsPath():Promise<Slugs[]>{
     try {
         const postPaths = globSync(`${POST_PATH}/**/*.mdx`);
     
         return postPaths.map(filePath => {
-          // 상대 경로를 얻고, 필요한 문자열 변환을 수행합니다.
           let relativePath = path.relative(POST_PATH, filePath);
-          relativePath = relativePath.replace(new RegExp('\\' + path.sep, 'g'), '/'); // 플랫폼 독립적인 경로 구분자로 변환
-          relativePath = relativePath.replace(/\.mdx$/, ''); // 확장자 제거
-    
+          relativePath = relativePath.replace(new RegExp('\\' + path.sep, 'g'), '/'); 
+          relativePath = relativePath.replace(/\.mdx$/, ''); 
           return {
             slug: `posts/${relativePath}`,
           };
         });
       } catch (error) {
-        console.error('Error while getting all posts:', error);
+        console.error('경로가 잘못되었습니다.', error);
         return [];
       }
 }
 
 
-export async function getPosts(params:any):Promise<Slugs | undefined>{
+//해당되는 포스트만 가져옴 
+export async function getPost(params:any):Promise<Slugs | undefined>{
     const filePaths = await getAllPostsPath();
  
     const {slugs}  = params;
-   
     const slug = `posts/${slugs.join('/')}`
-
-    console.log('filePaths', filePaths)
-    console.log('slug', slug)
-
+    // console.log('slug??????????????', slug)
 
     const postsFind = filePaths.find((filePath) => filePath.slug === slug);
-
-
     return postsFind;
+
+    // 반환예시
+    // {slug:'posts/2023/11/test'}
 }
 
 
-export async function parsePosts(postPaths:string){
+export function parsePosts(postPaths:string){
     try{
-        // const postPath = await getPosts(fileName); // {slug: 'posts/2023/11/test'}
-        const allFile = fs.readFileSync(postPaths,{encoding:'utf8'});
-        const {content, data} = matter(allFile);
+        // const postPath = await getPosts(postPaths); 
+        // {slug: 'posts/2023/11/test'}
+        // const slug = postPath?.slug
+        const markdownFile = fs.readFileSync(`${postPaths}`,{encoding:'utf8'});
+        // console.log('markdownFile???',markdownFile)
+        const {content, data} = matter(markdownFile);
         const grayMatter = data as PostMatter;
+        console.log('grayMatter?', grayMatter);
         return{
             ...grayMatter,
             content,
+            
 
         }
         // const postPathFileSlug = postPath.slug
