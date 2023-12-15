@@ -42,12 +42,17 @@ export async function getAllPostsPath():Promise<Slugs[]>{
     const postPaths = sync(`${POST_PATH}/**/*.mdx`);
     console.log('테스트',postPaths);
     const paths = postPaths.map((path) => {
+        const parts = path.split(path.sep);
+        console.log('sep',parts);
+        const slugStart = parts.indexOf(BASE_PATH.split(path.sep)[0]);
+        const slug = parts.slice(slugStart).join('');
         // const startIndx = postPath.indexOf(BASE_PATH);
         return{
-            // slug: path.indexOf(BASE_PATH)
-            slug:path.replace('.mdx','')
+            slug: slug.replace('.mdx','')
+            // slug:path.replace('.mdx','')
         }
     })
+    // 원래반환 코드 
     //  { slug: '/posts/blog' },
     //  { slug: '/posts/2023/11/test' },
     //  { slug: '/posts/2023/11/blog' }
