@@ -16,10 +16,12 @@ type PostMatter ={
 }
 const BASE_PATH = '/posts';
 const POST_PATH = path.join(process.cwd(),BASE_PATH);
+console.log('postPath?',POST_PATH)
 
 
 export async function getAllPosts() {
     const postPaths = sync(`${POST_PATH}/**/*.mdx`);
+    console.log('sync 포스트패스',postPaths)
     const test =  postPaths.map(async(postPath) =>{
         return await(parsePosts(postPath))
     })
@@ -38,11 +40,12 @@ export async function getAllPosts() {
 
 export async function getAllPostsPath():Promise<Slugs[]>{
     const postPaths = sync(`${POST_PATH}/**/*.mdx`);
-    const paths = postPaths.map((postPath) => {
+    console.log('테스트',postPaths);
+    const paths = postPaths.map((path) => {
         // const startIndx = postPath.indexOf(BASE_PATH);
         return{
-            slug: postPath.replace(/\\/g, '/').replace('.mdx','')
-            // slug:postPath.replace('.mdx','')
+            // slug: path.indexOf(BASE_PATH)
+            slug:path.replace('.mdx','')
         }
     })
     //  { slug: '/posts/blog' },
