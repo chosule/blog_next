@@ -1,7 +1,8 @@
 import fs, { promises }  from "fs";
-import { sync } from "glob";
+import { globSync, sync } from "glob";
 import matter from "gray-matter";
 import path from "path";
+import { CiGlass } from "react-icons/ci";
 
 type Slugs = {
     slug:string
@@ -37,32 +38,40 @@ export async function getAllPosts() {
 
 
 export async function getAllPostsPath():Promise<Slugs[]>{
-    const postPaths = sync(`${POST_PATH}/**/*.mdx`);
-    const paths = postPaths.map((path) => {
-        const parts = path.split(path.sep);
-        
-        const slugStart = parts.indexOf(BASE_PATH.split(path.sep)[0]);
-        const slug = parts.slice(slugStart).join('');
-        // const startIndx = postPath.indexOf(BASE_PATH);
-        console.log('slug',slug)
-        return{
-            slug: slug.replace('.mdx','')
-            // slug:path.replace('.mdx','')
-        }
-    })
-    // 원래반환 코드 
-    //  { slug: '/posts/blog' },
-    //  { slug: '/posts/2023/11/test' },
-    //  { slug: '/posts/2023/11/blog' }
-    return paths;
+    try {
+        const postPaths = globSync(`${POST_PATH}/**/*.mdx`);
+    
+        return postPaths.map(filePath => {
+          // 상대 경로를 얻고, 필요한 문자열 변환을 수행합니다.
+          let relativePath = path.relative(POST_PATH, filePath);
+          relativePath = relativePath.replace(new RegExp('\\' + path.sep, 'g'), '/'); // 플랫폼 독립적인 경로 구분자로 변환
+          relativePath = relativePath.replace(/\.mdx$/, ''); // 확장자 제거
+    
+          return {
+            slug: relativePath,
+          };
+        });
+      } catch (error) {
+        console.error('Error while getting all posts:', error);
+        return [];
+      }
 }
 
 
 export async function getPosts(params:any):Promise<Slugs | undefined>{
     const filePaths = await getAllPostsPath();
-    const {slugs}  = params ;
+ 
+    const {slugs}  = params;
+   
     const slug = `posts/${slugs.join('/')}`
+
+    console.log('filePaths', filePaths)
+    console.log('slug', slug)
+
+
     const postsFind = filePaths.find((filePath) => filePath.slug === slug);
+
+
     return postsFind;
 }
 

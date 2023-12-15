@@ -8,7 +8,11 @@ export type Slugs = {
 export default async function Page({params}:any){
     const {slugs}:Slugs = params;
     const test = await getAllPostsPath();
-    console.log('getAllPostsPath',test)
+
+
+    const postsFind = await getPosts(params);
+ 
+ 
     // const allPsth = await getAllPosts();
     // console.log('allpath',allPsth)
 
