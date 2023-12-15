@@ -77,30 +77,21 @@ export async function getPost(params:any):Promise<Slugs | undefined>{
 }
 
 
-export function parsePosts(postPaths:string){
+export function parsePosts(postPath:string){
     try{
         // const postPath = await getPosts(postPaths); 
         // {slug: 'posts/2023/11/test'}
         // const slug = postPath?.slug
-        const markdownFile = fs.readFileSync(`${postPaths}`,{encoding:'utf8'});
-        // console.log('markdownFile???',markdownFile)
+        const markdownFile = fs.readFileSync(`${postPath}`,{encoding:'utf8'});
+        console.log('경로확인',postPath)
         const {content, data} = matter(markdownFile);
         const grayMatter = data as PostMatter;
         console.log('grayMatter?', grayMatter);
+        console.log('content?',content)
         return{
             ...grayMatter,
             content,
-            
-
         }
-        // const postPathFileSlug = postPath.slug
-        // const markdownFile = fs.readFileSync(`${postPathFileSlug}.mdx`, "utf-8");
-        // const {data:fontMatter,content} = matter(markdownFile);
-        // return{
-        //     fontMatter,
-        //     fileName,
-        //     content
-        // }
     }catch(e){
         console.error(e)
     }
