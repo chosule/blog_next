@@ -6,7 +6,7 @@ import path from "path";
 
 type Slugs = {
   slug: string;
-  content?:string;
+  content?: string;
 };
 type PostMatter = {
   title: string;
@@ -15,27 +15,26 @@ type PostMatter = {
   image: string;
   tags: string[];
   draft?: boolean;
-  feature?:boolean;
+  feature?: boolean;
   date: string;
 };
 export type Post = PostMatter & {
-    slug:string;
-    content: string;
+  slug: string;
+  content: string;
 };
 
 const BASE_PATH = "/posts";
 const POST_PATH = path.join(process.cwd(), BASE_PATH);
 
-
 // 모든파일들을 가져와서 gray-matter로 파싱
-export async function getAllPosts():Promise<Post[]> {
-    const postPaths = sync(`${POST_PATH}/**/*.mdx`);
-    return postPaths.reduce<Post[]>((ac, postPath) => {
-      const post = parsePosts(postPath);
-      if (post) return [...ac, post];
-      return ac;
-    }, []);
-  }
+export async function getAllPosts(): Promise<Post[]> {
+  const postPaths = sync(`${POST_PATH}/**/*.mdx`);
+  return postPaths.reduce<Post[]>((ac, postPath) => {
+    const post = parsePosts(postPath);
+    if (post) return [...ac, post];
+    return ac;
+  }, []);
+}
 
 // 모든 파일을 읽어와서 .mdx을 없애는 프로그래밍
 export async function getAllPostsPath(): Promise<Slugs[]> {
@@ -63,33 +62,35 @@ export async function getPost(slugs: any): Promise<Post | undefined> {
   const allPosts = await getAllPosts();
   const slug = `posts/${slugs.join("/")}`;
   const post = allPosts.find((post) => post.slug === slug);
-    return post;
+  return post;
 }
 
 // mdx파일 파싱해줌
-export function parsePosts(postPath: string):Post|undefined {
+export function parsePosts(postPath: string): Post | undefined {
   try {
     const markdownFile = fs.readFileSync(`${postPath}`, { encoding: "utf8" });
-    // console.log("markdownFile경로", markdownFile);
+    console.log("markdownFile경로", markdownFile);
+    console.log("postPath", postPath);
     const { content, data } = matter(markdownFile);
     const grayMatter = data as PostMatter;
-    if(grayMatter.draft){
-        return;
+    if (grayMatter.draft) {
+      return;
     }
     return {
       ...grayMatter,
       content,
       tags: grayMatter.tags.filter(Boolean),
       date: dayjs(grayMatter.date).format("YYYY-MM-DD"),
-      slug: postPath.replace(new RegExp("\\"+path.sep,'g'),"/").replace(/\.mdx$/, "")
+      slug: postPath
+        .replace(new RegExp("\\" + path.sep, "g"), "/")
+        .replace(/\.mdx$/, ""),
     };
   } catch (e) {
     console.error(e);
   }
 }
 
-
-export async function getFeaturedPost(){
-    const posts = await getAllPosts();
-    return posts.filter((post) => post.feature === true);
+export async function getFeaturedPost() {
+  const posts = await getAllPosts();
+  return posts.filter((post) => post.feature === true);
 }
