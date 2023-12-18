@@ -8,7 +8,7 @@ type Props = {
 
 export default function PostsGrid({ posts }: Props) {
     return (
-    <ul className="grid grid-cols-2 gap-8 sm:grid-cols-2">
+    <ul className="grid grid-cols-3 gap-8 sm:grid-cols-2 md:grid-cols-3">
       {posts?.map((post) => (
         <li
           key={uuid()}

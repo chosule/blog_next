@@ -15,6 +15,7 @@ type PostMatter = {
   image: string;
   tags: string[];
   draft?: boolean;
+  feature?:boolean;
   date: string;
 };
 export type Post = PostMatter & {
@@ -85,4 +86,10 @@ export function parsePosts(postPath: string):Post|undefined {
   } catch (e) {
     console.error(e);
   }
+}
+
+
+export async function getFeaturedPost(){
+    const posts = await getAllPosts();
+    return posts.filter((post) => post.feature === true);
 }

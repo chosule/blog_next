@@ -1,10 +1,10 @@
-import { getFeaturedPost } from "@/service/getPosts";
+import { getFeaturedPost } from "@/service/getPostsNew";
 import PostsGrid from "./PostsGrid";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 export default async function FeaturePost() {
   const posts = await getFeaturedPost();
-
+  console.log('posts',posts)
   return (
     <div className="flex flex-col gap-10">
       <div className="text-4xl font-black italic">Featured Posts 📌</div>
