@@ -1,21 +1,20 @@
-import { Posts } from "@/service/getPosts";
-import Image from "next/image";
-import { CiCalendarDate } from "react-icons/ci";
+import { Post } from "@/service/getPostsNew";
 import PostCard from "./PostCard";
-import { useEffect } from "react";
+import uuid from "react-uuid";
 
 type Props = {
-  post: Posts;
+  posts: Post[];
 };
+
 export default function PostsGrid({ posts }: Props) {
     return (
-    <ul className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+    <ul className="grid grid-cols-2 gap-8 sm:grid-cols-2">
       {posts?.map((post) => (
         <li
-          key={post.path}
-          className="h-full w-full transform rounded-xl bg-neutral-100 drop-shadow-xl transition-transform hover:-translate-y-1"
+          key={uuid()}
+          className="h-full w-82 transform rounded-xl bg-neutral-100 drop-shadow-xl transition-transform hover:-translate-y-1"
         >
-          <PostCard post={post} />
+          <PostCard posts={post} />
         </li>
       ))}
     </ul>

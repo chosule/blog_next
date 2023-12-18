@@ -13,6 +13,9 @@ const config: Config = {
       },
     },
   },
+  variants: {
+    typography: ['dark'],
+  },
   plugins: [
     require('@tailwindcss/typography'),
   ],

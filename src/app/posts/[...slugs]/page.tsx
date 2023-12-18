@@ -6,38 +6,40 @@ import {
 } from "@/service/getPostsNew";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { redirect } from "next/navigation";
+import { serialize } from 'next-mdx-remote/serialize'
+import { serializeMax } from "@/lips/mdx";
+import serializeMdx from "@/service/mdx";
 
-export type Slugs = {
-  slugs: string[];
+
+export type Props = {
+    params:{
+        slugs: string[];
+    }
 };
 
-export default async function Page({ mdx }: any) {
-  // const { slugs }: Slugs = params;
+export function generateMetadata({ params }:Props) {
+    const slugs = params.slugs;
+    const slug = `${slugs.join('/')}`
+    return {
+      title: `${slug} 기록`,
+    };
+  }
+  
+
+export default async function Page({ params }: Props) {
+    const { slugs } = params;
   // console.log("현재해당 slugs", slugs);
+  const post = await getPost(slugs);
+  if(!post){
+    redirect('/posts')
+  }
+  const mdx = await serializeMdx(post.content)
 
-  // const getPostTest = await getPost(slugs);
-  // console.log("getPost", getPostTest);
-
-  const getAllPost = await getAllPosts();
-  console.log("getAllposts", getAllPost);
-
-  const getAllPostsPaths = await getAllPostsPath();
-  // console.log("getAllPostsPath", getAllPostsPaths);
-
-  // const parsePost = parsePosts(`${getPostTest?.slug}.mdx`);
-  // console.log("parsePost", parsePost);
-
-  // if(!markdownFile){
-  //     redirect('/posts');
-  // }
   return (
-    <article className="prose prose-sm prose-slate md:prose-base lg:prose-lg">
-      {/* <h1>{markdownFile?.title}</h1> */}
-      {/* <h3>날짜 : {markdownFile?.date}</h3> */}
-      <div>
-        <MDXRemote {...mdx} />
-      </div>
-    </article>
+    <div className="prose dark:prose-dark">
+        <MDXRemote source={post.content}/>
+        {/* <MDXRemote {...mdx}  components={{h1:Heading}}/> */}
+    </div>
   );
 }
 export async function generateStaticParams() {
@@ -47,3 +49,4 @@ export async function generateStaticParams() {
   }));
   return slugs;
 }
+

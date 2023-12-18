@@ -8,23 +8,22 @@ type Props = {
 };
 
 export default function Categories({ categories, selected, onClick }: Props) {
-
   return (
-    <ul className="grid grid-cols-6">
+    <ul className="grid grid-cols-2 gap-3">
       {categories.map((category, index) => (
         <li
           key={index}
           onClick={() => onClick(category)}
-          className="my-20 flex flex-col items-center gap-4 cursor-pointer"
+          className="border rounded-xl flex items-center justify-center pb-1 px-2 cursor-pointer"
         >
-          <Image
+          {/* <Image
             className="transform transition-transform hover:-translate-y-1"
             src={forder_img}
             alt="폴더이미지"
             width={130}
             height={130}
-          />
-          <h3 className={`text-lg font-bold ${category === selected && 'text-orange-500'}`}>{category}</h3>
+          /> */}
+          <h3 className={`text-lg font-bold leading-2 ${category === selected && 'text-orange-500'}`}>{category}</h3>
         </li>
       ))}
     </ul>
