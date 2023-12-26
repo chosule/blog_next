@@ -60,7 +60,9 @@ export async function getAllPostsPath(): Promise<Slugs[]> {
 //내가 만든 모든 mdx파일들중 해당페이지slug에 해당되는 mdx포스트만 가져옴
 export async function getPost(slugs: any): Promise<Post | undefined> {
   const allPosts = await getAllPosts();
+  console.log("allPosts", allPosts);
   const slug = `posts/${slugs.join("/")}`;
+  console.log("slug", slug);
   const post = allPosts.find((post) => post.slug === slug);
   return post;
 }
@@ -69,8 +71,8 @@ export async function getPost(slugs: any): Promise<Post | undefined> {
 export function parsePosts(postPath: string): Post | undefined {
   try {
     const markdownFile = fs.readFileSync(`${postPath}`, { encoding: "utf8" });
-    console.log("markdownFile경로", markdownFile);
-    console.log("postPath", postPath);
+    // console.log("markdownFile경로", markdownFile);
+    const relativePath = path.relative(POST_PATH, postPath);
     const { content, data } = matter(markdownFile);
     const grayMatter = data as PostMatter;
     if (grayMatter.draft) {
@@ -81,9 +83,7 @@ export function parsePosts(postPath: string): Post | undefined {
       content,
       tags: grayMatter.tags.filter(Boolean),
       date: dayjs(grayMatter.date).format("YYYY-MM-DD"),
-      slug: postPath
-        .replace(new RegExp("\\" + path.sep, "g"), "/")
-        .replace(/\.mdx$/, ""),
+      slug: `posts/${relativePath.replace(/\.mdx$/, "")}`,
     };
   } catch (e) {
     console.error(e);

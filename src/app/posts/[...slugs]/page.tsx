@@ -27,14 +27,13 @@ export default async function Page({ params }: Props) {
   const { slugs } = params;
   // console.log("현재해당 slugs", slugs);
   const post = await getPost(slugs);
+  console.log("slugs?", slugs);
   // if (!post) {
   //   redirect("/posts");
   // }
   console.log("post?", post);
-  const test = await getAllPosts();
-  console.log("test?", test);
   const mdx = await serializeMdx(post.content);
-  console.log("mad?", mdx);
+  // console.log("mad?", mdx);
   return (
     <div className="dark:prose-dark prose">
       <MDXRemote source={post.content} />
