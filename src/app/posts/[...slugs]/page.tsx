@@ -41,8 +41,8 @@ export default async function PostPage({ params }: Props) {
         <p>{post.date}</p>
       </div>
       <div className="dark:prose-dark prose max-w-full">
-        <MDXRemote source={post.content} />
-        {/* <MDXRemote {...mdx} /> */}
+        {/* <MDXRemote source={post.content} /> */}
+        <MDXRemote {...mdx} />
       </div>
     </>
   );
