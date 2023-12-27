@@ -1,3 +1,4 @@
+import serializeMdx from "@/lips/mdx";
 import dayjs from "dayjs";
 import fs from "fs";
 import { globSync, sync } from "glob";
@@ -60,10 +61,10 @@ export async function getAllPostsPath(): Promise<Slugs[]> {
 //내가 만든 모든 mdx파일들중 해당페이지slug에 해당되는 mdx포스트만 가져옴
 export async function getPost(slugs: any): Promise<Post | undefined> {
   const allPosts = await getAllPosts();
-  console.log("allPosts", allPosts);
   const slug = `posts/${slugs.join("/")}`;
-  console.log("slug", slug);
   const post = allPosts.find((post) => post.slug === slug);
+  //   const mdx = await serializeMdx(post?.content);
+  //   console.log('mdx?',)
   return post;
 }
 

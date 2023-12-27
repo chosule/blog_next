@@ -26,13 +26,13 @@ export async function getFeaturedPost(): Promise<Posts[]> {
   return post.filter((item) => item.feature === true);
 }
 
-
 export async function getPostData(fileName: string): Promise<PostData> {
   //내가 클릭한 path와 fiulname이 같을경우 보여줘야함
   const filePath = path.join(process.cwd(), "data", "posts", `${fileName}.md`);
   const metaData = await getAllpost().then((posts) =>
     posts.find((post) => post.path === fileName)
   );
+  console.log("metaData", metaData);
 
   if (!metaData)
     throw new Error(`${fileName}에 해당하는 포스트를 찾을수 없습니다.`);

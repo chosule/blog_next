@@ -23,22 +23,28 @@ export function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function Page({ params }: Props) {
+export default async function PostPage({ params }: Props) {
   const { slugs } = params;
-  // console.log("현재해당 slugs", slugs);
+
   const post = await getPost(slugs);
-  console.log("slugs?", slugs);
-  // if (!post) {
-  //   redirect("/posts");
-  // }
-  console.log("post?", post);
+
+  if (!post) {
+    redirect("/posts");
+  }
+
   const mdx = await serializeMdx(post.content);
-  // console.log("mad?", mdx);
+
   return (
-    <div className="dark:prose-dark prose">
-      <MDXRemote source={post.content} />
-      {/* <MDXRemote {...mdx}  components={{h1:Heading}}/> */}
-    </div>
+    <>
+      <div className="flex flex-col items-center">
+        <p className="text-4xl font-bold">{post.title}</p>
+        <p>{post.date}</p>
+      </div>
+      <div className="dark:prose-dark prose max-w-full">
+        <MDXRemote source={post.content} />
+        {/* <MDXRemote {...mdx} /> */}
+      </div>
+    </>
   );
 }
 export async function generateStaticParams() {
