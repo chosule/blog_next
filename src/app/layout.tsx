@@ -4,6 +4,8 @@ import { Noto_Sans_KR } from 'next/font/google'
 import Header from '@/components/Layout/Header'
 import Footer from '@/components/Layout/Footer'
 
+
+ 
 const inter = Noto_Sans_KR({ subsets: ['latin'] });
 
 export const metadata: Metadata = {

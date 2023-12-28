@@ -23,7 +23,7 @@ export default function FilterCategory({ posts, tags }:Props ) {
     <section className="grid grid-cols-4 gap-3">
       <article  className="col-span-3">
         <h1 className="text-2xl font-black italic mb-7">{selected}</h1>
-        <PostsGrid posts={filtered} />
+        <PostsGrid posts={filtered} grid="grid-cols-2"/>
       </article>
       <article className="col-span-1 justify-self-end">
         <h1 className="text-2xl font-black italic mb-7">Tags</h1>

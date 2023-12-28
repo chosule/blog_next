@@ -8,7 +8,7 @@ type Props = {
 };
 
 export default function PostCard({ posts }: Props) {
-  console.log("posts", posts);
+  // console.log("posts", posts);
   return (
     <Link href={`/${posts.slug}`} className="">
       <Image

@@ -4,11 +4,12 @@ import uuid from "react-uuid";
 
 type Props = {
   posts: Post[];
+  grid?: string;
 };
 
-export default function PostsGrid({ posts }: Props) {
+export default function PostsGrid({ posts, grid}: Props) {
     return (
-    <ul className="grid grid-cols-3 gap-8 sm:grid-cols-2 md:grid-cols-3">
+    <ul className={`grid ${grid} gap-8`}>
       {posts?.map((post) => (
         <li
           key={uuid()}

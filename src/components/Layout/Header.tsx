@@ -4,7 +4,7 @@ import { RiHeart2Line } from "react-icons/ri";
 
 export function Header() {
      return(
-        <nav className='flex gap-5 justify-between py-5'>
+        <nav className='flex gap-5 justify-between py-8'>
             <Link href="/">
                 <div className='flex items-center gap-1'>
                     <h1 className="text-2xl font-bold">💜Chosule Blog</h1>

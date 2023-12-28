@@ -5,10 +5,7 @@ import {
   parsePosts,
 } from "@/service/getPostsNew";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { redirect } from "next/navigation";
-import { serialize } from "next-mdx-remote/serialize";
 import serializeMdx from "@/lips/mdx";
-import { getPostData } from "@/service/getPosts";
 
 export type Props = {
   params: {
@@ -26,25 +23,20 @@ export function generateMetadata({ params }: Props) {
 
 export default async function PostPage({ params }: Props) {
   const { slugs } = params;
-console.log('slugs?',slugs)
   const post = await getPost(slugs);
-  console.log('post??',post)
-  const mdx = await serializeMdx(post?.content);
-
-  // const test = await getPostData(slugs);
-
-  // console.log('test',test)
+  // const mdx = await serializeMdx(post?.content);
+  console.log('post',post)
   return (
-    <>
-      <div className="flex flex-col items-center">
+    <div className="my-10">
+      <div className="flex flex-col items-center gap-4">
         <p className="text-4xl font-bold">{post?.title}</p>
         <p>{post?.date}</p>
       </div>
-      <div className="dark:prose-dark prose max-w-full">
+      <div className="dark:prose-dark prose max-w-full my-8">
         {/* <MDXRemote source={post.content} /> */}
-        {/* <MDXRemote {...mdx} /> */}
+        <MDXRemote {...post.compiledSource} />
       </div>
-    </>
+    </div>
   );
 }
 export async function generateStaticParams() {
