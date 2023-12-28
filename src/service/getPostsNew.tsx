@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import fs from "fs";
 import { globSync, sync } from "glob";
 import matter from "gray-matter";
+import { redirect } from "next/navigation";
 import path from "path";
 
 type Slugs = {
@@ -61,13 +62,17 @@ export async function getAllPostsPath(): Promise<Slugs[]> {
 //내가 만든 모든 mdx파일들중 해당페이지slug에 해당되는 mdx포스트만 가져옴
 export async function getPost(slugs: any): Promise<Post | undefined> {
   const allPosts = await getAllPosts();
+  console.log('allPosts',allPosts)
   const slug = `posts/${slugs.join("/")}`;
   const post = allPosts.find((post) => post.slug === slug);
   //   const mdx = await serializeMdx(post?.content);
   //   console.log('mdx?',)
+  // if (!post) {
+  //   redirect("/posts");
+  // }
   return post;
 }
-
+  
 // mdx파일 파싱해줌
 export function parsePosts(postPath: string): Post | undefined {
   try {
@@ -84,7 +89,8 @@ export function parsePosts(postPath: string): Post | undefined {
       content,
       tags: grayMatter.tags.filter(Boolean),
       date: dayjs(grayMatter.date).format("YYYY-MM-DD"),
-      slug: `posts/${relativePath.replace(/\.mdx$/, "")}`,
+      slug: `posts/${relativePath.replace(/\.mdx$/, "").replace(
+        new RegExp("\\" + path.sep, "g"),"/")}`,
     };
   } catch (e) {
     console.error(e);

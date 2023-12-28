@@ -28,3 +28,6 @@ export const serializeMdx = (source: string) => {
     },
   });
 };
+
+
+export default serializeMdx;
