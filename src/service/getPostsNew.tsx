@@ -64,14 +64,14 @@ export async function getPost(slugs: any): Promise<Post> {
   const allPosts = await getAllPosts();
   const slug = `posts/${slugs.join("/")}`;
   const post = allPosts.find((post) => post.slug === slug);
-    const mdx = await serializeMdx(post?.content);
+  // const mdx = await serializeMdx(post?.content);
   //   console.log('mdx?',)
   if (!post) {
     redirect("/blog");
   }
-  return {...post , content :mdx};
+  return post;
 }
-  
+
 // mdx파일 파싱해줌
 export function parsePosts(postPath: string): Post | undefined {
   try {
@@ -87,8 +87,9 @@ export function parsePosts(postPath: string): Post | undefined {
       content,
       tags: grayMatter.tags.filter(Boolean),
       date: dayjs(grayMatter.date).format("YYYY-MM-DD"),
-      slug: `posts/${relativePath.replace(/\.mdx$/, "").replace(
-        new RegExp("\\" + path.sep, "g"),"/")}`,
+      slug: `posts/${relativePath
+        .replace(/\.mdx$/, "")
+        .replace(new RegExp("\\" + path.sep, "g"), "/")}`,
     };
   } catch (e) {
     console.error(e);

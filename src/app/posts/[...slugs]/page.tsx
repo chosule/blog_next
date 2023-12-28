@@ -24,17 +24,18 @@ export function generateMetadata({ params }: Props) {
 export default async function PostPage({ params }: Props) {
   const { slugs } = params;
   const post = await getPost(slugs);
-  // const mdx = await serializeMdx(post?.content);
-  console.log('post',post)
+  // console.log("mdxSource", mdxSource);
+  const mdxSource = await serializeMdx(post?.content);
+  // console.log("post", mdx);
   return (
     <div className="my-10">
       <div className="flex flex-col items-center gap-4">
         <p className="text-4xl font-bold">{post?.title}</p>
         <p>{post?.date}</p>
       </div>
-      <div className="dark:prose-dark prose max-w-full my-8">
+      <div className="dark:prose-dark prose my-8 max-w-full">
         {/* <MDXRemote source={post.content} /> */}
-        <MDXRemote {...post.compiledSource} />
+        <MDXRemote source={mdxSource} />
       </div>
     </div>
   );
