@@ -6,6 +6,8 @@ import {
 } from "@/service/getPostsNew";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import serializeMdx from "@/lips/mdx";
+import parser from "@/lips/parser";
+import CustomMdx from "@/lips/CustomMdx";
 
 export type Props = {
   params: {
@@ -24,9 +26,16 @@ export function generateMetadata({ params }: Props) {
 export default async function PostPage({ params }: Props) {
   const { slugs } = params;
   const post = await getPost(slugs);
+  // console.log('post',post)
   // console.log("mdxSource", mdxSource);
+  // console.log('slugs?',slugs)
+  const parserTest = await parser(slugs);
+  // console.log('parserTest',parserTest)
+
   const mdxSource = await serializeMdx(post?.content);
-  // console.log("post", mdx);
+  const getPosts = await getPost(slugs);
+  // console.log('getPosts',getPosts)
+  // console.log('mdxSource',mdxSource)
   return (
     <div className="my-10">
       <div className="flex flex-col items-center gap-4">
@@ -35,7 +44,17 @@ export default async function PostPage({ params }: Props) {
       </div>
       <div className="dark:prose-dark prose my-8 max-w-full">
         {/* <MDXRemote source={post.content} /> */}
-        <MDXRemote source={mdxSource} />
+        {/* <MDXRemote {...parserTest} /> */}
+        {/* <CustomMdx source={`:::main{#readme}
+          Lorem:br
+          ipsum.
+
+          ::hr{.red}
+
+          A :i[lovely] language know as :abbr[HTML]{title="HyperText Markup Language"}.
+
+          :::`}/> */}
+        <CustomMdx source={post.content}/>
       </div>
     </div>
   );
