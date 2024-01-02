@@ -15,6 +15,14 @@ const pretendard = localFont({
   ],
 });
 
+const suit = localFont({
+  src:[
+    {
+      path:"../../public/fonts/SUIT-Variable.ttf"
+    }
+  ]
+})
+
 export const metadata: Metadata = {
   title: 'Chosulle Blog Main',
   description: 'welcome my world',
@@ -28,8 +36,8 @@ export default function RootLayout({
   
 
   return (
-    <html lang="en" className={pretendard.className}>
-      <body className='flex flex-col w-full max-w-screen-lg mx-auto relative'>
+    <html lang="en" className={suit.className}>
+      <body className='flex flex-col w-full max-w-screen-lg mx-auto relative sm:px-8 lg:px-0'>
           <Header/>
           <main className='grow mt-24'>
             {children}

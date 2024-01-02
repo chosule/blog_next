@@ -1,29 +1,21 @@
-import type { Config } from 'tailwindcss'
 
+import type { Config } from "tailwindcss";
 const config: Config = {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
-    "./pages/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}", "./pages/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    screens:{
-      'sm': '750px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1536px',
+    screens: {
+      sm:"450px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
     },
-    extend: {
-      
-    },
+    extend: {},
   },
   variants: {
-    typography: ['dark'],
+    typography: ["dark"],
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
-}
+  plugins: [require("@tailwindcss/typography")],
+};
 
-
-export default config
+export default config;
