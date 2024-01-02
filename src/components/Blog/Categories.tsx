@@ -14,7 +14,7 @@ export default function Categories({ categories, selected, onClick }: Props) {
         <li
           key={index}
           onClick={() => onClick(category)}
-          className="border rounded-xl flex items-center justify-center pb-1 px-2 cursor-pointer"
+          className={`border rounded-xl flex items-center justify-center  cursor-pointer ${category === selected && 'bg-violet-600 border-violet-600'}`}
         >
           {/* <Image
             className="transform transition-transform hover:-translate-y-1"
@@ -23,7 +23,7 @@ export default function Categories({ categories, selected, onClick }: Props) {
             width={130}
             height={130}
           /> */}
-          <h3 className={`text-lg font-bold leading-2 ${category === selected && 'text-orange-500'}`}>{category}</h3>
+          <h3 className={`text-lg leading-2 py-2 px-2 ${category === selected && 'text-white'}`}>{category}</h3>
         </li>
       ))}
     </ul>

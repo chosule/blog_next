@@ -1,13 +1,10 @@
 import {
-  getAllPosts,
   getAllPostsPath,
   getPost,
-  parsePosts,
 } from "@/service/getPostsNew";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import serializeMdx from "@/lips/mdx";
-import parser from "@/lips/parser";
 import CustomMdx from "@/lips/CustomMdx";
+import Giscus from "@/components/Blog/Giscus";
 
 export type Props = {
   params: {
@@ -26,12 +23,6 @@ export function generateMetadata({ params }: Props) {
 export default async function PostPage({ params }: Props) {
   const { slugs } = params;
   const post = await getPost(slugs);
-  // console.log('post',post)
-  // console.log("mdxSource", mdxSource);
-  // console.log('slugs?',slugs)
-  const parserTest = await parser(slugs);
-  // console.log('parserTest',parserTest)
-
   const mdxSource = await serializeMdx(post?.content);
   const getPosts = await getPost(slugs);
   // console.log('getPosts',getPosts)
@@ -55,6 +46,7 @@ export default async function PostPage({ params }: Props) {
 
           :::`}/> */}
         <CustomMdx source={post.content}/>
+        <Giscus/>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { promises } from "fs";
+import { Path } from "glob";
 import path from "path";
 
 export type Posts = {
@@ -14,7 +15,7 @@ export type Posts = {
 export type PostData = Posts & { content: string };
 
 export async function getAllpost(): Promise<Posts[]> {
-  const filePath = path.join(process.cwd(), "data", "blog.json");
+  const filePath = Path.join(process.cwd(), "data", "blog.json");
   return await promises
     .readFile(filePath, "utf-8")
     .then<Posts[]>(JSON.parse)

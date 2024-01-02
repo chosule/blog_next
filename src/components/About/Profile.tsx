@@ -5,7 +5,7 @@ export default function Profile() {
      
      return(
         <div className="flex flex-col gap-24 w-full">
-            <h1 className="text-4xl font-bold italic">김초슬 🖐 — Frontend</h1>
+            <h1 className="text-4xl font-bold ">김초슬 🖐 — Frontend</h1>
             <div className="flex items-center justify-evenly">
                 <Image className="rounded-full shadow-xl" src={profile_img} alt="프로필이미지" width={230} height={230} priority/>
                 <div>
