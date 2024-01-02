@@ -36,8 +36,8 @@ export default function RootLayout({
   
 
   return (
-    <html lang="en" className={suit.className}>
-      <body className='flex flex-col w-full max-w-screen-lg mx-auto relative sm:px-8 lg:px-0'>
+    <html lang="en" className={`${suit.className} ${pretendard.className}`}>
+      <body className='flex flex-col w-full max-w-screen-md mx-auto relative sm:px-8 lg:px-0'>
           <Header/>
           <main className='grow mt-24'>
             {children}

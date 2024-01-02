@@ -29,10 +29,10 @@ export function Header() {
           scrolled ? "backdrop" : "bg-white"
         } -translate-x-1/2 transform shadow-md`}
       ></div>
-      <nav className="fixed z-20 flex left-1/2 w-3/5 -translate-x-1/2 transform justify-between gap-5 py-6 sm:flex-col md:flex-row">
+      <nav className="fixed z-20 flex left-1/2 max-w-screen-md w-full -translate-x-1/2 transform justify-between gap-5 py-6 sm:flex-col md:flex-row">
         <Link href="/">
           <div className="flex items-center gap-1">
-            <h1 className="text-2xl font-bold">💜Chosule Blog</h1>
+            <h1 className="text-2xl font-bold">💜 chosule blog</h1>
           </div>
         </Link>
         <ul className="flex items-center gap-5">
