@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en" className={pretendard.className}>
       <body className='flex flex-col w-full max-w-screen-lg mx-auto relative'>
           <Header/>
-          <main className='grow'>
+          <main className='grow mt-24'>
             {children}
           </main>
           <Footer/>
