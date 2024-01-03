@@ -70,8 +70,7 @@ export async function getPost(slugs: any): Promise<Post> {
   const allPosts = await getAllPosts();
   const slug = `posts/${slugs.join("/")}`;
   const post = allPosts.find((post) => post.slug === slug);
-  // const mdx = await serializeMdx(post?.content);
-  //   console.log('mdx?',)
+
   if (!post) {
     redirect("/blog");
   }
@@ -113,9 +112,10 @@ export async function getPostData(fileSlug:Props):Promise<PostData>{
   const post = await getPost(fileSlug);
 
   const index = posts.indexOf(post);
-  
-  const next = index > 0 ? posts[index -1] : null;
-  const prev = index < posts.length ? posts[index + 1] : null;
+  console.log('index',index);
+  const next = index > 0 ? posts[index - 1] : null;
+  console.log('next',next)
+  const prev = index < posts.length - 1 ? posts[index + 1] : null;
 
   return{...post , next , prev}
 }

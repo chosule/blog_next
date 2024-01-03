@@ -42,7 +42,6 @@ export default async function PostPage({ params }: Props) {
         <Giscus/>
         {prev && <div>{prev.title}</div>}
         {next && <div>{next.title}</div>}
-
       </div>
     </div>
   );
