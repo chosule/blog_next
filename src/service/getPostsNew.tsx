@@ -110,11 +110,9 @@ export async function getFeaturedPost() {
 export async function getPostData(fileSlug:Props):Promise<PostData>{
   const posts = await getAllPosts();
   const post = await getPost(fileSlug);
-
-  const index = posts.indexOf(post);
-  console.log('index',index);
+  
+  const index = posts.findIndex((n)=> n.slug == post.slug);
   const next = index > 0 ? posts[index - 1] : null;
-  console.log('next',next)
   const prev = index < posts.length - 1 ? posts[index + 1] : null;
 
   return{...post , next , prev}

@@ -5,6 +5,7 @@ import {
 } from "@/service/getPostsNew";
 import CustomMdx from "@/lips/CustomMdx";
 import Giscus from "@/components/Blog/Giscus";
+import AdjacentPostCard from "@/components/Blog/AdjacentPostCard";
 
 export type Props = {
   params: {
@@ -22,15 +23,11 @@ export function generateMetadata({ params }: Props) {
 
 export default async function PostPage({ params }: Props) {
   const { slugs } = params;
-  console.log('slugs',slugs)
-  
   const post = await getPost(slugs);
   const {title, date, content} = post;
   
   const postTest = await getPostData(slugs);
   const {prev, next} = postTest;
-
-  console.log('postTest',postTest);
   return (
     <div className="my-10">
       <div className="flex flex-col items-center gap-4">
@@ -40,8 +37,11 @@ export default async function PostPage({ params }: Props) {
       <div className="dark:prose-dark prose my-8 max-w-full">
         <CustomMdx source={content}/>
         <Giscus/>
-        {prev && <div>{prev.title}</div>}
-        {next && <div>{next.title}</div>}
+        {/*  */}
+        <div className="flex justify-between">
+          {prev && <AdjacentPostCard post={prev} type="prev"/>}
+          {next && <AdjacentPostCard post={next} type="next"/>}
+        </div>
       </div>
     </div>
   );
