@@ -7,21 +7,29 @@ import localFont from 'next/font/local'
  
 const inter = Noto_Sans_KR({ subsets: ['latin'] });
 
-const pretendard = localFont({
-  src: [
-    {
-      path:"../../public/fonts/Pretendard-Medium.woff"
-    }
-  ],
+// const pretendard = localFont({
+//   src: [
+//     {
+//       path:"../../public/fonts/Pretendard-Medium.woff",
+//     }
+//   ],
+// });
+// const suit = localFont({
+//   src:[
+//     {
+//       path:"../../public/fonts/SUIT-Variable.ttf"
+//     }
+//   ]
+// })
+const suit = localFont({
+  src:"../../public/fonts/SUIT-Variable.ttf",
+  variable:'--font-suit'
+})
+const pre = localFont({
+  src: "../../public/fonts/Pretendard-Medium.woff",
+  variable:'--font-pre'
 });
 
-const suit = localFont({
-  src:[
-    {
-      path:"../../public/fonts/SUIT-Variable.ttf"
-    }
-  ]
-})
 
 export const metadata: Metadata = {
   title: 'Chosulle Blog Main',
@@ -36,8 +44,8 @@ export default function RootLayout({
   
 
   return (
-    <html lang="en" className={`${suit.className} ${pretendard.className}`}>
-      <body className='flex flex-col w-full max-w-screen-md mx-auto relative sm:px-8 lg:px-0'>
+    <html lang="en" className={`${suit.variable} ${pre.variable}`}>
+      <body className='flex flex-col w-full max-w-screen-lg mx-auto relative sm:px-8 lg:px-0'>
           <Header/>
           <main className='grow mt-24'>
             {children}

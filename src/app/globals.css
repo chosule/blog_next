@@ -18,4 +18,12 @@ body {
   .backdrop{
     backdrop-filter:blur(15px)
   }
+
+  .pre{
+    font-family: var(--font-pre);
+  }
+
+  .suit{
+    font-family: var(--font-suit);
+  }
 }

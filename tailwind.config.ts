@@ -10,7 +10,15 @@ const config: Config = {
       xl: "1280px",
       "2xl": "1536px",
     },
-    extend: {},
+    extend: {
+      fontFamily:{
+        "pre":["--font-pre"],
+        "suit":["--font-suit"]
+      },
+      colors:{
+        primary:"#7c3aed"
+      }
+    },
   },
   variants: {
     typography: ["dark"],

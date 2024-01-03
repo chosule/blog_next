@@ -72,7 +72,7 @@ export async function getPost(slugs: any): Promise<Post> {
   return post;
 }
 
-// mdx파일 파싱해줌
+// mdx파일 파싱
 export function parsePosts(postPath: string): Post | undefined {
   try {
     const markdownFile = fs.readFileSync(`${postPath}`, { encoding: "utf8" });
