@@ -1,3 +1,4 @@
+import { Props } from "@/app/posts/[...slugs]/page";
 import serializeMdx from "@/lips/mdx";
 import dayjs from "dayjs";
 import fs from "fs";
@@ -24,6 +25,11 @@ export type Post = PostMatter & {
   slug: string;
   content: string;
 };
+
+export type PostData =  {
+  next: Post | null;
+  prev : Post | null;
+}
 
 const BASE_PATH = "/posts";
 const POST_PATH = path.join(process.cwd(), BASE_PATH);
@@ -99,4 +105,17 @@ export function parsePosts(postPath: string): Post | undefined {
 export async function getFeaturedPost() {
   const posts = await getAllPosts();
   return posts.filter((post) => post.feature === true);
+}
+
+
+export async function getPostData(fileSlug:Props):Promise<PostData>{
+  const posts = await getAllPosts();
+  const post = await getPost(fileSlug);
+
+  const index = posts.indexOf(post);
+  
+  const next = index > 0 ? posts[index -1] : null;
+  const prev = index < posts.length ? posts[index + 1] : null;
+
+  return{...post , next , prev}
 }

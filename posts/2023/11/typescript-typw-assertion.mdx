@@ -1,0 +1,40 @@
+---
+title: '[ Typescript ] - Type Assertion'
+description: "description"
+icon: ""
+image: "ts_thumbnail.png"
+tags:
+  - typescript
+draft: false
+feature: true
+date: 2023-11-03 11:24:41
+---
+
+
+
+## 📌 Type Assertion ?
+--------------
+>Type Assertion은 TypeScript에서 변수 또는 표현식의 타입을 개발자가 명시적으로 지정하거나 변환하는 기술.
+TypeScript는 정적 타입 검사를 수행하므로 컴파일러는 변수 또는 표현식의 타입을 추론하려고 노력하지만 가끔씩 개발자가 정확한 타입을 알고 있을때 명시적으로 이를 지정하거나 변경해야 할 필요가 있다.
+
+
+1. "as" 
+
+```js
+let someValue: any = "hello";
+let strLength: number = (<string>someValue).length;
+```
+
+2. {`"<>"`}
+
+```js
+let someValue: any = "hello";
+let strLength: number = (<string>someValue).length;
+```
+
+
+- Type Assertion은 실행 시점에는 어떤 변화도 일어나지 않는다. 따라서 실제 값의 타입이 Type Assertion과 일치하지 않으면 런타임 오류가 발생할 수 있다.
+
+- Type Assertion은 런타임에 오류가 발생하기에 정적타입인 시스템인 typescript를 활용하는 것이 더 좋다. 남용하지 말것
+
+- Type Assertion을 남용하면 오히려 코드 가독성을 떨어뜨릴 수 있으며, 컴파일러의 타입 검사 기능을 활용하지 못하게 될 수 있다.
