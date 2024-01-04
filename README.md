@@ -1,20 +1,20 @@
-## chosule blog 📝
----
 
-## Getting Started
+## chosule blog 📝
+
+### Getting Started
 
 ```js
   npm run dev
 ```
 ### Link: 
 
-## Tech Stacks
+### Tech Stacks
 - Front-End
   - Next.js
   - React
   - TypeScript
   - tailwindCss
 
-## Infrastructure
+### Infrastructure
   -
     
