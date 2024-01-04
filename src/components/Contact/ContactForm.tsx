@@ -41,7 +41,6 @@ export default function ContactForm() {
             setStepText("Text for step 2");
         }
      }
-     
 
      return(
         <form onSubmit={onSubmit} className="bg-[url('/image/iphone.png')] w-[600px] h-[600px] bg-contain bg-no-repeat absolute left-1/2 top-1/2 translate-y-[-50%] translate-x-[-50%]">
