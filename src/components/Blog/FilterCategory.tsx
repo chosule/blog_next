@@ -22,11 +22,11 @@ export default function FilterCategory({ posts, tags }:Props ) {
   return (
     <section className="grid grid-cols-4 gap-3">
       <article  className="col-span-3">
-        <h1 className="text-3xl font-black mb-7 pre">📝{selected}</h1>
+        <h1 className="text-3xl mb-7 pre">📝{selected}</h1>
         <PostsGrid posts={filtered}/>
       </article>
       <article className="col-span-1 justify-self-end">
-        <h1 className="text-3xl font-black mb-7 pre"># Tags</h1>
+        <h1 className="text-3xl mb-7 pre"># Tags</h1>
         <Categories
           categories={[ALLPOSTS, ...tags]}
           selected={selected}

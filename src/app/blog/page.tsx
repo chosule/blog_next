@@ -14,7 +14,7 @@ export default async function BlogPage() {
   const tags = [...new Set(combinedTags)];
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-20">
       <TitleTexts
         title="Blog"
         subTitle="클릭시 해당 시리즈에 대한 포스트를 보실수 있습니다."
