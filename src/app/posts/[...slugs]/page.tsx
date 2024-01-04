@@ -26,8 +26,8 @@ export default async function PostPage({ params }: Props) {
   const post = await getPost(slugs);
   const {title, date, content} = post;
   
-  const postTest = await getPostData(slugs);
-  const {prev, next} = postTest;
+  const postPrevNext = await getPostData(slugs);
+  const {prev, next} = postPrevNext;
   return (
     <div className="my-10">
       <div className="flex flex-col items-center gap-4">
@@ -38,7 +38,7 @@ export default async function PostPage({ params }: Props) {
         <CustomMdx source={content}/>
         <Giscus/>
         {/*  */}
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-8">
           {prev && <AdjacentPostCard post={prev} type="prev"/>}
           {next && <AdjacentPostCard post={next} type="next"/>}
         </div>
