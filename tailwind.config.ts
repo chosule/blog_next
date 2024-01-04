@@ -17,7 +17,7 @@ const config: Config = {
       },
       colors:{
         primary:"#7c3aed"
-      }
+      },
     },
   },
   variants: {
