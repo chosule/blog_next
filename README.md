@@ -1,6 +1,5 @@
-## chosule blog
-------
-
+## chosule blog 📝
+----
 ## Getting Started
 ```js
   npm run dev
