@@ -34,7 +34,7 @@ export default function RootLayout({
     <html lang="en" className={`${suit.variable} ${pre.variable}`}>
       <body className='flex flex-col w-full max-w-screen-lg mx-auto relative sm:px-8 lg:px-0'>
           <Header/>
-          <main className='grow mt-36'>
+          <main className='grow mt-36 relative'>
             {children}
           </main>
           <Footer/>

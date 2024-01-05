@@ -6,6 +6,7 @@ import {
 import CustomMdx from "@/lips/CustomMdx";
 import Giscus from "@/components/Blog/Giscus";
 import AdjacentPostCard from "@/components/Blog/AdjacentPostCard";
+import Test from "@/components/Post/Test";
 
 export type Props = {
   params: {
@@ -28,11 +29,14 @@ export default async function PostPage({ params }: Props) {
   
   const postPrevNext = await getPostData(slugs);
   const {prev, next} = postPrevNext;
+
+
   return (
     <div className="my-10">
       <div className="flex flex-col items-center gap-4">
         <p className="text-4xl font-bold">{title}</p>
         <p>{date}</p>
+        <Test />
       </div>
       <div className="dark:prose-dark prose my-8 max-w-full">
         <CustomMdx source={content}/>

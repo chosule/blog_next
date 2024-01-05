@@ -1,13 +1,15 @@
+'use-client';
 import { useEffect } from "react"
 
 export default function useWatchTimeout(watch:unknown,ms:number,callback:() => void) {
     useEffect(() =>{
-        let timeOut :NodeJS.Timeout;
+        let timeOut: NodeJS.Timeout;
+
         if(watch){
-            timeOut = setTimeout(callback,ms)
+            timeOut = setTimeout(callback,ms);
         }
-        return() =>{
-            timeOut && clearInterval(timeOut)
+        return () =>{
+            timeOut && clearTimeout(timeOut)
         }
-    },[watch])
+    },[])
 }
