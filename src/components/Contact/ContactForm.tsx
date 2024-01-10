@@ -1,8 +1,7 @@
-'use client'
-
+'use client';
 import useWatchTimeout from "@/lips/useWatchTimeout";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-
+import {toast} from "react-hot-toast";
 
 type Form ={
     from:string;
@@ -23,19 +22,19 @@ export default function ContactForm() {
 
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        toast('전송에 성공하였습니다 !',{icon:"✨",style:{background:"#f0f8ff"}});
         console.log('form?', form);
      }
 
      return(
-        <div className="">
-            <h1 className="suit text-3xl text-center">contact</h1>
-            <form onSubmit={onSubmit}>
-                <div className="flex flex-col">
+        <div className="flex flex-col gap-5">
+            <h1 className="suit text-2xl text-center">Or Send me an email</h1>
+            <form onSubmit={onSubmit} className="h-full flex flex-col gap-5 justify-evenly">
+                <div className="flex flex-col gap-5">
                     <div className="flex gap-8 relative">
-                        <div className="absolute bottom-left-0 w-full h-0.5 bg-[#6a6a6a] inline-block after:content-[attr(style)"></div>
-                        <label htmlFor="from" className="suit text-lg">your email</label>
+                        <label htmlFor="from" className="suit text-lg">your email ? 👀</label>
                         <input
-                            className="grow bg-[#f5f5f5]"
+                            className="grow bg-[aliceblue]  border-[#f6f6f6] rounded"
                             type="text"
                             id="from" 
                             name="from" 
@@ -46,10 +45,9 @@ export default function ContactForm() {
                         />
                     </div>
                     <div className="flex gap-8 relative">
-                          <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#6a6a6a] inline-block after:content-[attr(style)"></div>
                         <label htmlFor="subject" className="suit text-lg">subject</label>
                         <input
-                            className="grow bg-[#f5f5f5]"
+                            className="grow bg-[aliceblue] rounded"
                             type="text" 
                             id="subject"
                             name="subject" 
@@ -59,10 +57,9 @@ export default function ContactForm() {
                         />
                     </div>
                     <div className="flex gap-8 relative">
-                          <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#6a6a6a] inline-block after:content-[attr(style)"></div>
-                        <label htmlFor="message" className="suit text-lg">message</label>
+                        <label htmlFor="message" className="suit text-lg">message 📃</label>
                         <textarea
-                            className="grow bg-[#f5f5f5]"
+                            className="grow bg-[aliceblue] rounded resize-none"
                             rows={10}
                             id="message" 
                             name="message" 
@@ -71,8 +68,8 @@ export default function ContactForm() {
                             onChange={onChange}
                         />
                     </div>
-                    <button type="submit">전송하기</button>
                 </div>
+                <button type="submit" className="suit bg-[aliceblue] mx-auto w-32 h-10 rounded-lg">전송하기</button>
             </form>
         </div>
     )

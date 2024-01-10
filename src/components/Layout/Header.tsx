@@ -1,9 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import "@/app/styles/custom.css";
 import Image from "next/image";
-import heart_icon from "../../../public/Image/heart_icon.png";
+import heart_icon from "/public/Image/heart_icon.png";
 
 type NavMenuType ={
   id:number;
@@ -43,9 +42,6 @@ export function Header() {
     setSelected(menuName);
   };
 
-  useEffect(() => {
-    console.log("selected?", selected);
-  }, [selected]);
 
   return (
     <header>
@@ -54,7 +50,7 @@ export function Header() {
           scrolled ? "backdrop" : "bg-white"
         } -translate-x-1/2 transform shadow-md`}
       ></div>
-      <nav className="fixed z-20 flex left-1/2 max-w-screen-lg w-full -translate-x-1/2 transform justify-between gap-5 py-6 sm:flex-col md:flex-row">
+      <nav className="fixed z-20 flex left-1/2 max-w-[910px] w-full -translate-x-1/2 transform justify-between gap-5 py-6 sm:flex-col md:flex-row">
         <Link href="/">
           <div className="flex items-center gap-1">
             <Image src={heart_icon} alt="아이콘" width={40} height={40}/>

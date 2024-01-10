@@ -15,7 +15,7 @@ export default function ContactForm2() {
         message:""
      });
 
-     const [currentStep, setCurrentStep] = useState<number>(1);
+     const [currentStep, setCurrentStep] = useState<number>(0);
      const [watch , setWatch] = useState<boolean>(false);
      const [stepText, setStepText] = useState<string>(""); // 각 단계별로 나타낼 텍스트
 
@@ -36,10 +36,9 @@ export default function ContactForm2() {
 
 
      useEffect(() =>{
-        if(currentStep === 0){
-            setStepText("test");
-            setWatch(true);
-        }
+            setTimeout(() =>{
+                setCurrentStep((prev) => prev + 1)
+            },3000)
      } ,[])
 
      const onNextClick = () => {
@@ -55,11 +54,9 @@ export default function ContactForm2() {
 
      return(
         <form onSubmit={onSubmit} className="bg-[url('/image/iphone.png')] w-[600px] h-[600px] bg-contain bg-no-repeat absolute left-1/2 top-1/2 translate-y-[-50%] translate-x-[-50%]">
-            {stepText && <p>{stepText}</p>}
-            {watch ? (<div>watch test</div>) : (<div>?????????</div>)}
             <div className="flex flex-col">
                 {currentStep === 0 &&(
-                    <div>처음시작text</div>
+                    <div>currentStep 0</div>
                 )}
                 {currentStep === 1 && (
                     <>

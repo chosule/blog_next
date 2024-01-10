@@ -9,7 +9,7 @@ import profile_img from "public/profile_img.jpg"
 export default function Hero() {
      return(
         <article className="flex flex-col gap-10 mb-20">
-            <h1 className={`text-3xl font-bold drop-shadow-lg pre`}>안녕하세요 김초슬 입니다. 🖐</h1>
+            <h1 className={`text-3xl drop-shadow-lg suit`}>안녕하세요 김초슬 입니다. 🖐</h1>
             <div className="flex items-center gap-11 sm:flex-col md:flex-row">
                 <Image className="rounded-full shadow-xl" src={profile_img} alt="프로필이미지" width={250} height={250} priority/>
                 <div className="flex flex-col gap-2">

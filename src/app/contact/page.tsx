@@ -1,13 +1,14 @@
 
 import ContactForm from "@/components/Contact/ContactForm";
+import ContactForm2 from "@/components/Contact/ContactForm2";
+import ContactMe from "@/components/Contact/ContactMe";
 
 export default function ContactPage() {
-
      return(
-      <div className="bg-[url('/image/memo2.png')]  bg-contain bg-no-repeat w-[500px] h-[500px] absolute left-1/2 top-1/2 translate-y-[-50%] translate-x-[-50%]">
-         {/* <div className="bg-[url('/image/iphone.png')] w-[600px] h-[600px] bg-contain bg-no-repeat absolute left-1/2 top-1/2 translate-y-[-50%] translate-x-[-50%]"> */}
-         {/* </div>      */}
-         <ContactForm/>
-      </div>
+         <div className="border-[#f6f6f6] border-8 rounded-xl p-10 w-full flex flex-col gap-16">
+            <ContactMe/>
+            <ContactForm/>
+            {/* <ContactForm2/> */}
+         </div>
      )
 }
