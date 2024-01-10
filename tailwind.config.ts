@@ -1,22 +1,20 @@
-
 import type { Config } from "tailwindcss";
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}", "./pages/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      sm:"450px",
+      sm: "450px",
       md: "768px",
       lg: "1024px",
       xl: "1280px",
-      "2xl": "1536px",
     },
     extend: {
-      fontFamily:{
-        "pre":["--font-pre"],
-        "suit":["--font-suit"]
+      fontFamily: {
+        pre: ["--font-pre"],
+        suit: ["--font-suit"],
       },
-      colors:{
-        primary:"#7c3aed"
+      colors: {
+        primary: "#7c3aed",
       },
     },
   },

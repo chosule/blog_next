@@ -13,17 +13,26 @@ body {
   /* overflow-y: auto; */
 }
 
-
-@layer components{
-  .backdrop{
-    backdrop-filter:blur(15px);
+@layer components {
+  .backdrop {
+    backdrop-filter: blur(15px);
   }
 
-  .pre{
+  .pre {
     font-family: var(--font-pre);
   }
 
-  .suit{
+  .suit {
     font-family: var(--font-suit);
+  }
+  .background-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("/Image/wave.jpeg") center/cover no-repeat;
+    border-radius: 20px; /* 원하는 값으로 조정하세요 */
+    z-index: -1;
   }
 }
