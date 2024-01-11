@@ -1,11 +1,13 @@
-import Hero from '@/components/Hero'
-import FeaturePost from '@/components/Post/FeaturePost'
+import Hero from "@/components/Hero";
+import LoadingThemeButton from "@/components/LoadingThemeButton";
+import FeaturePost from "@/components/Post/FeaturePost";
+import dynamic from "next/dynamic";
 
 export default function HomePage() {
   return (
-   <section className='h-full flex flex-col gap-10'>
-    <Hero/>
-    <FeaturePost/>
-   </section>
-  )
+    <section className="flex h-full flex-col gap-10">
+      <Hero />
+      <FeaturePost />
+    </section>
+  );
 }

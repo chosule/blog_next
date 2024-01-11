@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}", "./pages/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     screens: {
       sm: "450px",
@@ -14,10 +15,10 @@ const config: Config = {
         suit: ["--font-suit"],
       },
       colors: {
-        black:"#1f2e3d",
-        darkBlue:"#0000ff",
+        black: "#1f2e3d",
+        darkBlue: "#0000ff",
         blue: "#9EDDFF",
-        skyBlue:"#f0f8ff"
+        skyBlue: "#f0f8ff",
       },
     },
   },

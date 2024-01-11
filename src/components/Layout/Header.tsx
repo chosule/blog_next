@@ -4,24 +4,30 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import heart_icon from "/public/Image/heart_icon.png";
 import ThemeSwitch from "../ThemeSwitch";
+import dynamic from "next/dynamic";
+import LoadingThemeButton from "../LoadingThemeButton";
 
-type NavMenuType ={
-  id:number;
-  name:string;
-  path:string
-}
-const navMenu:NavMenuType[] = [
-  {id:1 , name: 'Home' , path:"/"},
-  {id:2 , name: 'About', path:"/about"},
-  {id:3 , name: 'Blog' , path:"/blog"},
-  {id:4 , name: 'Contact',path:"/contact"},
-  {id:5, name:"Porfolio", path:"/portfolio"},
-]
+type NavMenuType = {
+  id: number;
+  name: string;
+  path: string;
+};
+const navMenu: NavMenuType[] = [
+  { id: 1, name: "Home", path: "/" },
+  { id: 2, name: "About", path: "/about" },
+  { id: 3, name: "Blog", path: "/blog" },
+  { id: 4, name: "Contact", path: "/contact" },
+  { id: 5, name: "Porfolio", path: "/portfolio" },
+];
+
+const SetThemeButton = dynamic(() => import("@/components/SetThemeButton"), {
+  ssr: false,
+  loading: () => <LoadingThemeButton />,
+});
 
 export function Header() {
-
   const [scrolled, setScrolled] = useState(false);
-  const [selected , setSelected] = useState("");
+  const [selected, setSelected] = useState("");
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -38,24 +44,23 @@ export function Header() {
     };
   }, []); //
 
-
   const handleSelected = (event: React.MouseEvent<HTMLLIElement>) => {
-    const menuName = event.currentTarget.innerText;1
+    const menuName = event.currentTarget.innerText;
+    1;
     setSelected(menuName);
   };
-
 
   return (
     <header className="relative">
       <div
-        className={`fixed z-10 left-1/2 h-20 w-full ${
+        className={`fixed left-1/2 z-10 h-20 w-full ${
           scrolled ? "backdrop" : "bg-white"
         } -translate-x-1/2 transform shadow-md`}
       ></div>
-      <nav className="fixed z-20 flex left-1/2 max-w-[910px] w-full -translate-x-1/2 transform justify-between gap-5 py-6 sm:flex-col md:flex-row">
+      <nav className="fixed left-1/2 z-20 flex w-full max-w-[910px] -translate-x-1/2 transform justify-between gap-5 py-6 sm:flex-col md:flex-row">
         <Link href="/">
           <div className="flex items-center gap-1">
-            <Image src={heart_icon} alt="아이콘" width={30} height={30}/>
+            <Image src={heart_icon} alt="아이콘" width={30} height={30} />
             <h1 className="text-xl">chosule blog</h1>
           </div>
         </Link>
@@ -63,12 +68,21 @@ export function Header() {
           <ul className="flex items-center gap-5">
             {navMenu.map((menuName) => (
               <li key={menuName.id} className="suit" onClick={handleSelected}>
-                <Link href={`${menuName.path}`} className={`${selected === menuName.name ? "font-bold" : "text-neutral-900"}`}>{menuName.name}</Link>
+                <Link
+                  href={`${menuName.path}`}
+                  className={`${
+                    selected === menuName.name
+                      ? "font-bold"
+                      : "text-neutral-900"
+                  }`}
+                >
+                  {menuName.name}
+                </Link>
               </li>
             ))}
-          
           </ul>
-          <ThemeSwitch/>
+          {/* <ThemeSwitch/> */}
+          <SetThemeButton />
         </div>
       </nav>
       <div className="absolute top-[300px]"></div>
