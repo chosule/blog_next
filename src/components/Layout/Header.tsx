@@ -18,6 +18,7 @@ const navMenu:NavMenuType[] = [
 ]
 
 export function Header() {
+
   const [scrolled, setScrolled] = useState(false);
   const [selected , setSelected] = useState("");
   useEffect(() => {
@@ -44,7 +45,7 @@ export function Header() {
 
 
   return (
-    <header>
+    <header className="relative">
       <div
         className={`fixed z-10 left-1/2 h-20 w-full ${
           scrolled ? "backdrop" : "bg-white"
@@ -66,6 +67,9 @@ export function Header() {
         
         </ul>
       </nav>
+      <div className="absolute top-[300px]">
+      </div>
+      
     </header>
   );
 }

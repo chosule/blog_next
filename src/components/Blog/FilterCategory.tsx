@@ -4,13 +4,14 @@ import { Post } from "@/service/getPostsNew";
 import { useState } from "react";
 import PostsGrid from "../Post/PostsGrid";
 import Categories from "./Categories";
+import Title from "../Title";
 
 type Props = {
   posts: Post[];
   tags: string[];
 };
 
-const ALLPOSTS = "All Post";
+const ALLPOSTS = "all Post";
 
 export default function FilterCategory({ posts, tags }:Props ) {
   const [selected, setSelected] = useState(ALLPOSTS);
@@ -20,18 +21,18 @@ export default function FilterCategory({ posts, tags }:Props ) {
       : posts.filter((post) => post.tags[0] === selected);
 
   return (
-    <section className="grid grid-cols-4 gap-3">
-      <article  className="col-span-3">
-        <h1 className="text-3xl mb-7 pre">📝{selected}</h1>
-        <PostsGrid posts={filtered}/>
-      </article>
-      <article className="col-span-1 justify-self-end">
-        <h1 className="text-3xl mb-7 pre"># Tags</h1>
+    <section className="flex flex-col gap-8">
+      <article className="flex flex-col gap-5">
+        <Title subTitle={`#Tags`}/>
         <Categories
           categories={[ALLPOSTS, ...tags]}
           selected={selected}
           onClick={(selected) => setSelected(selected)}
         />
+      </article>
+      <article className="flex flex-col gap-5">
+        <Title subTitle={`📃 ${selected}`}/>
+        <PostsGrid posts={filtered}/>
       </article>
     </section>
   );

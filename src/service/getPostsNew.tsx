@@ -107,7 +107,7 @@ export async function getFeaturedPost() {
 }
 
 
-export async function getPostData(fileSlug:Props):Promise<PostData>{
+export async function getPostData(fileSlug:string[]):Promise<PostData>{
   const posts = await getAllPosts();
   const post = await getPost(fileSlug);
   

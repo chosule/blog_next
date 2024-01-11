@@ -9,7 +9,7 @@ import { Props } from "./page";
 
 export default async function PostPage({ params }: Props) {
   const { slugs } = params;
-  console.log('slugs', slugs);
+  // console.log('slugs', slugs);
 
   const post = await getPost(slugs);
   const { title, date, content } = post;

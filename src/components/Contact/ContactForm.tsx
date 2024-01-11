@@ -43,64 +43,64 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="flex flex-col gap-5">
-      <h1 className="suit text-center text-2xl">Or Send me an email</h1>
-      <form
-        onSubmit={onSubmit}
-        className="flex h-full flex-col justify-evenly gap-5"
-      >
         <div className="flex flex-col gap-5">
-          <div className="relative flex gap-8">
-            <label htmlFor="from" className="suit text-lg">
-              your email ? 👀
-            </label>
-            <input
-              className="grow rounded  border-[#f6f6f6] bg-[aliceblue]"
-              type="text"
-              id="from"
-              name="from"
-              required
-              autoFocus
-              value={form.from}
-              onChange={onChange}
-            />
-          </div>
-          <div className="relative flex gap-8">
-            <label htmlFor="subject" className="suit text-lg">
-              subject
-            </label>
-            <input
-              className="grow rounded bg-[aliceblue]"
-              type="text"
-              id="subject"
-              name="subject"
-              required
-              value={form.subject}
-              onChange={onChange}
-            />
-          </div>
-          <div className="relative flex gap-8">
-            <label htmlFor="message" className="suit text-lg">
-              message 📃
-            </label>
-            <textarea
-              className="grow resize-none rounded bg-[aliceblue]"
-              rows={10}
-              id="message"
-              name="message"
-              required
-              value={form.message}
-              onChange={onChange}
-            />
-          </div>
+            <h1 className="suit text-center text-2xl">Or Send me an email</h1>
+            <form
+                onSubmit={onSubmit}
+                className="flex h-full flex-col justify-evenly gap-5"
+            >
+                <div className="flex flex-col gap-5">
+                <div className="relative flex gap-8">
+                    <label htmlFor="from" className="suit text-lg">
+                    your email ? 👀
+                    </label>
+                    <input
+                    className="grow rounded  border-[#f6f6f6] bg-[aliceblue]"
+                    type="text"
+                    id="from"
+                    name="from"
+                    required
+                    autoFocus
+                    value={form.from}
+                    onChange={onChange}
+                    />
+                </div>
+                <div className="relative flex gap-8">
+                    <label htmlFor="subject" className="suit text-lg">
+                    subject
+                    </label>
+                    <input
+                    className="grow rounded bg-[aliceblue]"
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    required
+                    value={form.subject}
+                    onChange={onChange}
+                    />
+                </div>
+                <div className="relative flex gap-8">
+                    <label htmlFor="message" className="suit text-lg">
+                    message 📃
+                    </label>
+                    <textarea
+                    className="grow resize-none rounded bg-[aliceblue]"
+                    rows={10}
+                    id="message"
+                    name="message"
+                    required
+                    value={form.message}
+                    onChange={onChange}
+                    />
+                </div>
+                </div>
+                <button
+                type="submit"
+                className="suit mx-auto h-10 w-32 rounded-lg bg-[aliceblue]"
+                >
+                전송하기
+                </button>
+            </form>
         </div>
-        <button
-          type="submit"
-          className="suit mx-auto h-10 w-32 rounded-lg bg-[aliceblue]"
-        >
-          전송하기
-        </button>
-      </form>
-    </div>
   );
 }
