@@ -14,7 +14,10 @@ const config: Config = {
         suit: ["--font-suit"],
       },
       colors: {
-        primary: "#7c3aed",
+        black:"#1f2e3d",
+        darkBlue:"#0000ff",
+        blue: "#9EDDFF",
+        skyBlue:"#f0f8ff"
       },
     },
   },

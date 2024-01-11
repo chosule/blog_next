@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import './styles/prose.css'
-import { Noto_Sans_KR } from 'next/font/google'
 import Header from '@/components/Layout/Header'
 import Footer from '@/components/Layout/Footer'
 import localFont from 'next/font/local'
 import { Toaster } from 'react-hot-toast';
+import Providers from "./provider";
 
-const inter = Noto_Sans_KR({ subsets: ['latin'] });
 
 const suit = localFont({
   src:"../../public/fonts/SUIT-Variable.ttf",
@@ -37,7 +36,9 @@ export default function RootLayout({
           <Header/>
           <main className='grow mt-36 relative'>
             <Toaster/>
-            {children}
+            <Providers>
+              {children}
+            </Providers>
           </main>
           <Footer/>
         </body>

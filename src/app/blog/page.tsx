@@ -14,9 +14,11 @@ export default async function BlogPage() {
   const tags = [...new Set(combinedTags)];
 
   return (
-    <div className="flex flex-col gap-10">
-      <Title>Blog</Title>
-      <Text>클릭시 해당 시리즈에 대한 포스트를 보실수 있습니다.</Text>
+    <div className="flex flex-col gap-9">
+      <div className="flex flex-col gap-3">
+        <Title>Blog</Title>
+        <Text>클릭시 해당 시리즈에 대한 포스트를 보실수 있습니다.</Text>
+      </div>
       <FilterCategory posts={posts} tags={tags} />
     </div>
   );

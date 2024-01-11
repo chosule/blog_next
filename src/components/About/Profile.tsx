@@ -9,7 +9,7 @@ export default function Profile() {
      return(
         <motion.div variants={fadeInHalf} className="grid md:grid-cols-[300px_1fr] gap-5">
                 <div className="w-[200px] h-[200px] md:w-full md:h-full">
-                    <Image className="rounded-2xl shadow-xl" src={profile_img} alt="프로필이미지" width={300} height={300} priority/>
+                    <Image className="rounded-2xl shadow-xl" src={profile_img} alt="프로필이미지" width={250} height={250} priority/>
                 </div>
             <motion.div variants={fadeInUp}>
                 <div className="flex flex-col gap-8">

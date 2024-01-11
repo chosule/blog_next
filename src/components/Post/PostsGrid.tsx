@@ -8,11 +8,11 @@ type Props = {
 
 export default function PostsGrid({ posts}: Props) {
     return (
-    <ul className={`grid gap-8 grid-cols-[repeat(auto-fill,minmax(240px,_1fr))]`}>
+    <ul className="flex flex-col gap-7">
       {posts?.map((post) => (
         <li
           key={uuid()}
-          className="h-full w-82 transform rounded-xl bg-neutral-100 drop-shadow-xl transition-transform hover:-translate-y-1"
+          className="h-full w-full transform rounded-xl bg-neutral-100 drop-shadow-xl transition-transform hover:-translate-y-1 p-6"
         >
           <PostCard posts={post} />
         </li>

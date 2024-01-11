@@ -4,9 +4,6 @@ import rehypeSlug from "rehype-slug";
 import remarkDirective from 'remark-directive'
 import rehypePrettyCode from "rehype-pretty-code"
 import rehypeCodeTitles from 'rehype-code-titles';
-import remarkGfm from 'remark-gfm';
-
-
 
 const options = {
     mdxOptions: {

@@ -2,13 +2,14 @@ import { FaGithub } from "react-icons/fa";
 import { SiVelog } from "react-icons/si";
 import { SiBloglovin } from "react-icons/si";
 import Link from "next/link";
+import SubTitle from "../SubTitle";
 
 export default function ContactMe() {
   return (
       <div className="flex flex-col items-center gap-5">
-        <div className="suit text-2xl">✨ Contact Me</div>
+        <SubTitle className="suit">✨ Contact me</SubTitle>
         <ul className="relative flex h-[200px] w-[439px] flex-col items-center justify-center gap-2 overflow-hidden bg-cover drop-shadow-2xl">
-          <li className="background-item suit text-center italic sm:bg-[url('/Image/wave.jpeg')] opacity-[.6]"></li>
+          <li className="md:background-item suit text-center italic md:bg-[url('/Image/wave.jpeg')] opacity-[.6]"></li>
           <li className="suit text-center italic font-semibold">
             <p>phone </p>
             <p>010-9724-3290</p>

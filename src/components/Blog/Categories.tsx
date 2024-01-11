@@ -9,21 +9,21 @@ type Props = {
 
 export default function Categories({ categories, selected, onClick }: Props) {
   return (
-    <ul className="gap-3 flex">
+    <ul className="gap-7 flex">
       {categories.map((category, index) => (
         <li
           key={index}
           onClick={() => onClick(category)}
-          className={`border rounded-xl flex items-center justify-center  cursor-pointer ${category === selected && 'bg-[aliceblue] decoration-indigo-500'}`}
+          className={`rounded-xl flex items-center justify-center flex-col cursor-pointer`}
         >
-          {/* <Image
+          <Image
             className="transform transition-transform hover:-translate-y-1"
             src={forder_img}
             alt="폴더이미지"
-            width={130}
-            height={130}
-          /> */}
-          <h3 className={`text-lg suit leading-2 py-2 px-2 ${category === selected && 'text-[##71a2e5]'}`}>{category}</h3>
+            width={80}
+            height={80}
+          />
+          <h3 className={`text-md pre leading-2 py-2 px-2 ${category === selected && 'decoration-wavy	decoration-darkBlue underline'}`}>{category}</h3>
         </li>
       ))}
     </ul>

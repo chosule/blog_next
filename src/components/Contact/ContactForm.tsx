@@ -3,6 +3,7 @@ import useWatchTimeout from "@/lips/useWatchTimeout";
 import { sendContactEmail } from "@/service/contact";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import SubTitle from "../SubTitle";
 
 type Form = {
   from: string;
@@ -44,18 +45,18 @@ export default function ContactForm() {
 
   return (
         <div className="flex flex-col gap-5">
-            <h1 className="suit text-center text-2xl">Or Send me an email</h1>
+            <SubTitle className="text-center suit">Or send me an emai</SubTitle>
             <form
                 onSubmit={onSubmit}
                 className="flex h-full flex-col justify-evenly gap-5"
             >
                 <div className="flex flex-col gap-5">
-                <div className="relative flex gap-8">
+                <div className="grid md:grid-cols-[140px_1fr] gap-5">
                     <label htmlFor="from" className="suit text-lg">
                     your email ? 👀
                     </label>
                     <input
-                    className="grow rounded  border-[#f6f6f6] bg-[aliceblue]"
+                    className="grow rounded border-2"
                     type="text"
                     id="from"
                     name="from"
@@ -65,12 +66,12 @@ export default function ContactForm() {
                     onChange={onChange}
                     />
                 </div>
-                <div className="relative flex gap-8">
+                <div className="grid md:grid-cols-[140px_1fr] gap-5">
                     <label htmlFor="subject" className="suit text-lg">
                     subject
                     </label>
                     <input
-                    className="grow rounded bg-[aliceblue]"
+                    className="grow rounded border-2"
                     type="text"
                     id="subject"
                     name="subject"
@@ -79,12 +80,12 @@ export default function ContactForm() {
                     onChange={onChange}
                     />
                 </div>
-                <div className="relative flex gap-8">
+                <div className="grid md:grid-cols-[140px_1fr] gap-5">
                     <label htmlFor="message" className="suit text-lg">
                     message 📃
                     </label>
                     <textarea
-                    className="grow resize-none rounded bg-[aliceblue]"
+                    className="grow resize-none rounded border-2"
                     rows={10}
                     id="message"
                     name="message"
