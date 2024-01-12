@@ -5,8 +5,6 @@ import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import localFont from "next/font/local";
 import { Toaster } from "react-hot-toast";
-import Providers from "./provider";
-import { cookies } from "next/headers";
 import ThemeScript from "@/lips/ThemeScript";
 
 const suit = localFont({
@@ -42,7 +40,6 @@ export default function RootLayout({
         <main className="relative mt-36 grow">
           <Toaster />
           {children}
-          {/* <Providers>{children}</Providers> */}
         </main>
         <Footer />
       </body>
