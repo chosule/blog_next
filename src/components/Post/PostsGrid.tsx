@@ -12,7 +12,7 @@ export default function PostsGrid({ posts}: Props) {
       {posts?.map((post) => (
         <li
           key={uuid()}
-          className="h-full w-full transform rounded-xl bg-neutral-100 drop-shadow-xl transition-transform hover:-translate-y-1 p-6"
+          className="h-full w-full transform rounded-xl drop-shadow-xl transition-transform bg-secondary hover:-translate-y-1 p-6"
         >
           <PostCard posts={post} />
         </li>

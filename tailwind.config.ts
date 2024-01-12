@@ -1,7 +1,9 @@
 import type { Config } from "tailwindcss";
-const config: Config = {
+
+/** @type {import('tailwindcss').Config} */
+module.exports ={
+  darkMode: 'class',
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}", "./pages/**/*.{js,ts,jsx,tsx}"],
-  darkMode: "class",
   theme: {
     screens: {
       sm: "450px",
@@ -15,17 +17,37 @@ const config: Config = {
         suit: ["--font-suit"],
       },
       colors: {
-        black: "#1f2e3d",
-        darkBlue: "#0000ff",
-        blue: "#9EDDFF",
-        skyBlue: "#f0f8ff",
+        neutral:{
+          50:"#fafafa",
+          100:"#E4E6E8",
+          150: "#f0f8ff",
+          350: "#9EDDFF",
+          500:"#1f2e3d",
+          600: "#0000ff",
+          800:"#ffe716",
+          850:"#202428",
+          900: "#000",
+        }
       },
     },
   },
   variants: {
     typography: ["dark"],
   },
-  plugins: [require("@tailwindcss/typography")],
-};
+  plugins: [require("@tailwindcss/typography"),
+          ({addComponents,addUtilities}) => {
+            addComponents({
+              '.text-primary':{
+                '@apply text-neutral-850 dark:text-neutral-50' : '',
+              },
+              '.bg-primary':{
+                '@apply bg-neutral-50 dark:bg-neutral-850' : '',
+              },
+              '.bg-secondary':{
+                '@apply bg-neutral-100 dark:bg-neutral-800' : '',
+              },
+            })
+          }
+  ],
+}
 
-export default config;

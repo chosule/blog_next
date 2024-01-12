@@ -12,12 +12,12 @@ export default function PostCard({ posts }: Props) {
     <Link href={`/${posts.slug}`} className="flex flex-col gap-4">
       <div className="flex justify-between">
         <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-2">
-            <BsCalendarDate />
-            <h3 className="text-sm suit font-semibold">{posts.date}</h3>
+          <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-900">
+            <BsCalendarDate/>
+            <h3 className="text-xs suit font-semibold text-neutral-500">{posts.date}</h3>
           </div>
-          <h3 className="text-lg font-semibold pre">{posts.title}</h3>
-          <h3 className="text-sm suit">{posts.description}</h3>
+          <h3 className="text-lg font-semibold pre text-neutral-900">{posts.title}</h3>
+          <h3 className="text-sm suit text-neutral-900">{posts.description}</h3>
         </div>
         <Image
           src={`/featureImg/${posts.image}`}
@@ -27,7 +27,7 @@ export default function PostCard({ posts }: Props) {
           className="rounded-md"
         />
       </div>
-      <div className="bg-blue w-20 text-center p-1 rounded suit font-semibold">{posts.tags}</div>
+      <div className="w-20 text-center p-1 rounded suit font-semibold text-sm bg-neutral-350 dark:bg-neutral-900">{posts.tags}</div>
     </Link>
   );
 }

@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import heart_icon from "/public/Image/heart_icon.png";
-import ThemeSwitch from "../ThemeSwitch";
 import dynamic from "next/dynamic";
 import LoadingThemeButton from "../LoadingThemeButton";
 
@@ -46,7 +45,6 @@ export function Header() {
 
   const handleSelected = (event: React.MouseEvent<HTMLLIElement>) => {
     const menuName = event.currentTarget.innerText;
-    1;
     setSelected(menuName);
   };
 
@@ -54,7 +52,7 @@ export function Header() {
     <header className="relative">
       <div
         className={`fixed left-1/2 z-10 h-20 w-full ${
-          scrolled ? "backdrop" : "bg-white"
+          scrolled ? "backdrop" : "bg-primary"
         } -translate-x-1/2 transform shadow-md`}
       ></div>
       <nav className="fixed left-1/2 z-20 flex w-full max-w-[910px] -translate-x-1/2 transform justify-between gap-5 py-6 sm:flex-col md:flex-row">
@@ -70,10 +68,10 @@ export function Header() {
               <li key={menuName.id} className="suit" onClick={handleSelected}>
                 <Link
                   href={`${menuName.path}`}
-                  className={`${
+                  className={`dark:text-primary ${
                     selected === menuName.name
                       ? "font-bold"
-                      : "text-neutral-900"
+                      : "text-primary"
                   }`}
                 >
                   {menuName.name}
@@ -81,7 +79,6 @@ export function Header() {
               </li>
             ))}
           </ul>
-          {/* <ThemeSwitch/> */}
           <SetThemeButton />
         </div>
       </nav>

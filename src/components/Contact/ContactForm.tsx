@@ -52,7 +52,7 @@ export default function ContactForm() {
             >
                 <div className="flex flex-col gap-5">
                 <div className="grid md:grid-cols-[140px_1fr] gap-5">
-                    <label htmlFor="from" className="suit text-lg">
+                    <label htmlFor="from" className="suit text-lg text-primary">
                     your email ? 👀
                     </label>
                     <input
@@ -67,7 +67,7 @@ export default function ContactForm() {
                     />
                 </div>
                 <div className="grid md:grid-cols-[140px_1fr] gap-5">
-                    <label htmlFor="subject" className="suit text-lg">
+                    <label htmlFor="subject" className="suit text-lg text-primary">
                     subject
                     </label>
                     <input
@@ -81,7 +81,7 @@ export default function ContactForm() {
                     />
                 </div>
                 <div className="grid md:grid-cols-[140px_1fr] gap-5">
-                    <label htmlFor="message" className="suit text-lg">
+                    <label htmlFor="message" className="suit text-lg text-primary">
                     message 📃
                     </label>
                     <textarea
@@ -97,7 +97,7 @@ export default function ContactForm() {
                 </div>
                 <button
                 type="submit"
-                className="suit mx-auto h-10 w-32 rounded-lg bg-[aliceblue]"
+                className="suit mx-auto h-10 w-32 rounded-lg bg-neutral-150 dark:bg-neutral-800"
                 >
                 전송하기
                 </button>
