@@ -39,9 +39,7 @@ export default function RootLayout({
         <main className="relative grow">
           <Header />
           <Toaster />
-          <div className="mt-36">
-            {children}
-          </div>
+          <div className="mt-36">{children}</div>
         </main>
         <Footer />
       </body>

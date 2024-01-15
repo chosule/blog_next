@@ -3,28 +3,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import heart_icon from "/public/Image/heart_icon.png";
-import dynamic from "next/dynamic";
-import LoadingThemeButton from "../LoadingThemeButton";
 import NavItem from "../common/NavItem";
-
-export type NavMenuType = {
-  id: number;
-  name: string;
-  path: string;
-};
-
-const navMenu: NavMenuType[] = [
-  { id: 1, name: "Home", path: "/" },
-  { id: 2, name: "About", path: "/about" },
-  { id: 3, name: "Blog", path: "/blog" },
-  { id: 4, name: "Contact", path: "/contact" },
-  { id: 5, name: "Porfolio", path: "/portfolio" },
-];
-
-const SetThemeButton = dynamic(() => import("@/components/SetThemeButton"), {
-  ssr: false,
-  loading: () => <LoadingThemeButton />,
-});
+import { navMenu, SetThemeButton } from "./Header";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -109,20 +89,24 @@ export function Header() {
             <button onClick={toggleMenu}>버튼</button>
           </div>
           {isOpen && (
-            <ul
-              className={`bg-primary flex h-full w-full flex-col transition-transform duration-300 ease-in-out ${
-                isOpen ? "translate-x-0" : "-translate-x-full"
-              }`}
-            >
-              {navMenu.map((link, i) => (
-                <li
-                  className="flex flex-col gap-5 py-5"
-                  style={{ transitionDelay: `${150 + i * 25}ms` }}
-                  key={link.id}
-                >
-                  <NavItem href={link.path}>{link.name}</NavItem>
-                </li>
-              ))}
+            <ul className="bg-primary flex h-full w-full flex-col">
+              //{" "}
+              <ul
+                //   className={`bg-primary flex h-full w-full flex-col transition-transform duration-300 ease-in-out ${
+                //     isOpen ? "translate-x-0" : "-translate-x-full"
+                //   }`}
+                // >
+                {...navMenu.map((link, i) => (
+                  <li
+                    className="flex flex-col gap-5 py-5"
+                    style={{ transitionDelay: `${150 + i * 25}ms` }}
+                  >
+                    <NavItem key={link.id} href={link.path}>
+                      {link.name}
+                    </NavItem>
+                  </li>
+                ))}
+              />
             </ul>
           )}
         </div>
@@ -131,5 +115,3 @@ export function Header() {
     </>
   );
 }
-
-export default Header;
