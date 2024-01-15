@@ -3,26 +3,25 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import remarkDirective from 'remark-directive'
 import rehypePrettyCode from "rehype-pretty-code"
-import rehypeCodeTitles from 'rehype-code-titles';
+import remarkGfm from "remark-gfm";
 
 const options = {
     mdxOptions: {
-        remarkPlugins: [remarkDirective],
+        remarkPlugins: [remarkDirective,remarkGfm],
         rehypePlugins: [
-            rehypeCodeTitles,
             rehypeSlug,
             [
                 rehypePrettyCode,
                 {
-                    theme: 'github-dark', 
+                    theme: 'one-dark-pro', 
                 }
             ],
             [
                 rehypeAutolinkHeadings,
                 {
-                  properties: {
+                    properties: {
                     className: ["anchor"],
-                  },
+                    },
                 },
             ],
         ],

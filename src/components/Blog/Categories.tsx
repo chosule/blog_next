@@ -23,7 +23,7 @@ export default function Categories({ categories, selected, onClick }: Props) {
             width={80}
             height={80}
           />
-          <h3 className={`text-md pre leading-2 py-2 px-2 ${category === selected && 'decoration-wavy	decoration-darkBlue underline'}`}>{category}</h3>
+          <h3 className={`text-md pre leading-2 py-2 px-2 ${category === selected && 'decoration-wavy	decoration-neutral-550 underline'}`}>{category}</h3>
         </li>
       ))}
     </ul>

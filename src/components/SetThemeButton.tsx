@@ -2,12 +2,12 @@
 import { useState, useEffect } from "react";
 
 const SetThemeButton = () => {
-  const [theme, setTheme] = useState(global.window?.__theme || "light");
+  const [theme, setTheme] = useState(global.window?.__theme || "dark");
 
-  const isDark = theme === "dark";
+  const isDark = theme === "light";
 
   const toggleTheme = () => {
-    global.window?.__setPreferredTheme(isDark ? "light" : "dark");
+    global.window?.__setPreferredTheme(isDark ? "dark" : "light");
   };
 
   useEffect(() => {

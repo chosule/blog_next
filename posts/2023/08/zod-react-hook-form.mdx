@@ -16,27 +16,18 @@ date: 2023-08-30 18:24:41
 
 회사에서 작은 service 프로젝트를 진행하고 있던중 비밀번호 재설정 페이지를 맡게 되었다. react-hook-form은 한번 써봣던지라 같이 사용하려 했고 ts와 관련해서는 같이 써본적이 없기에 이번에 react-hook-form과 zod를 같이 구현하는것이 좋을거라 생각했다.
 
-{/* <div class="rehype-code-title">code.css</div>
-
-<pre class="language-css">
-  <code class="language-css code-highlight">
-    <span class="code-line">
-    ??
-    </span>
-  </code>
-</pre> */}
 
 ## 📌 1. zod 를 사용하는 이유
 
 > **1. 데이터 유효성 검사**
-> typescript에서 사용되는 데이터 유효성 검사 및 스키마 정의를 위한 라이브러리 이다.
-> 이 라이브러리를 사용하면 데이터 객체가 특정한 규칙을 따르는지 검증하고 , 데이터의 유효성을 확보할 수 있다.
-> **2. 스키마 정의**
-> zod를 사용하면 데이터 객체의 스키마를 명시적으로 정의할 수 있다. 이를 통해 어떤 종류의 데이터가 어떤 필드를 가져야 하는지, 어떤 필드가 옵셔널 하거나 필수 인지 등을 명확하게 표현할 수 있다.
-> **3. 타입 안전성 강화**
-> typescript와 함께 사용되므로 컴파일 시점에서 데이터 유효성 검사와 관련된 오류를 잡아내기 쉽다. 이로써 런타임에서 발생할 수 있는 유효성 검사 관련 버그를 사전에 방지 할 수 있다.
-> **4. 유연한 검증 로직**
-> zod는 다양한 검증 함수와 조합을 제공하여 복잡한 유효성 검사 규칙을 쉽게 구성할 수 있다.
+  `typescript`에서 사용되는 데이터 유효성 검사 및 스키마 정의를 위한 라이브러리 이다.
+  이 라이브러리를 사용하면 데이터 객체가 특정한 규칙을 따르는지 검증하고 , 데이터의 유효성을 확보할 수 있다.
+  **2. 스키마 정의**
+  zod를 사용하면 데이터 객체의 스키마를 명시적으로 정의할 수 있다. 이를 통해 어떤 종류의 데이터가 어떤 필드를 가져야 하는지, 어떤 필드가 옵셔널 하거나 필수 인지 등을 명확하게 표현할 수 있다.
+  **3. 타입 안전성 강화**
+  typescript와 함께 사용되므로 컴파일 시점에서 데이터 유효성 검사와 관련된 오류를 잡아내기 쉽다. 이로써 런타임에서 발생할 수 있는 유효성 검사 관련 버그를 사전에 방지 할 수 있다.
+  **4. 유연한 검증 로직**
+  zod는 다양한 검증 함수와 조합을 제공하여 복잡한 유효성 검사 규칙을 쉽게 구성할 수 있다.
 
 ## 📌 2. zod 와 usehookform 같이 사용하는 이점
 
@@ -51,7 +42,7 @@ date: 2023-08-30 18:24:41
 
 ### 1.설치
 
-```js
+```js 
 npm install react-hook-form zod @hookform/resolvers
 ```
 
@@ -75,7 +66,8 @@ schema 폴더를 생성하고 안에 index.ts폴더를 하나 생성해준다.
 
 내 코드에서는 유효성이 반복적으로 사용되는 코드가있어서 공통되는 유효성검사로직을 mypagePassWordSchema 함수로 만들어 주었다.
 
-```js
+
+```js 
 function mypagePassWordSchema() {
   return z
     .string()
@@ -169,42 +161,42 @@ register, handleSubmit , formState를 useForm에서 가져와주고 아까 위�
 마지막으로 기존비밀번호 nowPassword / 새로운 비밀번호 newPassword / 새로운비밀번호확인 newPasswordCheck 로 각각 input에 register를 설정해주고 에러가 발생했을때 errorMsg로 각각 이전 스키마에서 설정해준 message가 나올수 있도록 설정해주면 끝이 난다 !
 
 ```js
-	 <MyInfoUI.Flex gap="40px" flexDirection="column">
-        <MyInfoUI.Text fontSize={fontSize.h6} fontWeight="700">
-          비밀번호 재설정
-        </MyInfoUI.Text>
-        <StyledFormWrapper onSubmit={handleSubmit(onSubmit, onError)}>
-          <StyledInputWrapper>
-            <StyledInputContainer>
-              <MyInfoUI.Label fontWeight="600" fontSize={fontSize.body1}>
-                현재비밀번호
-              </MyInfoUI.Label>
-              <StyledInputDiv>
-                <TextInput type="password" {...register('nowPassword')} errorMsg={errors.nowPassword?.message ?? ''} />
-              </StyledInputDiv>
-            </StyledInputContainer>
+<MyInfoUI.Flex gap="40px" flexDirection="column">
+    <MyInfoUI.Text fontSize={fontSize.h6} fontWeight="700">
+      비밀번호 재설정
+    </MyInfoUI.Text>
+    <StyledFormWrapper onSubmit={handleSubmit(onSubmit, onError)}>
+      <StyledInputWrapper>
+        <StyledInputContainer>
+          <MyInfoUI.Label fontWeight="600" fontSize={fontSize.body1}>
+            현재비밀번호
+          </MyInfoUI.Label>
+          <StyledInputDiv>
+            <TextInput type="password" {...register('nowPassword')} errorMsg={errors.nowPassword?.message ?? ''} />
+          </StyledInputDiv>
+        </StyledInputContainer>
 
-            <StyledInputContainer>
-              <MyInfoUI.Label fontWeight="600" fontSize={fontSize.body1}>
-                새 비밀번호
-              </MyInfoUI.Label>
-              <StyledInputDiv>
-                <TextInput type="password" {...register('newPassword')} errorMsg={errors.newPassword?.message ?? ''} />
-              </StyledInputDiv>
-            </StyledInputContainer>
+        <StyledInputContainer>
+          <MyInfoUI.Label fontWeight="600" fontSize={fontSize.body1}>
+            새 비밀번호
+          </MyInfoUI.Label>
+          <StyledInputDiv>
+            <TextInput type="password" {...register('newPassword')} errorMsg={errors.newPassword?.message ?? ''} />
+          </StyledInputDiv>
+        </StyledInputContainer>
 
-            <StyledInputContainer>
-              <MyInfoUI.Label fontWeight="600" fontSize={fontSize.body1}>
-                비밀번호 확인
-              </MyInfoUI.Label>
-              <StyledInputDiv>
-                <TextInput type="password" {...register('newPasswordCheck')} errorMsg={errors.newPasswordCheck?.message ?? ''} />
-              </StyledInputDiv>
-            </StyledInputContainer>
-          </StyledInputWrapper>
-          <MyInfoUI.Flex justifyContent="flex-end">
-            <StyledButton type="submit">비밀번호 재설정</StyledButton>
-          </MyInfoUI.Flex>
-        </StyledFormWrapper>
+        <StyledInputContainer>
+          <MyInfoUI.Label fontWeight="600" fontSize={fontSize.body1}>
+            비밀번호 확인
+          </MyInfoUI.Label>
+          <StyledInputDiv>
+            <TextInput type="password" {...register('newPasswordCheck')} errorMsg={errors.newPasswordCheck?.message ?? ''} />
+          </StyledInputDiv>
+        </StyledInputContainer>
+      </StyledInputWrapper>
+      <MyInfoUI.Flex justifyContent="flex-end">
+        <StyledButton type="submit">비밀번호 재설정</StyledButton>
       </MyInfoUI.Flex>
+    </StyledFormWrapper>
+  </MyInfoUI.Flex>
 ```

@@ -38,7 +38,7 @@ module.exports ={
     typography: ["dark"],
   },
   plugins: [require("@tailwindcss/typography"),
-          ({addComponents,addUtilities}) => {
+          ({addComponents}:{addComponents:any}) => {
             addComponents({
               '.text-primary':{
                 '@apply text-neutral-850 dark:text-neutral-50' : '',
@@ -47,7 +47,7 @@ module.exports ={
                 '@apply bg-neutral-50 dark:bg-neutral-850' : '',
               },
               '.bg-secondary':{
-                '@apply bg-neutral-100 dark:bg-neutral-800' : '',
+                '@apply bg-neutral-100 dark:bg-neutral-100' : '',
               },
               '.toggle-color':{
                 '@apply bg-neutral-550 dark:bg-neutral-140' : '',

@@ -97,7 +97,7 @@ export default function ContactForm() {
                 </div>
                 <button
                 type="submit"
-                className="suit mx-auto h-10 w-32 rounded-lg bg-neutral-150 dark:bg-neutral-800"
+                className="suit mx-auto h-10 w-32 rounded-lg bg-secondary"
                 >
                 전송하기
                 </button>

@@ -33,8 +33,8 @@ export default async function PostPage({ params }: Props) {
   return (
     <div className="my-10">
       <div className="flex flex-col items-center gap-4">
-        <p className="text-4xl font-bold">{title}</p>
-        <p>{date}</p>
+        <p className="text-4xl font-bold pre">{title}</p>
+        <p className="suit">{date}</p>
       </div>
       <div className="dark:prose-dark prose my-8 max-w-full">
         <CustomMdx source={content}/>

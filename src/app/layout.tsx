@@ -36,10 +36,12 @@ export default function RootLayout({
         <ThemeScript />
       </head>
       <body className="relative mx-auto flex w-full max-w-[910px] flex-col px-8 lg:px-0">
-        <Header />
-        <main className="relative mt-36 grow">
+        <main className="relative grow">
+          <Header />
           <Toaster />
-          {children}
+          <div className="mt-36">
+            {children}
+          </div>
         </main>
         <Footer />
       </body>
