@@ -31,7 +31,6 @@
     "rehype-highlight": "^7.0.0",
     "remark-directive": "^3.0.0",
     "remark-gfm": "^3.0.1",
-    "remark-toc": "^9.0.0",
     "shiki": "^0.14.7",
     "to-vfile": "^8.0.0",
     "uuid": "^9.0.1",

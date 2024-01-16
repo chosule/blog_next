@@ -21,29 +21,18 @@ const navMenu: NavMenuType[] = [
   { id: 5, name: "Porfolio", path: "/portfolio" },
 ];
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 5278d4f14683b1ac5002081a6a751e4af4535b78
 const SetThemeButton = dynamic(() => import("@/components/SetThemeButton"), {
   ssr: false,
   loading: () => <LoadingThemeButton />,
 });
 
 export function Header() {
-
   const [scrolled, setScrolled] = useState(false);
   const [selected, setSelected] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-<<<<<<< HEAD
-
-  const toggleMenu = () =>{
-    if(isOpen){
-=======
   const toggleMenu = () => {
     if (isOpen) {
->>>>>>> 5278d4f14683b1ac5002081a6a751e4af4535b78
       setIsOpen(false);
       document.body.classList.remove("overflow-hidden");
     } else {
@@ -52,28 +41,20 @@ export function Header() {
     }
   };
 
-<<<<<<< HEAD
-  const { mounted: isMenuMounted, rendered: isMenuRendered } = useDelayedRender(isOpen, {
-    enterDelay: 20,
-    exitDelay: 300,
-  });
-
-  useEffect(() =>{
-    return function cleanup(){
-      document.body.classList.remove('overflow-hidden');
+  const { mounted: isMenuMounted, rendered: isMenuRendered } = useDelayedRender(
+    isOpen,
+    {
+      enterDelay: 20,
+      exitDelay: 300,
     }
-  },[]);
+  );
 
-
-
-
-=======
   useEffect(() => {
     return function cleanup() {
       document.body.classList.remove("overflow-hidden");
     };
   }, []);
->>>>>>> 5278d4f14683b1ac5002081a6a751e4af4535b78
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -131,26 +112,33 @@ export function Header() {
         <div className="absolute top-[300px]"></div>
       </header>
       {/* mobile Nav */}
-<<<<<<< HEAD
-      <header className="flex md:hidden flex-col fixed w-full z-50 top-0 px-8 h-[68px] bg-primary shadow-md">
+      <header className="bg-primary fixed top-0 z-50 flex h-[68px] w-full flex-col px-8 shadow-md md:hidden">
         <button onClick={toggleMenu} className="py-5">
-          <Image src={heart_icon} alt="아이콘" width={30} height={30}/>
+          <Image src={heart_icon} alt="아이콘" width={30} height={30} />
         </button>
         {isMenuMounted && (
-            <ul className={`w-full flex flex-col h-screen gap-[30px] transition-all absolute inset-x-0 top-[60px] bg-primary p-8 ${isMenuRendered ? 'opacity-100' : 'opacity-0 inset-x-[-1500px]'}`}>
-              {navMenu.map((menuName,i) => (
-                <Link
+          <ul
+            className={`bg-primary absolute inset-x-0 top-[60px] flex h-screen w-full flex-col gap-[30px] p-8 transition-all ${
+              isMenuRendered ? "opacity-100" : "inset-x-[-1500px] opacity-0"
+            }`}
+          >
+            {navMenu.map((menuName, i) => (
+              <Link
                 key={menuName.id}
-                  href={`${menuName.path}`}
-                  className={`suit flex flex-col transition-all ${isMenuRendered ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'} text-xl dark:text-primary`}
-                  style={{ transitionDelay: `${150 + i * 25}ms` }}
-                  onClick={() => {
-                    setIsOpen(false);
-                    document.body.classList.remove('overflow-hidden');
-                  }}
-                >
-                  {menuName.name}
-                </Link>
+                href={`${menuName.path}`}
+                className={`suit flex flex-col transition-all ${
+                  isMenuRendered
+                    ? "translate-x-0 opacity-100"
+                    : "-translate-x-4 opacity-0"
+                } text-xl dark:text-primary`}
+                style={{ transitionDelay: `${150 + i * 25}ms` }}
+                onClick={() => {
+                  setIsOpen(false);
+                  document.body.classList.remove("overflow-hidden");
+                }}
+              >
+                {menuName.name}
+              </Link>
             ))}
             {/* <li className="flex flex-col py-5 gap-5">
               {navMenu.map((link) => (
@@ -160,39 +148,11 @@ export function Header() {
           </ul>
         )}
       </header>
-      <div className="absolute right-[95px] z-[60] top-[22px] md:right-[-90px]"> 
+      <div className="absolute right-[95px] top-[22px] z-[60] md:right-[-90px]">
         <SetThemeButton />
       </div>
       <div className="md:hidden"></div>
     </div>
-=======
-      <header>
-        <div className="absolute z-50 flex h-full w-full flex-col md:hidden">
-          <div>
-            <button onClick={toggleMenu}>버튼</button>
-          </div>
-          {isOpen && (
-            <ul
-              className={`bg-primary flex h-full w-full flex-col transition-transform duration-300 ease-in-out ${
-                isOpen ? "translate-x-0" : "-translate-x-full"
-              }`}
-            >
-              {navMenu.map((link, i) => (
-                <li
-                  className="flex flex-col gap-5 py-5"
-                  style={{ transitionDelay: `${150 + i * 25}ms` }}
-                  key={link.id}
-                >
-                  <NavItem href={link.path}>{link.name}</NavItem>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </header>
-      <div className="md:hidden"></div>
-    </>
->>>>>>> 5278d4f14683b1ac5002081a6a751e4af4535b78
   );
 }
 

@@ -18,13 +18,13 @@ const pre = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default:"chosule blog",
-    template:'chosule blog | %s'
+    default: "chosule blog",
+    template: "chosule blog | %s",
   },
   description: "김초슬 블로그 입니다.",
-  icons:{
-    icon:'/favicon.ico'
-  }
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -45,15 +45,9 @@ export default function RootLayout({
         <main className="relative grow">
           <Header />
           <Toaster />
-<<<<<<< HEAD
-          <div className="mt-36 px-8 md:px-0">
-            {children}
-          </div>
-=======
-          <div className="mt-36">{children}</div>
->>>>>>> 5278d4f14683b1ac5002081a6a751e4af4535b78
+          <div className="mt-36 px-8 md:px-0">{children}</div>
         </main>
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
