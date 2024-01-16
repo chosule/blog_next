@@ -16,7 +16,7 @@ p {
 }
 
 .prose code:not(:where(pre *)) {
-  @apply mx-2 rounded border border-b-2 bg-neutral-350 p-1 dark:decoration-neutral-100;
+  @apply mx-2 rounded border-b-2 border-b-neutral-550 bg-neutral-148 p-1 dark:decoration-neutral-100;
   /* @apply bg-neutral-550 p-1 rounded-md text-neutral-50; */
 }
 
