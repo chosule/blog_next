@@ -21,7 +21,10 @@ const navMenu: NavMenuType[] = [
   { id: 5, name: "Porfolio", path: "/portfolio" },
 ];
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5278d4f14683b1ac5002081a6a751e4af4535b78
 const SetThemeButton = dynamic(() => import("@/components/SetThemeButton"), {
   ssr: false,
   loading: () => <LoadingThemeButton />,
@@ -33,18 +36,23 @@ export function Header() {
   const [selected, setSelected] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
+<<<<<<< HEAD
 
   const toggleMenu = () =>{
     if(isOpen){
+=======
+  const toggleMenu = () => {
+    if (isOpen) {
+>>>>>>> 5278d4f14683b1ac5002081a6a751e4af4535b78
       setIsOpen(false);
-      document.body.classList.remove('overflow-hidden');
-
-    }else{
+      document.body.classList.remove("overflow-hidden");
+    } else {
       setIsOpen(true);
-      document.body.classList.add('overflow-hidden');
+      document.body.classList.add("overflow-hidden");
     }
-  }
+  };
 
+<<<<<<< HEAD
   const { mounted: isMenuMounted, rendered: isMenuRendered } = useDelayedRender(isOpen, {
     enterDelay: 20,
     exitDelay: 300,
@@ -59,6 +67,13 @@ export function Header() {
 
 
 
+=======
+  useEffect(() => {
+    return function cleanup() {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, []);
+>>>>>>> 5278d4f14683b1ac5002081a6a751e4af4535b78
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -92,7 +107,7 @@ export function Header() {
         <nav className="fixed left-1/2 z-20 flex w-full max-w-[910px] -translate-x-1/2 transform justify-between gap-5 py-6">
           <Link href="/">
             <div className="flex items-center gap-1">
-              <Image src={heart_icon} alt="아이콘" width={30} height={30}/>
+              <Image src={heart_icon} alt="아이콘" width={30} height={30} />
               <h1 className="text-xl">chosule blog</h1>
             </div>
           </Link>
@@ -103,9 +118,7 @@ export function Header() {
                   <Link
                     href={`${menuName.path}`}
                     className={`dark:text-primary ${
-                      selected === menuName.name
-                        ? "font-bold"
-                        : "text-primary"
+                      selected === menuName.name ? "font-bold" : "text-primary"
                     }`}
                   >
                     {menuName.name}
@@ -118,6 +131,7 @@ export function Header() {
         <div className="absolute top-[300px]"></div>
       </header>
       {/* mobile Nav */}
+<<<<<<< HEAD
       <header className="flex md:hidden flex-col fixed w-full z-50 top-0 px-8 h-[68px] bg-primary shadow-md">
         <button onClick={toggleMenu} className="py-5">
           <Image src={heart_icon} alt="아이콘" width={30} height={30}/>
@@ -151,6 +165,34 @@ export function Header() {
       </div>
       <div className="md:hidden"></div>
     </div>
+=======
+      <header>
+        <div className="absolute z-50 flex h-full w-full flex-col md:hidden">
+          <div>
+            <button onClick={toggleMenu}>버튼</button>
+          </div>
+          {isOpen && (
+            <ul
+              className={`bg-primary flex h-full w-full flex-col transition-transform duration-300 ease-in-out ${
+                isOpen ? "translate-x-0" : "-translate-x-full"
+              }`}
+            >
+              {navMenu.map((link, i) => (
+                <li
+                  className="flex flex-col gap-5 py-5"
+                  style={{ transitionDelay: `${150 + i * 25}ms` }}
+                  key={link.id}
+                >
+                  <NavItem href={link.path}>{link.name}</NavItem>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </header>
+      <div className="md:hidden"></div>
+    </>
+>>>>>>> 5278d4f14683b1ac5002081a6a751e4af4535b78
   );
 }
 

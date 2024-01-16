@@ -45,9 +45,13 @@ export default function RootLayout({
         <main className="relative grow">
           <Header />
           <Toaster />
+<<<<<<< HEAD
           <div className="mt-36 px-8 md:px-0">
             {children}
           </div>
+=======
+          <div className="mt-36">{children}</div>
+>>>>>>> 5278d4f14683b1ac5002081a6a751e4af4535b78
         </main>
         <Footer/>
       </body>
