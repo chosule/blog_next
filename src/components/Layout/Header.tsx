@@ -5,7 +5,7 @@ import Image from "next/image";
 import heart_icon from "/public/Image/heart_icon.png";
 import dynamic from "next/dynamic";
 import LoadingThemeButton from "../LoadingThemeButton";
-import NavItem from "../common/NavItem";
+import useDelayedRender from "@/lips/useDelayedRender";
 
 export type NavMenuType = {
   id: number;
@@ -16,15 +16,11 @@ export type NavMenuType = {
 const navMenu: NavMenuType[] = [
   { id: 1, name: "Home", path: "/" },
   { id: 2, name: "About", path: "/about" },
-  { id: 3, name: "Blog", path: "/blog" },
+  { id: 3, name: "Blog", path: "/posts" },
   { id: 4, name: "Contact", path: "/contact" },
   { id: 5, name: "Porfolio", path: "/portfolio" },
 ];
 
-const variants = {
-  open: { opacity: 1, x: 0 },
-  closed: { opacity: 0, x: "-100%" },
-}
 
 const SetThemeButton = dynamic(() => import("@/components/SetThemeButton"), {
   ssr: false,
@@ -32,9 +28,11 @@ const SetThemeButton = dynamic(() => import("@/components/SetThemeButton"), {
 });
 
 export function Header() {
+
   const [scrolled, setScrolled] = useState(false);
   const [selected, setSelected] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+
 
   const toggleMenu = () =>{
     if(isOpen){
@@ -47,11 +45,20 @@ export function Header() {
     }
   }
 
+  const { mounted: isMenuMounted, rendered: isMenuRendered } = useDelayedRender(isOpen, {
+    enterDelay: 20,
+    exitDelay: 300,
+  });
+
   useEffect(() =>{
     return function cleanup(){
       document.body.classList.remove('overflow-hidden');
     }
-  },[])
+  },[]);
+
+
+
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -74,7 +81,8 @@ export function Header() {
   };
 
   return (
-    <>
+    <div>
+      {/* Pc Nav */}
       <header className="relative hidden md:block">
         <div
           className={`fixed left-1/2 z-10 h-20 w-full ${
@@ -105,33 +113,44 @@ export function Header() {
                 </li>
               ))}
             </ul>
-            <SetThemeButton />
           </div>
         </nav>
         <div className="absolute top-[300px]"></div>
       </header>
       {/* mobile Nav */}
-      <header>
-        <div className="flex md:hidden flex-col absolute w-full h-full z-50">
-          <div>
-            <button onClick={toggleMenu}>버튼</button>
-            <SetThemeButton/>
-          </div>
-          {isOpen && (
-              <ul className="w-full flex grow h-full bg-primary">
-                <li className="flex flex-col py-5 gap-5">
-                  {navMenu.map((link) => (
-                    <NavItem key={link.id} href={link.path}>{link.name}</NavItem>
-                  ))}
-                </li>
-              </ul>
-          )}
-        </div>
+      <header className="flex md:hidden flex-col fixed w-full z-50 top-0 px-8 h-[68px] bg-primary shadow-md">
+        <button onClick={toggleMenu} className="py-5">
+          <Image src={heart_icon} alt="아이콘" width={30} height={30}/>
+        </button>
+        {isMenuMounted && (
+            <ul className={`w-full flex flex-col h-screen gap-[30px] transition-all absolute inset-x-0 top-[60px] bg-primary p-8 ${isMenuRendered ? 'opacity-100' : 'opacity-0 inset-x-[-1500px]'}`}>
+              {navMenu.map((menuName,i) => (
+                <Link
+                key={menuName.id}
+                  href={`${menuName.path}`}
+                  className={`suit flex flex-col transition-all ${isMenuRendered ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'} text-xl dark:text-primary`}
+                  style={{ transitionDelay: `${150 + i * 25}ms` }}
+                  onClick={() => {
+                    setIsOpen(false);
+                    document.body.classList.remove('overflow-hidden');
+                  }}
+                >
+                  {menuName.name}
+                </Link>
+            ))}
+            {/* <li className="flex flex-col py-5 gap-5">
+              {navMenu.map((link) => (
+                <NavItem key={link.id} href={link.path}>{link.name}</NavItem>
+              ))}
+            </li> */}
+          </ul>
+        )}
       </header>
-      <div className="md:hidden">
+      <div className="absolute right-[95px] z-[60] top-[22px] md:right-[-90px]"> 
+        <SetThemeButton />
       </div>
-    
-    </>
+      <div className="md:hidden"></div>
+    </div>
   );
 }
 

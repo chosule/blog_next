@@ -9,7 +9,7 @@ type Props = {
 
 export default function Categories({ categories, selected, onClick }: Props) {
   return (
-    <ul className="gap-7 flex">
+    <ul className="gap-7 flex flex-wrap">
       {categories.map((category, index) => (
         <li
           key={index}

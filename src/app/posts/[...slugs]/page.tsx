@@ -3,9 +3,10 @@ import {
   getPost,
   getPostData,
 } from "@/service/getPostsNew";
-import CustomMdx from "@/lips/CustomMdx";
+import Mdx from "@/lips/Mdx";
 import Giscus from "@/components/Blog/Giscus";
 import AdjacentPostCard from "@/components/Blog/AdjacentPostCard";
+import { Metadata } from "next";
 
 export type Props = {
   params: {
@@ -13,11 +14,19 @@ export type Props = {
   };
 };
 
-export function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props):Promise<Metadata> {
   const slugs = params.slugs;
-  const slug = `${slugs.join("/")}`;
+  // const slug = `${slugs.join("/")}`;
+  const post = await getPost(slugs);
+  const {description,title,image} = post;
   return {
-    title: `${slug} 기록`,
+    title,
+    description,
+    openGraph:{
+      title:`${title}`,
+      description:`${description}`,
+      images:[`${image}`]
+    }
   };
 }
 
@@ -37,10 +46,10 @@ export default async function PostPage({ params }: Props) {
         <p className="suit">{date}</p>
       </div>
       <div className="dark:prose-dark prose my-8 max-w-full">
-        <CustomMdx source={content}/>
+        <Mdx source={content}/>
         <Giscus/>
         {/*  */}
-        <div className="flex justify-between mt-8">
+        <div className="flex justify-between mt-4 gap-6 flex-col sm:mt-8 sm:flex-row">
           {prev && <AdjacentPostCard post={prev} type="prev"/>}
           {next && <AdjacentPostCard post={next} type="next"/>}
         </div>

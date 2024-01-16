@@ -10,7 +10,7 @@ type Props = {
 export default function PostCard({ posts }: Props) {
   return (
     <Link href={`/${posts.slug}`} className="flex flex-col gap-4">
-      <div className="flex justify-between">
+      <div className="flex justify-between flex-col gap-6 sm:flex-row sm:gap-0">
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2 text-neutral-500 dark:text-neutral-900">
             <BsCalendarDate/>

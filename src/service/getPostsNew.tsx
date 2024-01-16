@@ -1,5 +1,3 @@
-import { Props } from "@/app/posts/[...slugs]/page";
-import serializeMdx from "@/lips/mdx";
 import dayjs from "dayjs";
 import fs from "fs";
 import { globSync, sync } from "glob";

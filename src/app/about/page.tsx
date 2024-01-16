@@ -1,6 +1,11 @@
 import Profile from "@/components/About/Profile"
 import SubTitle from "@/components/SubTitle"
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+    title:'About chosule',
+    description: "저에 대해 소개합니다.",
+};
 
 export default function AboutPage() {
     return(

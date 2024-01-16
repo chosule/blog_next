@@ -4,14 +4,16 @@ import rehypeSlug from "rehype-slug";
 import remarkDirective from 'remark-directive'
 import rehypePrettyCode from "rehype-pretty-code"
 import remarkGfm from "remark-gfm";
+import { SerializeOptions } from "node_modules/next-mdx-remote/dist/types";
 
-const options = {
+const options: SerializeOptions = {
     mdxOptions: {
         remarkPlugins: [remarkDirective,remarkGfm],
         rehypePlugins: [
             rehypeSlug,
             [
-                rehypePrettyCode,
+                // @ts-ignore
+                rehypePrettyCode ,
                 {
                     theme: 'one-dark-pro', 
                 }
@@ -29,7 +31,7 @@ const options = {
 
 }
 
-export default function CustomMdx(props:MDXRemoteProps) {
+export default function Mdx(props:MDXRemoteProps) {
     return(
         <MDXRemote 
             {...props}

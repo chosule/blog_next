@@ -10,7 +10,7 @@ export default function Hero() {
      return(
         <article className="flex flex-col gap-10 mb-20">
             <Title>안녕하세요 김초슬입니다. 🖐</Title>
-            <div className="flex items-center gap-11 sm:flex-col md:flex-row">
+            <div className="flex gap-11 sm:flex-col">
                 {/* <Image className="rounded-full shadow-xl" src={profile_img} alt="프로필이미지" width={250} height={250} priority/> */}
                 <div className="flex flex-col gap-2">
                     <p className="text-xl whitespace-pre pre text-primary">{`저의 블로그에 오신걸 환영합니다. \n많은 관심 부탁드립니다. 😋`}</p>

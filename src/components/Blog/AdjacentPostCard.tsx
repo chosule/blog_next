@@ -9,7 +9,7 @@ type Props ={
 const ICON_CLASSNAME = 'text-4xl transition-all hover:text-5xl';
 export default function AdjacentPostCard({type, post:{title,slug}}:Props) {
      return(
-        <div className={`flex w-80 bg-slate-100	gap-5 items-center ${type === "next" && "text-right justify-end"} p-3 rounded-lg`}>
+        <div className={`flex w-80 bg-slate-100	gap-5 items-center ${type === "next" && "text-right justify-end self-end md:self-baseline"} p-3 rounded-lg`}>
             <Link href={`/${slug}`} className="flex items-center truncate gap-5 no-underline ">
                 <div className={`${type === "next" && "order-2"}`}>
                     {type === "prev" && <IoArrowBackCircleOutline className={ICON_CLASSNAME} />}

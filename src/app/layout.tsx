@@ -17,8 +17,14 @@ const pre = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Chosule Blog Main",
-  description: "welcome my world",
+  title: {
+    default:"chosule blog",
+    template:'chosule blog | %s'
+  },
+  description: "김초슬 블로그 입니다.",
+  icons:{
+    icon:'/favicon.ico'
+  }
 };
 
 export default function RootLayout({
@@ -35,15 +41,15 @@ export default function RootLayout({
       <head>
         <ThemeScript />
       </head>
-      <body className="relative mx-auto flex w-full max-w-[910px] flex-col px-8 lg:px-0">
+      <body className="relative mx-auto flex w-full max-w-[910px] flex-col">
         <main className="relative grow">
           <Header />
           <Toaster />
-          <div className="mt-36">
+          <div className="mt-36 px-8 md:px-0">
             {children}
           </div>
         </main>
-        <Footer />
+        <Footer/>
       </body>
     </html>
   );

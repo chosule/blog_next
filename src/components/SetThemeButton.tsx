@@ -19,7 +19,7 @@ const SetThemeButton = () => {
       onClick={toggleTheme} 
       aria-label={`change to ${isDark}`} 
       title={`change to ${isDark}`}
-      className="w-[66px] h-[29px] p-2 rounded-3xl relative toggle-color hover:shadow-[0_0_5px_2px_#1e90ff] dark:hover:shadow-[0_0_5px_2px_#a9a9a9]" 
+      className="w-[66px] h-[29px] p-2 rounded-3xl fixed toggle-color hover:shadow-[0_0_5px_2px_#1e90ff] dark:hover:shadow-[0_0_5px_2px_#a9a9a9]" 
       >
       <div
         className={`absolute top-0 left-[3px] bg-neutral-50 rounded-full w-[29px] h-[29px] ${
