@@ -23,7 +23,7 @@ export default function FilterCategory({ posts, tags }:Props ) {
   return (
     <section className="flex flex-col gap-10">
       <article className="flex flex-col gap-5">
-        <SubTitle className="suit">#Tags</SubTitle>
+        <SubTitle>#Tags</SubTitle>
         <Categories
           categories={[ALLPOSTS, ...tags]}
           selected={selected}
@@ -31,7 +31,7 @@ export default function FilterCategory({ posts, tags }:Props ) {
           />
       </article>
       <article className="flex flex-col gap-8">
-        <SubTitle className="suit">📃 {selected}</SubTitle>
+        <SubTitle>📃 {selected}</SubTitle>
         <PostsGrid posts={filtered}/>
       </article>
     </section>

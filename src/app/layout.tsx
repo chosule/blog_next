@@ -11,10 +11,16 @@ const suit = localFont({
   src: "../../public/fonts/SUIT-Variable.ttf",
   variable: "--font-suit",
 });
+
 const pre = localFont({
   src: "../../public/fonts/Pretendard-Medium.woff",
   variable: "--font-pre",
 });
+
+const nanum = localFont({
+  src:"../../public/fonts/NanumSquareNeoOTF-Rg.otf",
+  variable:"--font-nanum"
+})
 
 export const metadata: Metadata = {
   title: {
@@ -35,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${suit.variable} ${pre.variable}`}
+      className={`${suit.variable} ${nanum.variable}`}
       suppressHydrationWarning
     >
       <head>

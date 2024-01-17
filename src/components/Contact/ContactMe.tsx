@@ -7,14 +7,14 @@ import SubTitle from "../SubTitle";
 export default function ContactMe() {
   return (
       <div className="flex flex-col items-center gap-5">
-        <SubTitle className="suit">✨ Contact me</SubTitle>
+        <SubTitle>✨ Contact me</SubTitle>
         <ul className="relative flex h-[200px] w-[439px] flex-col items-center justify-center gap-2 overflow-hidden bg-cover drop-shadow-2xl">
-          <li className="md:background-item suit text-center italic md:bg-[url('/Image/wave.jpeg')] opacity-[.6]"></li>
-          <li className="suit text-center italic font-semibold">
+          <li className="md:background-item text-center italic md:bg-[url('/Image/wave.jpeg')] opacity-[.6]"></li>
+          <li className="text-center italic font-semibold">
             <p>phone </p>
             <p>010-9724-3290</p>
           </li>
-          <li className="suit flex items-center justify-evenly gap-2 text-center italic font-semibold">
+          <li className="flex items-center justify-evenly gap-2 text-center italic font-semibold">
             <p>Github </p>
             <Link
               target="_blank"
@@ -24,13 +24,13 @@ export default function ContactMe() {
               <FaGithub />
             </Link>
           </li>
-          <li className="suit flex items-center justify-evenly gap-2 text-center italic font-semibold">
+          <li className="flex items-center justify-evenly gap-2 text-center italic font-semibold">
             <p>Blog </p>
             <Link target="_blank" href="#" className="text-xl">
               <SiBloglovin />
             </Link>
           </li>
-          <li className="suit flex items-center justify-evenly gap-2 text-center italic font-semibold">
+          <li className="flex items-center justify-evenly gap-2 text-center italic font-semibold">
             <p>Velog </p>
             <Link
               target="_blank"

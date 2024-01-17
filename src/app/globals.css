@@ -5,7 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @import url(../styles/prose.css); */
 
 html,
 body {
@@ -21,7 +20,6 @@ body {
 :root {
   color-scheme: light;
   --color-bg-primary:@apply bg-neutral-50;
-
 }
 
 :root[data-theme="dark"] {
@@ -30,6 +28,9 @@ body {
   --color-text-secondary:#fff;
 }
 
+h1,h2,h3,h4,a,p,span,label{
+  font-family: var(--font-nanum);
+}
 p,h1,h2,h3,h4,a{
   color:var(--color-text-secondary);
 }

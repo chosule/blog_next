@@ -18,7 +18,7 @@ const navMenu: NavMenuType[] = [
   { id: 2, name: "About", path: "/about" },
   { id: 3, name: "Blog", path: "/posts" },
   { id: 4, name: "Contact", path: "/contact" },
-  { id: 5, name: "Porfolio", path: "/portfolio" },
+  // { id: 5, name: "Porfolio", path: "/portfolio" },
 ];
 
 const SetThemeButton = dynamic(() => import("@/components/SetThemeButton"), {
@@ -95,7 +95,7 @@ export function Header() {
           <div className="flex gap-5">
             <ul className="flex items-center gap-5">
               {navMenu.map((menuName) => (
-                <li key={menuName.id} className="suit" onClick={handleSelected}>
+                <li key={menuName.id} onClick={handleSelected}>
                   <Link
                     href={`${menuName.path}`}
                     className={`dark:text-primary ${
@@ -126,7 +126,7 @@ export function Header() {
               <Link
                 key={menuName.id}
                 href={`${menuName.path}`}
-                className={`suit flex flex-col transition-all ${
+                className={`flex flex-col transition-all ${
                   isMenuRendered
                     ? "translate-x-0 opacity-100"
                     : "-translate-x-4 opacity-0"

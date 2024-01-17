@@ -3,6 +3,7 @@ import Mdx from "@/lips/Mdx";
 import Giscus from "@/components/Blog/Giscus";
 import AdjacentPostCard from "@/components/Blog/AdjacentPostCard";
 import { Metadata } from "next";
+import Title from "@/components/Title";
 
 export type Props = {
   params: {
@@ -38,8 +39,8 @@ export default async function PostPage({ params }: Props) {
   return (
     <div className="my-10">
       <div className="flex flex-col items-center gap-4">
-        <p className="pre text-4xl font-bold">{title}</p>
-        <p className="suit">{date}</p>
+        <Title>{title}</Title>
+        <p>{date}</p>
       </div>
       <div className="dark:prose-dark prose my-8 max-w-full">
         <Mdx source={content} />

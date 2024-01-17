@@ -111,7 +111,7 @@ export const myPagePwResetSchema = z //
 
 ### **전체 코드**
 
-```js
+```js title="zod.ts"
 import { z } from 'zod'
 import { excludeName, passwordPattern, phoneNumberPattern } from '@/core/common/regex'
 
@@ -148,7 +148,7 @@ usehookform에서 내가 사용할 기능들을 가져와준다.
 
 register, handleSubmit , formState를 useForm에서 가져와주고 아까 위에서 만든 zod 스키마 유효성TMypagePwResetSchema를 넣어준다. resolver기능은 zod 스키마를 사용하여 폼 필드의 유효성을 검사하고 처리하는 역할을 한다고하는데, 한마디로 useForm 훅에게 zod스키마를 이용하여 폼 필드의 유효성을 검사하도록 지시하는 역할을 한다고 보면 될 것같다.
 
-```js
+```js 
   const {
     register,
     handleSubmit,

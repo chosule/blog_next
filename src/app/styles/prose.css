@@ -6,6 +6,10 @@
   @apply no-underline transition-all;
 }
 
+.prose h1,h2,h3,h4,h5,li,a,strong,p,span{
+  font-family: var(--font-nanum);
+}
+
 .prose h2,
 h3,
 h4,
@@ -16,7 +20,7 @@ p {
 }
 
 .prose code:not(:where(pre *)) {
-  @apply mx-2 rounded border-b-2 border-b-neutral-550 bg-neutral-148 p-1 dark:decoration-neutral-100;
+  @apply mx-2 rounded border-b-2 border-b-neutral-550 bg-neutral-148 p-1 dark:text-neutral-850 dark:bg-neutral-350;
   /* @apply bg-neutral-550 p-1 rounded-md text-neutral-50; */
 }
 
@@ -36,23 +40,41 @@ p {
   @apply text-neutral-550;
 }
 
-/* [data-chars-id]{
-  @apply shadow-none p-1 border-b-2;
-}
 
 [data-chars-id='v'] {
-  @apply !text-pink-300 bg-rose-800/50 border-b-pink-600 font-bold;
+  @apply  mx-2 rounded border-b-2 text-[#f9a8d4] border-b-[#db2777] bg-[#9f123980] p-1 dark:text-neutral-850;
 }
 
 [data-chars-id='s'] {
-  @apply !text-yellow-300 bg-yellow-800/50 border-b-yellow-600 font-bold;
-} */
+  @apply  mx-2 rounded border-b-2 text-[#f9a8d4] border-b-[#9333ea] bg-[#6b21a880] p-1 dark:text-neutral-850;}
+
+.prose [data-line]{
+  @apply mb-3;
+}
+
+.prose :where(strong):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  @apply mx-2 rounded border-b-2 border-b-neutral-550 bg-neutral-148 p-1 dark:text-neutral-850 dark:bg-neutral-350;
+}
 
 .prose [data-rehype-pretty-code-title] {
-  @apply rounded-t-lg border border-b-0 border-gray-200 bg-gray-200 px-5 py-2 font-mono text-sm font-bold text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200;
+  @apply rounded-t-lg h-[53px]  border-b-0 relative border-gray-200 bg-[#434041] pl-24 pt-4 text-sm font-bold text-neutral-50 dark:bg-neutral-850;
+  font-family: var(--font-nanum);
 }
 .prose [data-rehype-pretty-code-title] + pre {
   @apply mt-0 rounded-t-none;
+}
+
+.prose [data-rehype-pretty-code-title]::after {
+  content: ''; 
+  background-image: url('/image/macIcon.png'); 
+  background-size:contain;
+  background-repeat: no-repeat;
+  display: inline-block; 
+  width: 60px;
+  height: 20px;
+  position: absolute;
+  top:20px;
+  left:14px;
 }
 
 [data-highlighted-line] {

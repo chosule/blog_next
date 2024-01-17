@@ -13,8 +13,9 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        pre: ["--font-pre"],
-        suit: ["--font-suit"],
+        pre: ["var(--font-pre)"],
+        suit: ["var(--font-suit)"],
+        nanum:["var(--font-nanum)"]
       },
       colors: {
         neutral: {

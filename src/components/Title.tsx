@@ -4,7 +4,7 @@ export default function Title({ className ,...props }: React.ComponentProps<'h1'
     <>
       <h1 
           {...props}
-          className={`text-lg pre ${className} drop-shadow-lg font-semibold md:text-2xl text-primary`}
+          className={`text-[24px] drop-shadow-lg font-semibold md:text-[26px] text-primary namum${className}`}
       />
     </>
   );
