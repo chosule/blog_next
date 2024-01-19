@@ -17,7 +17,6 @@ export default async function BlogPage() {
   },[]) as string[]
   
   const tags = [...new Set(combinedTags)];
-
   return (
     <div className="flex flex-col gap-9">
       <div className="flex flex-col gap-3">

@@ -22,9 +22,9 @@ export default function PostCard({ posts }: Props) {
         <Image
           src={`/featureImg/${posts.image}`}
           alt="feature이미지"
-          width={180}
-          height={60}
-          className="rounded-md self-center md:self-start"
+          width={225}
+          height={153}
+          className="rounded-lg self-center md:self-start drop-shadow-md"
         />
       </div>
       <div className="w-20 text-center p-1 rounded font-semibold text-[12px] bg-neutral-350 dark:bg-neutral-900 order-1 md:order-2">{posts.tags}</div>
