@@ -15,11 +15,12 @@ module.exports = {
       fontFamily: {
         pre: ["var(--font-pre)"],
         suit: ["var(--font-suit)"],
-        nanum:["var(--font-nanum)"]
+        nanum: ["var(--font-nanum)"],
       },
       colors: {
         neutral: {
           50: "#fafafa",
+          80: "#ededed",
           100: "#E4E6E8",
           140: "#a9a9a9",
           145: "#6b7280",
@@ -50,7 +51,7 @@ module.exports = {
           "@apply bg-neutral-50 dark:bg-neutral-850": "",
         },
         ".bg-secondary": {
-          "@apply bg-neutral-100 dark:bg-neutral-100": "",
+          "@apply bg-neutral-80 dark:bg-neutral-100": "",
         },
         ".toggle-color": {
           "@apply bg-neutral-550 dark:bg-neutral-140": "",

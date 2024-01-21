@@ -10,7 +10,7 @@ export default function IconButton({
       {...props}
       onClick={onClick}
       type={type}
-      className={`text-secondary hover:bg-secondary flex h-9 w-9 items-center justify-center rounded-lg transition-all ${className}`}
+      className={`text-secondary flex h-9 w-9 items-center justify-center rounded-lg transition-all hover:bg-neutral-80 ${className}`}
     />
   );
 }

@@ -140,11 +140,6 @@ export function Header() {
                 {menuName.name}
               </Link>
             ))}
-            {/* <li className="flex flex-col py-5 gap-5">
-              {navMenu.map((link) => (
-                <NavItem key={link.id} href={link.path}>{link.name}</NavItem>
-              ))}
-            </li> */}
           </ul>
         )}
       </header>

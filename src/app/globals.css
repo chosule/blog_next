@@ -1,10 +1,8 @@
-@import './styles/prose.css';
-
+@import "./styles/prose.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 html,
 body {
@@ -12,27 +10,38 @@ body {
     display: none;
   }
   height: 100%;
-  color:var(--color-primary);
+  color: var(--color-primary);
   background: var(--color-bg-primary);
 }
 
-
 :root {
   color-scheme: light;
-  --color-bg-primary:@apply bg-neutral-50;
+  --color-bg-primary: @apply bg-neutral-50;
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --color-bg-primary:@apply bg-neutral-900;
-  --color-text-secondary:#fff;
+  --color-bg-primary: @apply bg-neutral-900;
+  --color-text-secondary: #fff;
 }
 
-h1,h2,h3,h4,a,p,span,label{
+h1,
+h2,
+h3,
+h4,
+a,
+p,
+span,
+label {
   font-family: var(--font-nanum);
 }
-p,h1,h2,h3,h4,a{
-  color:var(--color-text-secondary);
+p,
+h1,
+h2,
+h3,
+h4,
+a {
+  color: var(--color-text-secondary);
 }
 
 * {
@@ -40,8 +49,6 @@ p,h1,h2,h3,h4,a{
   padding: 0;
   margin: 0;
 }
-
-
 
 @layer components {
   .backdrop {
@@ -66,4 +73,7 @@ p,h1,h2,h3,h4,a{
     z-index: -1;
   }
 
+  .tag {
+    @apply w-20 rounded-xl bg-neutral-50 p-1 text-center text-[12px] font-semibold dark:bg-neutral-50;
+  }
 }

@@ -8,31 +8,31 @@ import SubTitle from "../SubTitle";
 
 type Props = {
   posts: Post[];
-  tags: string[];
+  titleList: string[];
 };
 
 const ALLPOSTS = "all Post";
 
-export default function FilterCategory({ posts, tags }:Props ) {
+export default function FilterCategory({ posts, titleList }: Props) {
   const [selected, setSelected] = useState(ALLPOSTS);
   const filtered =
     selected === ALLPOSTS
       ? posts
-      : posts.filter((post) => post.tags[0] === selected);
+      : posts.filter((post) => post.titlelist === selected);
 
   return (
     <section className="flex flex-col gap-10">
       <article className="flex flex-col gap-5">
         <SubTitle>#Tags</SubTitle>
         <Categories
-          categories={[ALLPOSTS, ...tags]}
+          categories={[ALLPOSTS, ...titleList]}
           selected={selected}
           onClick={(selected) => setSelected(selected)}
-          />
+        />
       </article>
       <article className="flex flex-col gap-8">
         <SubTitle>📃 {selected}</SubTitle>
-        <PostsGrid posts={filtered}/>
+        <PostsGrid posts={filtered} />
       </article>
     </section>
   );

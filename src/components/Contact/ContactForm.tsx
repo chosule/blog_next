@@ -44,64 +44,64 @@ export default function ContactForm() {
   };
 
   return (
+    <div className="flex flex-col gap-5">
+      <SubTitle className="text-center">or send me an email</SubTitle>
+      <form
+        onSubmit={onSubmit}
+        className="flex h-full flex-col justify-evenly gap-5"
+      >
         <div className="flex flex-col gap-5">
-            <SubTitle className="text-center">or send me an email</SubTitle>
-            <form
-                onSubmit={onSubmit}
-                className="flex h-full flex-col justify-evenly gap-5"
-            >
-                <div className="flex flex-col gap-5">
-                <div className="grid md:grid-cols-[140px_1fr] gap-5">
-                    <label htmlFor="from" className="text-lg text-primary">
-                    your email ? 👀
-                    </label>
-                    <input
-                    className="grow rounded border-2"
-                    type="text"
-                    id="from"
-                    name="from"
-                    required
-                    autoFocus
-                    value={form.from}
-                    onChange={onChange}
-                    />
-                </div>
-                <div className="grid md:grid-cols-[140px_1fr] gap-5">
-                    <label htmlFor="subject" className="text-lg text-primary">
-                    subject
-                    </label>
-                    <input
-                    className="grow rounded border-2"
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    required
-                    value={form.subject}
-                    onChange={onChange}
-                    />
-                </div>
-                <div className="grid md:grid-cols-[140px_1fr] gap-5">
-                    <label htmlFor="message" className="text-lg text-primary">
-                    message 📃
-                    </label>
-                    <textarea
-                    className="grow resize-none rounded border-2"
-                    rows={10}
-                    id="message"
-                    name="message"
-                    required
-                    value={form.message}
-                    onChange={onChange}
-                    />
-                </div>
-                </div>
-                <button
-                type="submit"
-                className=" mx-auto h-10 w-32 rounded-lg bg-secondary"
-                >
-                전송하기
-                </button>
-            </form>
+          <div className="grid gap-5 md:grid-cols-[140px_1fr]">
+            <label htmlFor="from" className="text-primary text-lg">
+              your email ? 👀
+            </label>
+            <input
+              className="grow rounded border-2"
+              type="text"
+              id="from"
+              name="from"
+              required
+              autoFocus
+              value={form.from}
+              onChange={onChange}
+            />
+          </div>
+          <div className="grid gap-5 md:grid-cols-[140px_1fr]">
+            <label htmlFor="subject" className="text-primary text-lg">
+              subject
+            </label>
+            <input
+              className="grow rounded border-2"
+              type="text"
+              id="subject"
+              name="subject"
+              required
+              value={form.subject}
+              onChange={onChange}
+            />
+          </div>
+          <div className="grid gap-5 md:grid-cols-[140px_1fr]">
+            <label htmlFor="message" className="text-primary text-lg">
+              message 📃
+            </label>
+            <textarea
+              className="grow resize-none rounded border-2"
+              rows={10}
+              id="message"
+              name="message"
+              required
+              value={form.message}
+              onChange={onChange}
+            />
+          </div>
         </div>
+        <button
+          type="submit"
+          className=" mx-auto h-10 w-32 rounded-lg bg-neutral-80"
+        >
+          전송하기
+        </button>
+      </form>
+    </div>
   );
 }
