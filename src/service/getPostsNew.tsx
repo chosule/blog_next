@@ -15,7 +15,7 @@ type PostMatter = {
   icon: string;
   image: string;
   tags: string[];
-  titlelist:string;
+  titlelist: string;
   draft?: boolean;
   feature?: boolean;
   date: string;
@@ -25,10 +25,10 @@ export type Post = PostMatter & {
   content: string;
 };
 
-export type PostData =  {
+export type PostData = {
   next: Post | null;
-  prev : Post | null;
-}
+  prev: Post | null;
+};
 
 const BASE_PATH = "/posts";
 const POST_PATH = path.join(process.cwd(), BASE_PATH);
@@ -105,14 +105,13 @@ export async function getFeaturedPost() {
   return posts.filter((post) => post.feature === true);
 }
 
-
-export async function getPostData(fileSlug:string[]):Promise<PostData>{
+export async function getPostData(fileSlug: string[]): Promise<PostData> {
   const posts = await getAllPosts();
   const post = await getPost(fileSlug);
-  
-  const index = posts.findIndex((n)=> n.slug == post.slug);
+
+  const index = posts.findIndex((n) => n.slug == post.slug);
   const next = index > 0 ? posts[index - 1] : null;
   const prev = index < posts.length - 1 ? posts[index + 1] : null;
 
-  return{...post , next , prev}
+  return { ...post, next, prev };
 }

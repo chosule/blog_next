@@ -6,14 +6,14 @@ type Props = {
   posts: Post[];
 };
 
-export default function PostsGrid({posts}: Props) {
-  console.log('posts?',posts)
-    return (
+
+export default function PostsGrid({ posts }: Props) {
+  return (
     <ul className="flex flex-col gap-7">
       {posts?.map((post) => (
         <li
           key={uuid()}
-          className="h-full w-full transform rounded-xl drop-shadow-xl transition-transform bg-secondary hover:-translate-y-1 p-6"
+          className="h-full w-full transform rounded-xl bg-neutral-80 p-6 drop-shadow-xl transition-transform hover:-translate-y-1"
         >
           <PostCard posts={post} />
         </li>

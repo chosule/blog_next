@@ -14,8 +14,6 @@ import filteredPostsContent from "@/utils/filteredPostsContent";
 
 const ALLPOSTS = "all Post";
 
-
-
 export function FilterCategory({ posts, tags }:Props ) {
   const [selected, setSelected] = useState(ALLPOSTS);
 
@@ -25,10 +23,10 @@ export function FilterCategory({ posts, tags }:Props ) {
       <article className="flex flex-col gap-5">
         <SubTitle>#Tags</SubTitle>
         <Categories
-          categories={[ALLPOSTS, ...tags]}
+          categories={[ALLPOSTS, ...titleList]}
           selected={selected}
           onClick={(selected) => setSelected(selected)}
-          />
+        />
       </article>
       <div>
         {/* <article>
