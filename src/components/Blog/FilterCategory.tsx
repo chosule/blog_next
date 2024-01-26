@@ -5,23 +5,23 @@ import { useState } from "react";
 import PostsGrid from "../Post/PostsGrid";
 import Categories from "./Categories";
 import SubTitle from "../SubTitle";
+import SeriesList from "./SeriesList";
 
-type Props = {
-  posts: Post[];
-  tags: string[];
-};
+import React from "react";
+import filteredPostsContent from "@/utils/filteredPostsContent";
+
+
 
 const ALLPOSTS = "all Post";
 
-export default function FilterCategory({ posts, tags }:Props ) {
-  const [selected, setSelected] = useState(ALLPOSTS);
-  const filtered =
-    selected === ALLPOSTS
-      ? posts
-      : posts.filter((post) => post.tags[0] === selected);
 
+
+export function FilterCategory({ posts, tags }:Props ) {
+  const [selected, setSelected] = useState(ALLPOSTS);
+
+  const filterdTags = filteredPostsContent( posts, selected, 'tags');
   return (
-    <section className="flex flex-col gap-10">
+    <section className="flex gap-10">
       <article className="flex flex-col gap-5">
         <SubTitle>#Tags</SubTitle>
         <Categories
@@ -30,10 +30,16 @@ export default function FilterCategory({ posts, tags }:Props ) {
           onClick={(selected) => setSelected(selected)}
           />
       </article>
-      <article className="flex flex-col gap-8">
-        <SubTitle>📃 {selected}</SubTitle>
-        <PostsGrid posts={filtered}/>
-      </article>
+      <div>
+        {/* <article>
+          <SeriesList/>
+        </article> */}
+        <article className="flex flex-col gap-8">
+          <SubTitle>📃 {selected}</SubTitle>
+          <PostsGrid posts={filterdTags}/>
+        </article>
+      </div>
     </section>
   );
 }
+export default FilterCategory

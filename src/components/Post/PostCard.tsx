@@ -27,7 +27,13 @@ export default function PostCard({ posts }: Props) {
           className="rounded-lg self-center md:self-start drop-shadow-md"
         />
       </div>
-      <div className="w-20 text-center p-1 rounded font-semibold text-[12px] bg-neutral-350 dark:bg-neutral-900 order-1 md:order-2">{posts.tags}</div>
+      <div className="flex md:order-2">
+        {posts.tags.map((tag,i) => (
+          <div key={i} className="bg-neutral-350 py-1 px-2 border flex gap-5 rounded-xl">
+            <h3 className="text-xs"># {tag}</h3>
+          </div>
+        ))}
+      </div>
     </Link>
   );
 }

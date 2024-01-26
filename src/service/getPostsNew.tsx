@@ -38,7 +38,6 @@ export async function getAllPosts(): Promise<Post[]> {
   const postPaths = sync(`${POST_PATH}/**/*.mdx`);
   return postPaths.reduce<Post[]>((ac, postPath) => {
     const post = parsePosts(postPath);
-    console.log('post?',post)
     if (post) return [...ac, post];
     return ac;
   }, []);

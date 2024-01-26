@@ -6,7 +6,8 @@ type Props = {
   posts: Post[];
 };
 
-export default function PostsGrid({ posts}: Props) {
+export default function PostsGrid({posts}: Props) {
+  console.log('posts?',posts)
     return (
     <ul className="flex flex-col gap-7">
       {posts?.map((post) => (

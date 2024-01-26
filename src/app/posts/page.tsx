@@ -11,12 +11,21 @@ export const metadata: Metadata = {
 
 export default async function BlogPage() {
   const posts = await getAllPosts();
-  
   const combinedTags = posts.reduce((ac:string[],post) => {
     return ac.concat(post.tags)
   },[]) as string[]
+
+  const combinedTitleList = posts.reduce((ac:string[],post) => {
+    return ac.concat(post.titlelist)
+  },[]) as string[]
+  console.log('combinedTags',combinedTags);
   
+  const titleList = [...new Set(combinedTitleList)];
+
   const tags = [...new Set(combinedTags)];
+
+  console.log('titleList',titleList)
+
   return (
     <div className="flex flex-col gap-9">
       <div className="flex flex-col gap-3">
