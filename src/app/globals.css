@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
 html,
 body {
   ::-webkit-scrollbar {
@@ -75,5 +78,18 @@ a {
 
   .tag {
     @apply w-20 rounded-xl bg-neutral-50 p-1 text-center text-[12px] font-semibold dark:bg-neutral-50;
+  }
+
+  .tail {
+    transition: stroke-dashoffset 0.5s linear 1s;
+    stroke-dasharray: 31.95920181274414 31.95920181274414;
+    stroke-dashoffset: 15.81138801574707;
+    stroke: #000;
+  }
+  .point {
+    stroke: #000;
+    transition: stroke-dashoffset 0.5s linear 1.65s;
+    stroke-dasharray: 15.81138801574707 15.81138801574707;
+    stroke-dashoffset: 15.81138801574707;
   }
 }

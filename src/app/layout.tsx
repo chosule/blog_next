@@ -18,9 +18,9 @@ const pre = localFont({
 });
 
 const nanum = localFont({
-  src:"../../public/fonts/NanumSquareNeoOTF-Rg.otf",
-  variable:"--font-nanum"
-})
+  src: "../../public/fonts/NanumSquareNeoOTF-Rg.otf",
+  variable: "--font-nanum",
+});
 
 export const metadata: Metadata = {
   title: {

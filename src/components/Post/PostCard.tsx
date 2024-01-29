@@ -31,17 +31,13 @@ export default function PostCard({ posts }: Props) {
           className="self-center rounded-lg drop-shadow-md md:self-start"
         />
       </div>
-<<<<<<< HEAD
-      <div className="flex md:order-2">
-        {posts.tags.map((tag,i) => (
-          <div key={i} className="bg-neutral-350 py-1 px-2 border flex gap-5 rounded-xl">
-            <h3 className="text-xs"># {tag}</h3>
-=======
-      <div className="flex gap-3">
+      <div className="flex gap-2 md:order-2">
         {posts.tags.map((tag, i) => (
-          <div key={i} className="tag">
-            {tag}
->>>>>>> 667e9a01716c7a417b1d43bac1e1e4540872a8bb
+          <div
+            key={i}
+            className="flex gap-5 rounded-xl border bg-neutral-350 px-2 py-1"
+          >
+            <h3 className="text-xs"># {tag}</h3>
           </div>
         ))}
       </div>

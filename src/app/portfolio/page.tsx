@@ -1,6 +1,12 @@
+import Article from "@/components/Portfolio/Article";
+import Intro from "@/components/Portfolio/Intro";
+import AnchorLink from "@/components/Portfolio/AnchorLink";
+
 export default function Portfolio() {
-     
-     return(
-        <div>포트폴리오페이지</div>
-     )
+  return (
+    <div className="relative">
+      <Intro />
+      <Article />
+    </div>
+  );
 }
