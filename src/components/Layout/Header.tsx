@@ -85,7 +85,7 @@ export function Header() {
             scrolled ? "backdrop" : "bg-primary"
           } -translate-x-1/2 transform shadow-md`}
         ></div>
-        <nav className="fixed left-1/2 z-20 flex w-full max-w-[910px] -translate-x-1/2 transform justify-between gap-5 py-6">
+        <nav className="fixed left-1/2 z-20 flex w-full max-w-[910px] -translate-x-1/2 transform py-6 gap-36">
           <Link href="/">
             <div className="flex items-center gap-1">
               <Image src={heart_icon} alt="아이콘" width={30} height={30} />
@@ -143,7 +143,7 @@ export function Header() {
           </ul>
         )}
       </header>
-      <div className="absolute right-[95px] top-[22px] z-[60] md:right-[-90px]">
+      <div className="absolute right-[95px] top-[22px] z-[60] md:right-[68px]">
         <SetThemeButton />
       </div>
       <div className="md:hidden"></div>

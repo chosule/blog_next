@@ -26,7 +26,7 @@ const SetThemeButton = () => {
           theme === "dark" ? "translate-x-[31px]" : "translate-x-0"
         } transition-transform z-[1]`}
       />
-      <div className="absolute flex gap-2 top-[2px] left-[10px]">
+      <div className="absolute flex gap-2 top-[3px] left-[6px]">
         <span>☀️</span>
         <span>🌙</span>
       </div>

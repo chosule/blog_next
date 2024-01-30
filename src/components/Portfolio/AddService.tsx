@@ -4,9 +4,12 @@ import { useInView } from "react-intersection-observer";
 import gsap from "gsap";
 import Text from "../Text";
 import PortfolioBox from "./PortfolioBox";
+import Image from "next/image";
+import adservice_1 from "../../../public/portfolio/adservice_1.png"
+import adservice_2 from "../../../public/portfolio/adservice_2.png"
 import Title from "../Title";
 
-export default function Article() {
+export default function AddService() {
   const { ref, inView } = useInView({
     triggerOnce: true,
     delay: 500,
@@ -38,11 +41,18 @@ export default function Article() {
     });
   };
   return (
-    <section id="article" className="relative h-screen py-[100px]" ref={ref}>
-      <PortfolioBox>
-        <Text className="articles-fade-in text-lx">
-          Articles 페이지 애니메이션 test
-        </Text>
+    <section id="portfolio_1" className="relative h-screen py-[100px]" ref={ref}>
+      <PortfolioBox className="w-full grid grid-cols-2 gap-10">
+        <div className="flex flex-col gap-8">
+          <Image className="drop-shadow-lg" src={adservice_1} alt="이미지1" width={450} height={350}/> 
+          <Image className="drop-shadow-lg" src={adservice_2} alt="이미지1" width={450} height={350}/> 
+        </div>
+        <div className="flex flex-col gap-5">
+          <Title className="text-black">Ad_service</Title>
+          <Text className="articles-fade-in text-lx">
+            
+          </Text>
+        </div>
       </PortfolioBox>
     </section>
     // <PortfolioBox id="article" ref={ref}>

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 type Props = {
@@ -16,10 +15,10 @@ export default function AnchorLink({ text, href, ...props }: Props) {
 
   return (
     <div ref={ref} className="relative flex">
-      <Link href={href} className="text-primary">
+      <Link href={href} className="text-primary font-semibold">
         {text}
       </Link>
-      <div className="absolute left-20 top-0">
+      <div className="absolute left-28 top-2.5">
         <svg
           aria-hidden="true"
           focusable="false"
@@ -30,12 +29,12 @@ export default function AnchorLink({ text, href, ...props }: Props) {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            className="tail"
+            className="tail dark:stroke-[#fff]"
             d="M0.5 1.49999C6.83333 0.999993 19.2 4.59999 18 23"
             style={{ strokeDashoffset: inView ? 0 : "31.95920181274414" }}
           />
           <path
-            className={`point`}
+            className={`point dark:stroke-[#fff]`}
             d="M13.5 16.5L18 23L22.5 16.5"
             style={{ strokeDashoffset: inView ? 0 : "15.81138801574707" }}
           />

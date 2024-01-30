@@ -92,4 +92,8 @@ a {
     stroke-dasharray: 15.81138801574707 15.81138801574707;
     stroke-dashoffset: 15.81138801574707;
   }
+
+  .strong{
+    @apply bg-neutral-150 rounded-md p-1 dark:text-neutral-500
+  }
 }
