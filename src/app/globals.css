@@ -95,6 +95,6 @@ a {
   }
 
   .strong{
-    @apply bg-neutral-150 rounded-md p-1 dark:text-neutral-500
+    @apply bg-neutral-150 rounded-md p-1 dark:text-neutral-500 bg-neutral-350;
   }
 }

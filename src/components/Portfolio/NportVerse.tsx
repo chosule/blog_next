@@ -13,9 +13,11 @@ import StackWrap from "./common/StackWrap";
 import AnchorLink from "./common/AnchorLink";
 
 const stackItems = [
-    { text: "javascript", color: "text-neutral-900", bgColor: "bg-[#f6e613]" },
-    { text: "sass", color: "text-neutral-50", bgColor: "bg-[#CC6699]" },
-    { text: "html", color: "text-neutral-50", bgColor: "bg-[#3381ff]" },
+    { text: "Javascript", color: "text-neutral-900", bgColor: "bg-[#f6e613]" },
+    { text: "Sass", color: "text-neutral-50", bgColor: "bg-[#CC6699]" },
+    { text: "Html", color: "text-neutral-50", bgColor: "bg-[#3381ff]" },
+    { text: "Css", color: "text-neutral-50", bgColor: "bg-[#CC6699]" },
+
   ];
 
 export default function NportVerse() {
@@ -53,13 +55,13 @@ export default function NportVerse() {
   };
   
      return(
-        <Wrap id="nportverse" ref={ref}>
+        <Wrap id="nportverse" ref={ref} className="flex flex-col md:flex-row ">
             <ImageWrap imageTop={bankonverse} imageBottom={npikasite}/>
-            <TextWrap>
+            <TextWrap className="backdrop-blur-lg">
                 <Title>(주) NPortVerse</Title>
-                <Text>NPortVerse 사이트는 NFT 소유권증서를 거래할수 있는 플랫폼 입니다.<br/><span className="strong">웹퍼블리싱</span> 을 담당하여 플랫폼 유지및 보수를 담당 했습니다.</Text>
+                <Text className="leading-loose">NPortVerse 사이트는 NFT 소유권증서를 거래할수 있는 플랫폼 입니다.<br/><span className="strong">웹퍼블리싱</span> 을 담당하여 플랫폼 유지및 보수를 담당 했습니다.</Text>
                 <StackWrap stackItems={stackItems}/>
-                <AnchorLink text="Ad_service" href="#adservice"/>
+                <AnchorLink text="Ad_service 📝" href="#adservice"/>
             </TextWrap>
         </Wrap>
      )

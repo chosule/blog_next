@@ -7,7 +7,6 @@ import Wrap from "./common/Wrap";
 import adservice_1 from "../../../public/portfolio/adservice_1.png"
 import adservice_2 from "../../../public/portfolio/adservice_2.png"
 import Title from "../Title";
-import StackBox from "./common/StackBox";
 import ImageWrap from "./common/ImageWrap";
 import TextWrap from "./common/TextWrap";
 import StackWrap from "./common/StackWrap";
@@ -55,16 +54,16 @@ export default function AdService() {
   };
   
   return (
-    <Wrap id="adservice" ref={ref} className="w-full flex flex-col gap-10 md:flex-row	">
+    <Wrap id="adservice" ref={ref} className="w-full flex gap-10">
           <ImageWrap imageTop={adservice_1} imageBottom={adservice_2}/>
           <TextWrap>
             <Title>Ad_service</Title>
-            <Text className="articles-fade-in text-lx leading-loose">
+            <Text className="articles-fade-in  leading-loose">
               재직중 처음으로 참여한 <span className="strong">협업 프로젝트</span> 입니다. <br/>API 통신이
               <span className="strong">Websocket</span>으로 이루어 지고 있습니다. <br/><span className="strong">실사용되는 코드</span> 에 대해 경험하고 깊게 이해해볼수 있는 값진 시간이였습니다.
             </Text>
             <StackWrap stackItems={stackItems}/>
-            <AnchorLink text="Ad_service 📝" href="#adservice"/>
+            <AnchorLink text="WinterFoodies 📝" href="#winterfoodies"/>
           </TextWrap>
     </Wrap>
   );

@@ -1,6 +1,7 @@
 import AdService from "@/components/Portfolio/AdService";
 import Intro from "@/components/Portfolio/Intro";
 import NportVerse from "@/components/Portfolio/NportVerse";
+import WinterFoodies from "@/components/Portfolio/WinterFoodies";
 import { Metadata } from "next";
 
 
@@ -15,6 +16,7 @@ export default function PortfolioPage() {
       <Intro />
       <NportVerse/>
       <AdService />
+      <WinterFoodies/>
     </div>
   );
 }

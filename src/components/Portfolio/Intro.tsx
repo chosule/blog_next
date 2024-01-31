@@ -66,7 +66,7 @@ export default function Intro() {
 
   
   return (
-      <Wrap id="intro" className="w-5/6 whitespace-pre-wrap flex-col text-ani" ref={ref}>
+      <Wrap id="intro" className="whitespace-pre-wrap flex-col text-ani pb-32" ref={ref}>
         <ImQuotesLeft className="text-2xl dark:text-neutral-50"/>
         <Title className="">{`안녕하세요. 프론트엔드 개발자를 꿈꾸고 있는 김초슬입니다. 😀`}</Title>
         <SubTitle className="leading-loose">
@@ -77,7 +77,7 @@ export default function Intro() {
           <br />
           <span className="strong">지속적인 개발과 지속적인 통합</span>이 프론트엔드 개발자에게 있어 중요하다고 생각합니다.
         </SubTitle>
-        <ImQuotesRight className="text-2xl absolute right-14 bottom-1 dark:text-neutral-50"/>
+        <ImQuotesRight className="text-2xl dark:text-neutral-50 self-end"/>
         <AnchorLink text="포트폴리오 보기📝" href="#nportverse" />
       </Wrap>
   );
