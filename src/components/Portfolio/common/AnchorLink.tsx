@@ -14,11 +14,11 @@ export default function AnchorLink({ text, href, ...props }: Props) {
   });
 
   return (
-    <div ref={ref} className="relative flex">
+    <div ref={ref} className="relative flex gap-1">
       <Link href={href} className="text-primary font-semibold">
         {text}
       </Link>
-      <div className="absolute left-28 top-2.5">
+      <div className="mt-2.5">
         <svg
           aria-hidden="true"
           focusable="false"
