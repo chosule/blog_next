@@ -6,9 +6,9 @@ type WrapProps = HTMLAttributes<HTMLElement> & {
 
 export const Wrap = forwardRef(({ className, children, id, ...rest }: WrapProps, ref: ForwardedRef<HTMLElement>) => {
   return (
-    <section id={id} ref={ref} className={`relative h-screen py-[100px]`} {...rest}>
+    <section id={id} ref={ref} className={`relative h-screen`} {...rest}>
       <div
-        className={`absolute left-[55%] top-40 -translate-x-1/2 transform flex gap-10 w-full ${className}`}
+        className={`flex gap-10 w-full ${className}`}
       >
         {children}
       </div>
@@ -17,6 +17,7 @@ export const Wrap = forwardRef(({ className, children, id, ...rest }: WrapProps,
 });
 
 Wrap.displayName = "Wrap";
+
 export default Wrap;
 
 

@@ -79,7 +79,7 @@ export function Header() {
   return (
     <div>
       {/* Pc Nav */}
-      <header className="relative hidden md:block">
+      <header className="relative hidden h-20 md:block">
         <div
           className={`fixed left-1/2 z-10 h-20 w-full ${
             scrolled ? "backdrop" : "bg-primary"

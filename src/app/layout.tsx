@@ -42,7 +42,7 @@ export default function RootLayout({
         <main className="relative grow">
           <Header />
           <Toaster />
-          <div className="mt-36 px-8 md:px-0">{children}</div>
+          <div className="px-8 md:px-0">{children}</div>
         </main>
         <Footer />
       </body>
