@@ -57,7 +57,7 @@ export default function NportVerse() {
      return(
         <Wrap id="nportverse" ref={ref} className="flex flex-col md:flex-row ">
             <ImageWrap imageTop={bankonverse} imageBottom={npikasite}/>
-            <TextWrap className="backdrop-blur-lg">
+            <TextWrap className="flex gap-10">
                 <Title>(주) NPortVerse</Title>
                 <Text className="leading-loose">NPortVerse 사이트는 NFT 소유권증서를 거래할수 있는 플랫폼 입니다.<br/><span className="strong">웹퍼블리싱</span> 을 담당하여 플랫폼 유지및 보수를 담당 했습니다.</Text>
                 <StackWrap stackItems={stackItems}/>
