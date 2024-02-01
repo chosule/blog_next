@@ -61,7 +61,7 @@ export default function WinterFoodies() {
                 <Title>WinterFoodies 사이드 프로젝트</Title>
                 <Text className="leading-loose">백엔드 1명과 제가 프론트 개발 1명(저) , 총 두명으로 이루어진 <span className="strong">포트폴리오용 사이드 프로젝트</span> 입니다.<br/>겨울용 길거리 간식 스토어를 찾아서 주문을 담아, 주문요청까지 할 수있도록 구성했습니다.</Text>
                 <StackWrap stackItems={stackItems}/>
-                <AnchorLink text="Ad_service 📝" href="#adservice"/>
+                <AnchorLink text="Next blog 📝" href="#chosuleblog"/>
             </TextWrap>
         </Wrap>
     )
