@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
      return(
-         <div className="border-[#f6f6f6] border-8 rounded-xl p-10 w-full flex flex-col gap-16">
+         <div className="border-[#f6f6f6] border-8 rounded-xl p-10 w-full flex flex-col gap-16 mt-10">
             <ContactMe/>
             <ContactForm/>
             {/* <ContactForm2/> */}

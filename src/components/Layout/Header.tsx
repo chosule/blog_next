@@ -18,7 +18,7 @@ const navMenu: NavMenuType[] = [
   { id: 2, name: "About", path: "/about" },
   { id: 3, name: "Blog", path: "/posts" },
   { id: 4, name: "Contact", path: "/contact" },
-  // { id: 5, name: "Porfolio", path: "/portfolio" },
+  { id: 5, name: "Portfolio", path: "/portfolio" },
 ];
 
 const SetThemeButton = dynamic(() => import("@/components/SetThemeButton"), {
@@ -79,13 +79,13 @@ export function Header() {
   return (
     <div>
       {/* Pc Nav */}
-      <header className="relative hidden md:block">
+      <header className="relative hidden h-20 md:block">
         <div
           className={`fixed left-1/2 z-10 h-20 w-full ${
             scrolled ? "backdrop" : "bg-primary"
           } -translate-x-1/2 transform shadow-md`}
         ></div>
-        <nav className="fixed left-1/2 z-20 flex w-full max-w-[910px] -translate-x-1/2 transform justify-between gap-5 py-6">
+        <nav className="fixed left-1/2 z-20 flex w-full max-w-[910px] -translate-x-1/2 transform py-6 gap-36">
           <Link href="/">
             <div className="flex items-center gap-1">
               <Image src={heart_icon} alt="아이콘" width={30} height={30} />
@@ -140,15 +140,10 @@ export function Header() {
                 {menuName.name}
               </Link>
             ))}
-            {/* <li className="flex flex-col py-5 gap-5">
-              {navMenu.map((link) => (
-                <NavItem key={link.id} href={link.path}>{link.name}</NavItem>
-              ))}
-            </li> */}
           </ul>
         )}
       </header>
-      <div className="absolute right-[95px] top-[22px] z-[60] md:right-[-90px]">
+      <div className="absolute right-[95px] top-[22px] z-[60] md:right-[68px]">
         <SetThemeButton />
       </div>
       <div className="md:hidden"></div>

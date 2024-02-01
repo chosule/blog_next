@@ -1,0 +1,20 @@
+---
+title: "nextjs page router에서 getStaticProps와 getServersideProps"
+titlelist: "Next"
+description: "getStaticProps와 getServersideProps 명확히 하기"
+icon: ""
+image: "next_thumbnail.png"
+tags:
+  - nextjs
+  - SSR렌더링
+  - SSG렌더링
+draft: false
+feature: true
+date: 2024-01-19 15:28:39
+---
+
+## getStaticProps ?
+
+getStaticProps는 페이지를 빌드할때 사용되며 서버측에서 동적으로 데이터를 가져오는게 아니라 빌드할때 미리 정적인 데이터를 가져오는 역할을 한다.
+
+`getStaticProps`의 주요목적은 `페이지의 초기 데이터를 빌드 시점에 결정`하는 것이며 이에 따라 빌드시 헤더의 'Content-Type' 헤더는 일반적으로

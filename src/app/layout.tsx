@@ -7,20 +7,11 @@ import localFont from "next/font/local";
 import { Toaster } from "react-hot-toast";
 import ThemeScript from "@/lips/ThemeScript";
 
-const suit = localFont({
-  src: "../../public/fonts/SUIT-Variable.ttf",
-  variable: "--font-suit",
-});
-
-const pre = localFont({
-  src: "../../public/fonts/Pretendard-Medium.woff",
-  variable: "--font-pre",
-});
 
 const nanum = localFont({
-  src:"../../public/fonts/NanumSquareNeoOTF-Rg.otf",
-  variable:"--font-nanum"
-})
+  src: "../../public/fonts/NanumSquareNeoOTF-Rg.otf",
+  variable: "--font-nanum",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -41,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${suit.variable} ${nanum.variable}`}
+      className={`${nanum.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -51,7 +42,7 @@ export default function RootLayout({
         <main className="relative grow">
           <Header />
           <Toaster />
-          <div className="mt-36 px-8 md:px-0">{children}</div>
+          <div className="px-8 md:px-0">{children}</div>
         </main>
         <Footer />
       </body>
