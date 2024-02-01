@@ -97,4 +97,8 @@ a {
   .strong{
     @apply bg-neutral-150 rounded-md p-1 dark:text-neutral-500 bg-neutral-350;
   }
+
+  .contact-me-shadow{
+    box-shadow:20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff ;
+  }
 }
