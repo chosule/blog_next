@@ -8,18 +8,18 @@
   npm run dev
 ```
 
-### 배포(Vercel)
+### 2.배포(Vercel)
 
 [김초슬 블로그 보러가기](https://next-blog-delta-lac.vercel.app/) 🙋‍♀️
 계속 작업하고있는 중이여서 미완성인점 양해 부탁드립니다.
 
-### 2.적용 기술
+### 3.적용 기술
 - 라이브러리 : react , typescript
 - 프레임워크 : nextjs (App router)
 - style : tailwindCss
 - gsap, yup, nodemailer , 그 외 등등 사용
 
-### 3.주요 기능 구현에 대한 간단 코멘트
+### 4.주요 기능 구현에 대한 간단 코멘트
     
 3-1) **📝 Dynamic route를 사용하여 포스트 페이지 동적으로 구현 / mdx 파일 html코드로 바꾸기**
 - 기존의 getStaticPath를 app router에서는 변경된 `generateStaticParams`를 이용해 ` 경로 path 설정을 동적`으로 변경하였습니다.
