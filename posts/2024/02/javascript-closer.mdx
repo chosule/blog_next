@@ -1,0 +1,139 @@
+---
+title: "js 클로저와 React useState의 관계"
+titlelist: "Javascript"
+description: "함수형 컴포넌트에서 중요한 클로저"
+icon: ""
+image: "js_thumbnail.png"
+tags:
+  - javascript
+  - 클로저
+  - react
+  - 함수형컴포넌트
+draft: false
+feature: true
+date: 2024-02-02 15:28:39
+---
+
+>함수형 컴포넌트의 구조와 작동방식, 훅의 원리, 의존성배열등 함수형 컴포넌트의 대부분의 기술이 모두 클로저의 의존하고 있기 때문에 함수형 컴포넌트 작성을 위해서는 클로저에 대해 이해하는 것이 필수다.<br/>
+좋은 함수형 컴포넌트를 만들고 나아가 함수형 프로그래밍의 패러다임을 이해하려면 클로저에 대해 반드시 알고 있어야 한다.
+
+## 클로저의 정의
+MDN에서 찾아보면 `클로저는 **함수**와 함수가 선언된 어휘적 환경(Lexical Scope)의 조합` 이라고 되어있다.
+
+말로만 정의를 이해하면 어려운 부분이 있다.
+코드로 확인해보자
+
+```js 
+    function add(){
+        const a = 10
+        function innerAdd(){
+            const b = 20;
+            console.log(a + b);
+            innerAdd();
+        }
+    }
+    add();
+```
+
+위 예제 코드를 보면 add 함수 내부에 innerAdd가 있고 innerAdd함수는 내부에서 b 변수를 선언한 뒤 자신의 함수 외부에 있는 a와 b를 더해서 정상적으로 30을 출력한 것을 볼수 있다.
+
+함수가 이처럼 중첩되어있는 상황에서 변수의 범위가 어떻게 정의되는지 알 수 있다.
+
+a변수의 `유효범위는 add전체이고` b의 유효범위는 ``innerAdd의 전체``이다.
+
+
+
+
+
+---
+## 클로저와 useState 
+
+자바스크립트에서 `클로저는 useState` 와 관계가 있다고 한다.   
+
+전역 스코프는 어디서든 원하는 값을 꺼내올수 있다는 장점이 있지만 반대로 이야기 하면 누구든 접근할 수 있고 수정할 수 있다는 뜻이다.
+
+```js title="전역스코프로 지정한 counter"
+    var counter = 0
+
+    function handleClick(){
+        counter ++ 
+    }
+```
+
+위에 counter는 누구나 수정할수 있다.   
+따라서 리액트가 관리하는 내부 상태값은 리액트가 별도로 관리하는 클로저 내부에서만 접근할수 있다.
+
+
+위에 코드를 `클로저를 활용한 코드로 변경하면` 어떻게 바뀔까
+```js title="클로저를 활용한 counter"
+    function Counter(){
+        var counter = 0;
+
+        return{
+            increase: function(){
+                return ++counter
+            },
+            decrease:function(){
+                return --counter
+            },
+            counter:function(){
+                console.log('counter에 접근!')
+                return counter
+            }
+            
+        }
+    }
+    var c = Counter()
+
+    console.log(c.increase()) //1
+    console.log(c.decrease()) //2
+```
+
+위와 같이 코드를 클로저를 이용해 변경했을때 이점은
+> 1. counter변수를 직접적으로 노출하지 않음으로 써 `사용자가 직접 수정하는 것을 막았고` `부차적인 작업`도 수행 할 수 있다.
+>2. counter변수의 업데이트를 increase와 decrease 로 제한해 `무분별하게 변경`되는것을 막아준다.
+
+`즉 클로저를 활용하면 전역 스코프의 사용을 막고 개발자가 원하는 정보만 개발자가 원하는 방향으로 노출시킬수 있다는 장점이 있다.`
+
+
+{/* 이런 클로저의 코드를 활용한 리액트의 useState는 `useState에 변수를 저장`해두고 useState의 변수 접근 및 수정 또한 클로저 내부에서 확인이 가능해, `값이 변하면 렌더링 함수를 호출하는 등`의 작업이 이루어진다고 한다.
+ */}
+
+
+
+## 🙋‍♀️ 
+근데 이런 클로저가 왜 리액트에 useState와 관련이 있는걸까?<br/>
+보통은 우리가 함수를 만든뒤에 바로 안에 useState넣어준뒤 상태를 바꾸기 위해 시작한다. 습관처럼 늘 하는거라 이런 이유에 대해서는 생각해보지 못했다.  사실 클로저라는 개념이 나에게는 조금 어려워 잘 정리 하고싶지만 일단 생각해 보는것에 의의를 두려고 한다.
+
+
+{/* 
+
+```js
+const MyReact = function(){
+  const global = {}
+  let index = 0;
+  
+  function useState(iniutialState){
+    if(!global.states){
+      global.states = []
+    }
+  }
+  
+  
+  const currentState = global.states[index] || initialState
+  global.states[index] = currentState
+  
+  
+  const setState = (function(){
+    let currentIndex = index
+    return function (value){
+      global.states[currentIndex] = value
+    }
+  })()
+  
+  index = index +1 
+  
+  return [currentState, setState]
+}
+
+``` */}

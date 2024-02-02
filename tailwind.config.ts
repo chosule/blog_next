@@ -13,8 +13,6 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        pre: ["var(--font-pre)"],
-        suit: ["var(--font-suit)"],
         nanum: ["var(--font-nanum)"],
       },
       colors: {
@@ -22,6 +20,7 @@ module.exports = {
           50: "#fafafa",
           80: "#ededed",
           100: "#E4E6E8",
+          120:"#f5f5f7",
           140: "#a9a9a9",
           145: "#6b7280",
           148: "#e9f5fa",
@@ -32,6 +31,7 @@ module.exports = {
           600: "#0000ff",
           800: "#ffe716",
           850: "#202428",
+          890:"#1e1e1e",
           900: "#000",
         },
       },
@@ -52,6 +52,12 @@ module.exports = {
         },
         ".bg-secondary": {
           "@apply bg-neutral-80 dark:bg-neutral-100": "",
+        },
+        ".bg-code-darkmode":{
+          "@apply bg-[#e0e0e0] dark:bg-[#2f333c]" :"",
+        },
+        ".text-code-darkmode":{
+          "@apply text-neutral-900 dark:text-neutral-550" :"",
         },
         ".toggle-color": {
           "@apply bg-neutral-550 dark:bg-neutral-140": "",

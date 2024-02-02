@@ -69,7 +69,7 @@ export function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []); //
+  }, []); 
 
   const handleSelected = (event: React.MouseEvent<HTMLLIElement>) => {
     const menuName = event.currentTarget.innerText;
