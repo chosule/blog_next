@@ -41,7 +41,7 @@ export default async function PostPage({ params }: Props) {
       <div className="flex flex-col gap-4">
         <h1 className="text-4xl font-semibold leading-relaxed">{title}</h1>
         <p>{date}</p>
-        <div className="flex gap-5">
+        <div className="flex gap-3">
           {tags.map((tag, i) => (
             <div key={i} className="tag">
               {tag}

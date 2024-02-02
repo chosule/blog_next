@@ -51,7 +51,7 @@ module.exports = {
           "@apply bg-neutral-50 dark:bg-neutral-850": "",
         },
         ".bg-secondary": {
-          "@apply bg-neutral-80 dark:bg-neutral-100": "",
+          "@apply bg-neutral-80 dark:bg-neutral-100 dark:font-light": "",
         },
         ".bg-code-darkmode":{
           "@apply bg-[#e0e0e0] dark:bg-[#2f333c]" :"",

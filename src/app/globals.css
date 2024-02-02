@@ -78,7 +78,7 @@ a {
   }
 
   .tag {
-    @apply w-20 rounded-xl bg-neutral-50 p-1 text-center text-[12px] font-semibold dark:bg-neutral-50;
+    @apply rounded-lg bg-code-darkmode text-code-darkmode py-1 px-2 text-center text-[12px] ;
   }
 
   .tail {
