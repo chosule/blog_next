@@ -11,6 +11,7 @@
 ### 배포(Vercel)
 
 [김초슬 블로그 보러가기](https://next-blog-delta-lac.vercel.app/) 🙋‍♀️
+계속 작업하고있는 중이여서 미완성인점 양해 부탁드립니다.
 
 ### 2.적용 기술
 - 라이브러리 : react , typescript
