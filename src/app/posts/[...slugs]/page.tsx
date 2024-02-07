@@ -1,4 +1,4 @@
-import { getAllPostsPath, getPost, getPostData } from "@/service/getPostsNew";
+import { getAllPosts, getAllPostsPath, getPost, getPostData } from "@/service/getPostsNew";
 import Mdx from "@/lips/Mdx";
 import Giscus from "@/components/Blog/Giscus";
 import AdjacentPostCard from "@/components/Blog/AdjacentPostCard";
@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PostPage({ params }: Props) {
   const slugs = params.slugs;
+
   const post = await getPost(slugs);
 
   const { title, date, content, tags } = post;
