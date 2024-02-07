@@ -18,7 +18,6 @@ const navMenu: NavMenuType[] = [
   { id: 2, name: "About", path: "/about" },
   { id: 3, name: "Blog", path: "/posts" },
   { id: 4, name: "Contact", path: "/contact" },
-  { id: 5, name: "Portfolio", path: "/portfolio" },
 ];
 
 const SetThemeButton = dynamic(() => import("@/components/SetThemeButton"), {
@@ -69,7 +68,7 @@ export function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []); //
+  }, []); 
 
   const handleSelected = (event: React.MouseEvent<HTMLLIElement>) => {
     const menuName = event.currentTarget.innerText;

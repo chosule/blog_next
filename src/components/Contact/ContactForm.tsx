@@ -4,6 +4,8 @@ import { sendContactEmail } from "@/service/contact";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import SubTitle from "../SubTitle";
+import airplaneIcon from "../../../public/Image/airplaneIcon.png"
+import Image from "next/image";
 
 type Form = {
   from: string;
@@ -44,15 +46,15 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 w-7/12">
       <SubTitle className="text-center">or send me an email</SubTitle>
       <form
         onSubmit={onSubmit}
         className="flex h-full flex-col justify-evenly gap-5"
       >
         <div className="flex flex-col gap-5">
-          <div className="grid gap-5 md:grid-cols-[140px_1fr]">
-            <label htmlFor="from" className="text-primary text-lg">
+          <div className="grid gap-2 ">
+            <label htmlFor="from" className="text-primary text-md">
               your email ? 👀
             </label>
             <input
@@ -66,8 +68,8 @@ export default function ContactForm() {
               onChange={onChange}
             />
           </div>
-          <div className="grid gap-5 md:grid-cols-[140px_1fr]">
-            <label htmlFor="subject" className="text-primary text-lg">
+          <div className="grid gap-2 ">
+            <label htmlFor="subject" className="text-primary text-md">
               subject
             </label>
             <input
@@ -80,8 +82,8 @@ export default function ContactForm() {
               onChange={onChange}
             />
           </div>
-          <div className="grid gap-5 md:grid-cols-[140px_1fr]">
-            <label htmlFor="message" className="text-primary text-lg">
+          <div className="grid gap-2 ">
+            <label htmlFor="message" className="text-primary text-md">
               message 📃
             </label>
             <textarea
@@ -97,9 +99,10 @@ export default function ContactForm() {
         </div>
         <button
           type="submit"
-          className=" mx-auto h-10 w-32 rounded-lg bg-neutral-80"
+          className="flex items-center gap-1 mx-auto h-10 w-32 rounded-md"
         >
-          전송하기
+          <h3>전송하기</h3>
+          <Image src={airplaneIcon} alt="종이비행기아이콘" width={35} height={35}/>
         </button>
       </form>
     </div>

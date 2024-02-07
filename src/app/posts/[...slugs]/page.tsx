@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function PostPage({ params }: Props) {
   const slugs = params.slugs;
   const post = await getPost(slugs);
+
   const { title, date, content, tags } = post;
 
   const postPrevNext = await getPostData(slugs);
@@ -41,7 +42,7 @@ export default async function PostPage({ params }: Props) {
       <div className="flex flex-col gap-4">
         <h1 className="text-4xl font-semibold leading-relaxed">{title}</h1>
         <p>{date}</p>
-        <div className="flex gap-5">
+        <div className="flex gap-3">
           {tags.map((tag, i) => (
             <div key={i} className="tag">
               {tag}

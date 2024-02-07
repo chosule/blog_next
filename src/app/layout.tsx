@@ -37,6 +37,7 @@ export default function RootLayout({
     >
       <head>
         <ThemeScript />
+        <meta name="google-site-verification" content="uRGN0ilvMgsEgWp-dfj8ISt0CT3m01pnpMsoPTyW6J4" />
       </head>
       <body className="relative mx-auto flex w-full max-w-[910px] flex-col">
         <main className="relative grow">
@@ -49,3 +50,4 @@ export default function RootLayout({
     </html>
   );
 }
+

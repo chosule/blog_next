@@ -1,45 +1,16 @@
-import { FaGithub } from "react-icons/fa";
-import { SiVelog } from "react-icons/si";
-import { SiBloglovin } from "react-icons/si";
-import Link from "next/link";
 import SubTitle from "../SubTitle";
+import ContactLink from "./ui/ContactLink";
 
 export default function ContactMe() {
   return (
       <div className="flex flex-col items-center gap-5">
         <SubTitle>✨ Contact me</SubTitle>
-        <ul className="relative flex h-[200px] w-[439px] flex-col items-center justify-center gap-2 overflow-hidden bg-cover drop-shadow-2xl">
-          <li className="md:background-item text-center italic md:bg-[url('/Image/wave.jpeg')] opacity-[.6]"></li>
-          <li className="text-center italic font-semibold">
-            <p>phone </p>
-            <p>010-9724-3290</p>
+        <ul className="flex h-[200px] w-[439px] flex-col gap-3 overflow-hidden bg-cover rounded-xl bg-neutral-50 p-8 contact-me-shadow">
+          <li className="">
+            <h3 className="font-bold text-lg dark:text-neutral-900">김초슬</h3>
+            <h3 className="text-xs dark:text-neutral-900">FrontEnd</h3>
           </li>
-          <li className="flex items-center justify-evenly gap-2 text-center italic font-semibold">
-            <p>Github </p>
-            <Link
-              target="_blank"
-              href="https://github.com/chosule"
-              className="text-xl"
-            >
-              <FaGithub />
-            </Link>
-          </li>
-          <li className="flex items-center justify-evenly gap-2 text-center italic font-semibold">
-            <p>Blog </p>
-            <Link target="_blank" href="#" className="text-xl">
-              <SiBloglovin />
-            </Link>
-          </li>
-          <li className="flex items-center justify-evenly gap-2 text-center italic font-semibold">
-            <p>Velog </p>
-            <Link
-              target="_blank"
-              href="https://velog.io/@chosule/posts"
-              className="text-xl"
-            >
-              <SiVelog />
-            </Link>
-          </li>
+          <ContactLink/>
         </ul>
       </div>
 

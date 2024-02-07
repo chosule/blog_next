@@ -47,7 +47,6 @@ export async function getAllPosts(): Promise<Post[]> {
 export async function getAllPostsPath(): Promise<Slugs[]> {
   try {
     const postPaths = globSync(`${POST_PATH}/**/*.mdx`);
-    console.log("postPaths?", postPaths);
     return postPaths.map((filePath) => {
       let relativePath = path.relative(POST_PATH, filePath);
       relativePath = relativePath.replace(

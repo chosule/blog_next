@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .prose a {
   @apply no-underline transition-all;
 }
 
-.prose h1,h2,h3,h4,h5,li,a,strong,p,span{
+.prose h1,h2,h3,h4,h5,li,a,strong,p,span,code{
   font-family: var(--font-nanum);
 }
 
@@ -20,13 +21,15 @@ p {
 }
 
 .prose code:not(:where(pre *)) {
-  @apply mx-2 rounded border-b-2 border-b-neutral-550 bg-neutral-148 p-1 dark:text-neutral-850 dark:bg-neutral-350;
-  /* @apply bg-neutral-550 p-1 rounded-md text-neutral-50; */
+  @apply p-1 rounded-md text-base font-light bg-code-darkmode text-code-darkmode;
 }
 
-/* .prose .anchor{
-
-} */
+.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before{
+  content:"";
+}
+.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after{
+  content:"";
+}
 .prose .anchor:after {
   content: "#";
   mask-repeat: no-repeat;
@@ -49,7 +52,7 @@ p {
   @apply  mx-2 rounded border-b-2 text-[#f9a8d4] border-b-[#9333ea] bg-[#6b21a880] p-1 dark:text-neutral-850;}
 
 .prose [data-line]{
-  @apply mb-3;
+  @apply mb-1;
 }
 
 .prose :where(strong):not(:where([class~="not-prose"],[class~="not-prose"] *)){
@@ -64,6 +67,19 @@ p {
   @apply mt-0 rounded-t-none;
 }
 
+
+.prose :where(blockquote):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  border-left-color: #1e90ff;
+  padding:0;
+}
+
+.prose :where(figure):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  @apply shadow-xl
+}
+
+.prose :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  @apply my-1
+}
 .prose [data-rehype-pretty-code-title]::after {
   content: ''; 
   background-image: url('/image/macIcon.png'); 
@@ -81,4 +97,26 @@ p {
   background: #c8c8ff1a;
   opacity: 1;
   border-left-width: 6px;
+}
+
+.prose :where(blockquote):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  background: #f8f9fa;
+  padding:14px;
+  @apply dark:bg-primary;
+}
+
+/* 물결 웨이브 */
+.underline{
+  position:relative;
+}
+.underline::after{
+  position:absolute;
+  content: "";
+  width:100%;
+  height: 5px;
+  bottom:-5px;
+  left:0;
+  background-image: url("/image/wave.png");
+  background-size:cover;
+  
 }
