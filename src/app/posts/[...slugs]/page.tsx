@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function PostPage({ params }: Props) {
   const slugs = params.slugs;
   const post = await getPost(slugs);
+
   const { title, date, content, tags } = post;
 
   const postPrevNext = await getPostData(slugs);
