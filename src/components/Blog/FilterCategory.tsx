@@ -26,14 +26,14 @@ export function FilterCategory({ posts, tags, titleList }: Props) {
 
   return (
     <section className="flex flex-col gap-14">
-      <article className="">
+      <article>
         <SeriesCategory
           categories={[ALLPOSTS, ...titleList]}
           onClick={(selected) => setSelected(selected)}
           selected={selected}
         />
       </article>
-      <div className="grid grid-cols-[150px,1fr] gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-[150px,1fr]">
         <article className="flex flex-col gap-5">
           <SubTitle>#Tags</SubTitle>
           <Categories
