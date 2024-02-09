@@ -15,18 +15,18 @@ const SetThemeButton = () => {
   }, []);
 
   return (
-    <button 
-      onClick={toggleTheme} 
-      aria-label={`change to ${isDark}`} 
+    <button
+      onClick={toggleTheme}
+      aria-label={`change to ${isDark}`}
       title={`change to ${isDark}`}
-      className="w-[66px] h-[29px] p-2 rounded-3xl fixed toggle-color hover:shadow-[0_0_5px_2px_#1e90ff] dark:hover:shadow-[0_0_5px_2px_#a9a9a9]" 
-      >
+      className="toggle-color fixed h-[29px] w-[66px] rounded-3xl p-2 hover:shadow-[0_0_5px_2px_#1e90ff] dark:hover:shadow-[0_0_5px_2px_#a9a9a9]"
+    >
       <div
-        className={`absolute top-0 left-[3px] bg-neutral-50 rounded-full w-[29px] h-[29px] ${
+        className={`absolute left-[3px] top-0 h-[29px] w-[29px] rounded-full bg-neutral-50 ${
           theme === "dark" ? "translate-x-[31px]" : "translate-x-0"
-        } transition-transform z-[1]`}
+        } z-[1] transition-transform`}
       />
-      <div className="absolute flex gap-2 top-[3px] left-[6px]">
+      <div className="absolute left-[14px] top-[3px] flex gap-2">
         <span>☀️</span>
         <span>🌙</span>
       </div>

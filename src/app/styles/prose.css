@@ -2,12 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .prose a {
   @apply no-underline transition-all;
 }
 
-.prose h1,h2,h3,h4,h5,li,a,strong,p,span,code{
+.prose h1,
+h2,
+h3,
+h4,
+h5,
+li,
+a,
+strong,
+p,
+span,
+code {
   font-family: var(--font-nanum);
 }
 
@@ -21,14 +30,20 @@ p {
 }
 
 .prose code:not(:where(pre *)) {
-  @apply p-1 rounded-md text-base font-light bg-code-darkmode text-code-darkmode;
+  @apply bg-code-darkmode text-code-darkmode rounded-md p-1 text-base font-light;
 }
 
-.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::before{
-  content:"";
+.prose
+  :where(code):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  )::before {
+  content: "";
 }
-.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *))::after{
-  content:"";
+.prose
+  :where(code):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  )::after {
+  content: "";
 }
 .prose .anchor:after {
   content: "#";
@@ -43,54 +58,69 @@ p {
   @apply text-neutral-550;
 }
 
-
-[data-chars-id='v'] {
-  @apply  mx-2 rounded border-b-2 text-[#f9a8d4] border-b-[#db2777] bg-[#9f123980] p-1 dark:text-neutral-850;
+[data-chars-id="v"] {
+  @apply mx-2 rounded border-b-2 border-b-[#db2777] bg-[#9f123980] p-1 text-[#f9a8d4] dark:text-neutral-850;
 }
 
-[data-chars-id='s'] {
-  @apply  mx-2 rounded border-b-2 text-[#f9a8d4] border-b-[#9333ea] bg-[#6b21a880] p-1 dark:text-neutral-850;}
+[data-chars-id="s"] {
+  @apply mx-2 rounded border-b-2 border-b-[#9333ea] bg-[#6b21a880] p-1 text-[#f9a8d4] dark:text-neutral-850;
+}
 
-.prose [data-line]{
+.prose [data-line] {
   @apply mb-1;
 }
 
-.prose :where(strong):not(:where([class~="not-prose"],[class~="not-prose"] *)){
-  @apply mx-2 rounded border-b-2 border-b-neutral-550 bg-neutral-148 p-1 dark:text-neutral-850 dark:bg-neutral-350;
+.prose
+  :where(strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  @apply text-primary relative;
 }
 
+.prose
+  :where(strong):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  )::after {
+  @apply absolute bottom-[-5px] left-0 h-[5px] w-full bg-[url('/image/wave.png')] bg-cover content-[""];
+}
+
+/* .prose :where(strong):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+  @apply mx-2 rounded border-b-2 border-b-neutral-550 bg-neutral-148 p-1 dark:text-neutral-850 dark:bg-neutral-350;
+} */
+
 .prose [data-rehype-pretty-code-title] {
-  @apply rounded-t-lg h-[53px]  border-b-0 relative border-gray-200 bg-[#434041] pl-24 pt-4 text-sm font-bold text-neutral-50 dark:bg-neutral-850;
+  @apply relative h-[53px]  rounded-t-lg border-b-0 border-gray-200 bg-[#434041] pl-24 pt-4 text-sm font-bold text-neutral-50 dark:bg-neutral-850;
   font-family: var(--font-nanum);
 }
 .prose [data-rehype-pretty-code-title] + pre {
   @apply mt-0 rounded-t-none;
 }
 
-
-.prose :where(blockquote):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+.prose
+  :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   border-left-color: #1e90ff;
-  padding:0;
+  padding: 0;
+}
+.prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  @apply text-primary;
+}
+.prose
+  :where(figure):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  @apply shadow-xl;
 }
 
-.prose :where(figure):not(:where([class~="not-prose"],[class~="not-prose"] *)){
-  @apply shadow-xl
-}
-
-.prose :where(p):not(:where([class~="not-prose"],[class~="not-prose"] *)){
-  @apply my-1
+.prose :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  @apply my-3 text-base leading-[2.2];
 }
 .prose [data-rehype-pretty-code-title]::after {
-  content: ''; 
-  background-image: url('/image/macIcon.png'); 
-  background-size:contain;
+  content: "";
+  background-image: url("/image/macIcon.png");
+  background-size: contain;
   background-repeat: no-repeat;
-  display: inline-block; 
+  display: inline-block;
   width: 60px;
   height: 20px;
   position: absolute;
-  top:20px;
-  left:14px;
+  top: 20px;
+  left: 14px;
 }
 
 [data-highlighted-line] {
@@ -99,24 +129,13 @@ p {
   border-left-width: 6px;
 }
 
-.prose :where(blockquote):not(:where([class~="not-prose"],[class~="not-prose"] *)){
+.prose
+  :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   background: #f8f9fa;
-  padding:14px;
+  padding: 14px;
   @apply dark:bg-primary;
 }
 
-/* 물결 웨이브 */
-.underline{
-  position:relative;
-}
-.underline::after{
-  position:absolute;
-  content: "";
-  width:100%;
-  height: 5px;
-  bottom:-5px;
-  left:0;
-  background-image: url("/image/wave.png");
-  background-size:cover;
-  
+.reference {
+  @apply text-right text-neutral-140;
 }
