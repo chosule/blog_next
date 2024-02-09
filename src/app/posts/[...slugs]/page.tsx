@@ -1,4 +1,9 @@
-import { getAllPosts, getAllPostsPath, getPost, getPostData } from "@/service/getPostsNew";
+import {
+  getAllPosts,
+  getAllPostsPath,
+  getPost,
+  getPostData,
+} from "@/service/getPostsNew";
 import Mdx from "@/lips/Mdx";
 import Giscus from "@/components/Blog/Giscus";
 import AdjacentPostCard from "@/components/Blog/AdjacentPostCard";
@@ -39,7 +44,7 @@ export default async function PostPage({ params }: Props) {
   const { prev, next } = postPrevNext;
 
   return (
-    <div className="my-10">
+    <div className="md:my-10">
       <div className="flex flex-col gap-4">
         <h1 className="text-4xl font-semibold leading-relaxed">{title}</h1>
         <p>{date}</p>

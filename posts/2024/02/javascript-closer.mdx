@@ -3,18 +3,28 @@ title: "js 클로저와 React useState의 관계"
 titlelist: "Javascript"
 description: "함수형 컴포넌트에서 중요한 클로저"
 icon: ""
-image: "js_thumbnail.png"
+image: "modern-react.png"
 tags:
-  - javascript
-  - 클로저
-  - react
-  - 함수형컴포넌트
+
+- javascript
+- 클로저
+- react
+- 함수형컴포넌트
 draft: false
 feature: true
 date: 2024-02-02 15:28:39
 ---
 
-> 함수형 컴포넌트의 구조와 작동방식, 훅의 원리, 의존성배열등 함수형 컴포넌트의 대부분의 기술이 모두 클로저의 의존하고 있기 때문에 함수형 컴포넌트 작성을 위해서는 클로저에 대해 이해하는 것이 필수다.<br/>
+---
+
+## 🙋‍♀️
+
+" 먼저 클로저에 대해 알아보고 그 클로저가 어떻게 React useState와 관련이 있는지 알아보려고 한다.
+모든 연관성에 대해 이해하려고 하기보다는 클로저의 이런 흐름때문에 useState의 연관이 있는거구나~ 라고 파악할수 있는 정도의 선에서 포스팅을 해보겟다!! "
+
+---
+
+> 함수형 컴포넌트의 구조와 작동방식, 훅의 원리, 의존성배열등 함수형 컴포넌트의 대부분의 기술이 모두 클로저의 의존하고 있기 때문에 함수형 컴포넌트 작성을 위해서는 클로저에 대해 이해하는 것이 필수다.
 > 좋은 함수형 컴포넌트를 만들고 나아가 함수형 프로그래밍의 패러다임을 이해하려면 클로저에 대해 반드시 알고 있어야 한다.
 
 ## 클로저의 정의
@@ -42,14 +52,28 @@ add();
 
 a변수의 `유효범위는 add전체이고` b의 유효범위는 `innerAdd의 전체`이다.
 
-`선언된 어휘적 환경`이라는 것은 변수가 코드 내부에서 **어디서 선언**됐는지 말하는것이다.
-호출되는 방식에 따라 동적으로 변경 되는 this와는 다르게 코드가 작성된 순간에 정적으로 결정된다.  
-`클로저는 이러한 어휘적 환경을 조합`해 코딩하는 기법이라고 한다.
+음 먼저 선언된 어휘적 환경 Lexical Environment에 대해 알아보자
 
-변수의 유효범위에 따라 어휘적 환경이 결정된다고 했는데 **유효범위를 스코프**라고 말한다.  
+### 선언된 어휘적 환경 ❓
+
+자바스크립트에서 선언된 어휘적 환경(Lexical Environment)은 변수, 함수 선언 및 스코프를 관리하는데 사용되는 개념이다.
+
+- 환경레코드(Environment Record)
+- 외부 어휘적 환경 참조(Outer Lexical Environment Reference)
+  가 있다.
+
+예를 들어, 함수 내부에서 변수를 참조할 때, 자바스크립트 엔진은 현재 함수의 `환경 레코드에서 변수를 먼저 찾는다.`
+변수가 없으면 외부 어휘적 환경 참조를 통해 `외부 스코프`로 이동하고, 그곳에서 다시 변수를 찾는다.
+이러한 과정을 `스코프 체인을 따라 반복`하게 되는것이다.
+
+이것과 밀접하게 관련이 있는게 **클로저** 다.
+
+클로저는 다른 함수의 내부에서 정의된 함수이며 외부 함수가 반환된 후에도 내부함수가 외부함수의 어휘적 환경에 접근할수 있는 메커니즘인것 !
+이는 외부함수가 실행을 마친 후에도 내부 함수가 외부 함수의 변수를 참조할 수 있음을 의미한다.
+
 스코프는 `전역 스코프`와 `함수 스코프`가 있다.
 
-1. 전역스코프로
+1. 전역스코프
    전역으로 변수를 선언하면 어디서든 호출 할 수 있다.
 
 2. 함수스코프
@@ -63,6 +87,12 @@ function hello() {
 hello();
 console.log(local); // Uncaught ReferenceError : local is not defined
 ```
+
+---
+
+## 🙋‍♀️
+
+" 그럼 이런 클로저와 useState가 비슷한 이유에 대해 알아보자 "
 
 ---
 
@@ -117,10 +147,15 @@ console.log(c.decrease()); //2
 
 {/* 이런 클로저의 코드를 활용한 리액트의 useState는 `useState에 변수를 저장`해두고 useState의 변수 접근 및 수정 또한 클로저 내부에서 확인이 가능해, `값이 변하면 렌더링 함수를 호출하는 등`의 작업이 이루어진다고 한다. */}
 
+---
+
 ## 🙋‍♀️
 
-근데 이런 클로저가 왜 리액트에 useState와 관련이 있는걸까?<br/>
-보통은 우리가 함수를 만든뒤에 바로 안에 useState넣어준뒤 상태를 바꾸기 위해 시작한다. 습관처럼 늘 하는거라 이런 이유에 대해서는 생각해보지 못했다. 사실 클로저라는 개념이 나에게는 조금 어려워 잘 정리 하고싶지만 일단 생각해 보는것에 의의를 두려고 한다.
+근데 이런 클로저가 왜 리액트에 useState와 관련이 있는걸까?
+보통은 우리가 함수를 만든뒤에 바로 안에 useState넣어준뒤 상태를 바꾸기 위해 시작한다.
+습관처럼 늘 하는거라 이런 이유에 대해서는 생각해보지 못했다. 사실 클로저라는 개념이 나에게는 조금 어려워 잘 정리 하고싶지만 일단 생각해 보는것에 의의를 두려고 한다.
+
+---
 
 ## 리액트에서의 클로저
 
@@ -139,38 +174,76 @@ function Component() {
 
 useState함수의 호출은 Component 내부 첫줄에서 종료되었는데 setState는 useState 내부의 최신값을 어떻게 계속해서 확인할 수 있을까?
 바로 클로저가 useState 내부에서 활용됐기 때문이다.
-외부함수(useState)가 반환한 내부 함수(setState)는 외부함수(useState)의 호출이 끝났음에도 자신이 선언된 외부함수가 선언된 환경(state가 저장돼 있는 어딘가)을 기억하기 때문에 계속해서 state값을 사용할 수 있는것.! (음 ~~ 그렇구나~~)
+외부함수(useState)가 반환한 내부 함수(setState)는 외부함수(useState)의 호출이 끝났음에도 자신이 선언된 외부함수가 선언된 환경(state가 저장돼 있는 어딘가)을 기억하기 때문에 계속해서 state값을 사용할 수 있는것.
 
-````js
-//  const MyReact = function(){
-//  const global = {}
-//  let index = 0;
+```js title="useState 내부의 모습을 구현한 모습" /useState/#v /MyReact/#s /클로저/#v
+const MyReact = function () {
+  const global = {};
+  let index = 0;
 
-//  function useState(iniutialState){
-//  if(!global.states){
-//  global.states = []
-//  }
-//  }
+  function useState(initialState) {
+    if (!global.states) {
+      //애플리케이션 전체의 states 배열을 초기화 한다.
+      //최초 접근이라면 빈 배열로 초기화한다.
+      global.states = [];
+    }
 
-//  const currentState = global.states[index] || initialState
-//  global.states[index] = currentState
+    // states 정보를 조회해서 현재 상태값이 있는지 확인하고
+    // 없다면 초깃값으로 설정한다.
+    const currentState = global.states[index] || initialState;
+    // states의 값을 위에서 조회한 현재 값으로 업데이트 한다.
+    global.states[index] = currentState;
 
-//  const setState = (function(){
-//  let currentIndex = index
-//  return function (value){
-//  global.states[currentIndex] = value
-//  }
-//  })()
+    //즉시 실행 함수로 setter를 만든다.
+    const setState = (function () {
+      // 현재 index를 클로저로 가둬놔서 이후에도 계속해서 동일한 index에
+      // 접근할수 있도록 한다.
+      let currentIndex = index;
+      return function (value) {
+        global.states[currentIndex] = value;
+        // 컴포넌트를 렌더링한다. 실제로 컴포넌트를 렌더링하는 코드는 생략했다.
+      };
+    })();
+    // useState를 쓸때마다 index를 하나씩 추가한다. 이 index는 setState에서 사용된다.
+    // 즉, 하나의 state마다 index가 할당돼 있어 그 index가 배열의 값(global.states을
+    // 가리키고 필요할 때마다 그 값을 가져오게 한다.
 
-//  index = index +1
+    index = index + 1;
 
-//  return [currentState, setState]
-//  }
+    return [currentState, setState];
+  }
 
+  // 실제 useState를 사용하는 컴포넌트
+  function Component() {
+    const [value, setValue] = useState(0);
+    //...
+  }
+};
 ```
 
-결론?정리?
+위의 코드는 작동 자체만 구현했을뿐 실제 구현체와는 차이가 있다.
 
-클로저의 정의인 함수와 함수가 선언된 어휘적 환경의 조합은 변수가 어디에 선언됐는지에 따라 그 상위의 변수가 존재하던 환경을 기억해 사용할수 있는것?
-클로저는 함수형 프로그래밍의 중요한 개념, 부수효과가 없고 순수해야 한다는 목적을 달성하기 위해 적극적으로 사용되는 개념이다.
-````
+여기서 함수의 실행이 끝났음에도 함수가 선언된 환경을 기억할 수 있는 방법은 **클로저**다.
+
+매번 실행되는 함수형 컴포넌트 환경에서 `state값을 유지하고 사용`하기 위해서 리액트는 클로저를 활용하고 있다.
+
+---
+
+## 🙋‍♀️정리
+
+### 클로저
+
+- 클로저와 자바스크립트 어휘적 환경(Lexical Environment)은 밀접한 관계가 있다.
+- 클로저는 어휘적환경 안에서 나눠지는 두가지중 외부 어휘적 환경 참조를 유지하고 있기 때문에 외부 함수의 변수에 접근할 수 있다.
+- ~~나만의 해석으로는 함수 스코프안에서 상위에 코드들이 마치 전역변수처럼 행동해 그안에서 쓸수있는것이 아닐까..하는 해석~~
+
+### 클로저와 useState
+
+- 리액트 useState는 클로저와 관련이 있다.
+- useState 훅은 함수형 컴포넌트 내에서 상태를 관리할수 있게 해주는 리액트의 기능이다.
+- useState는 클래스형 컴포넌트의 this.state와 비슷한 역할을 수행한다.
+- useState 훅이 반한된 함수는 내부적으로 클로저를 사용하여 해당 상태값을 유지하고 변경한다.
+- 즉, 리액트의 useState 훅은 내부적으로 클로저를 사용하여 컴포넌트의 상태를 관리하고, 상태가 변경될 때마다 해당 상태를 유지하고 리렌더링한다.
+- 이를 통해 함수형 컴포넌트에서도 상태를 효과적으로 관리할 수 있게 되었다.
+
+📝 이 포스트는 모던 리액트 딥다이브책을 참고하였습니다.

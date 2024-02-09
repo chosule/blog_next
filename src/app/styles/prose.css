@@ -71,15 +71,15 @@ p {
 }
 
 .prose
+  :where(strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  @apply text-primary relative;
+}
+
+.prose
   :where(strong):not(
     :where([class~="not-prose"], [class~="not-prose"] *)
   )::after {
   @apply absolute bottom-[-5px] left-0 h-[5px] w-full bg-[url('/image/wave.png')] bg-cover content-[""];
-}
-
-.prose
-  :where(strong):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  position: relative;
 }
 
 /* .prose :where(strong):not(:where([class~="not-prose"],[class~="not-prose"] *)){
@@ -99,14 +99,16 @@ p {
   border-left-color: #1e90ff;
   padding: 0;
 }
-
+.prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  @apply text-primary;
+}
 .prose
   :where(figure):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   @apply shadow-xl;
 }
 
 .prose :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  @apply my-3 text-[15px] leading-[2.2];
+  @apply my-3 text-base leading-[2.2];
 }
 .prose [data-rehype-pretty-code-title]::after {
   content: "";
@@ -132,4 +134,8 @@ p {
   background: #f8f9fa;
   padding: 14px;
   @apply dark:bg-primary;
+}
+
+.reference {
+  @apply text-right text-neutral-140;
 }
