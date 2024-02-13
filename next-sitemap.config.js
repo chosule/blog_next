@@ -7,7 +7,7 @@ module.exports = {
 /** @type {import('next-sitemap').IConfig} */
 
 module.exports = {
-  siteUrl: "http://localhost:8088", // .게시하는 site의 url
+  siteUrl: `${process.env.NEXT_PUBLIC_BASE_URL}`,
   generateRobotsTxt: true, // robots.txt generate 여부 (자동생성 여부)
   robotsTxtOptions: {
     additionalSitemaps: [
