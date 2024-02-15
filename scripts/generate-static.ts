@@ -23,6 +23,16 @@ const createSiteMap = async () => {
   });
 };
 
+const createRobotsTxt = () => {
+  const siteUrl = "https://chosule-blog.vercel.app";
+  const text = `
+    User-agent: *
+    Allow: /
+    Sitemap: ${siteUrl}/sitemap.xml
+    Host: ${siteUrl}
+    `;
+};
+
 (() => {
   createSiteMap();
 })();
