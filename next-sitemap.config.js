@@ -1,17 +1,10 @@
-/** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://chosule-blog.vercel.app",
-  generateRobotsTxt: true, // (optional)
-};
-
-/** @type {import('next-sitemap').IConfig} */
-
-module.exports = {
-  siteUrl: `${process.env.NEXT_PUBLIC_BASE_URL}`,
+  siteUrl: "https://chosule-blog.vercel.app", // .게시하는 site의 url
   generateRobotsTxt: true, // robots.txt generate 여부 (자동생성 여부)
   robotsTxtOptions: {
+    // 추가 sitemap 설정
     additionalSitemaps: [
-      `${process.env.NEXT_PUBLIC_BASE_URL}/post-sitemap.xml`,
+      "https://chosule-blog.vercel.app/app/post-sitemap.xml",
     ],
   }, // robots.txt 옵션 설정
 };
