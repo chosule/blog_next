@@ -29,4 +29,4 @@
 ---
 
 ### ✨ 추가기능 및 이슈 수정 log
-(2024.02.26) - sitemap.xml 수동으로 만들고 tsconfig.node.json 파일 생성, 빌드시 추가할수 있도록 설정.  
+(2024.02.16) - sitemap.xml 수동으로 만들고 tsconfig.node.json 파일 생성, 빌드시 추가할수 있도록 설정.  
