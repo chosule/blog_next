@@ -1,4 +1,4 @@
-import { getAllPosts } from "../src/service/getPostsNew";
+import { getAllPosts } from "../src/service/postDataSet";
 import fs from "fs";
 
 const createSiteMap = async () => {

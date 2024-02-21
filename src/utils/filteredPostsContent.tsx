@@ -1,4 +1,4 @@
-import { Post } from "@/service/getPostsNew";
+import { Post } from "@/service/postDataSet";
 
 type Props = {
   posts: Post[];
