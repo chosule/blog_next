@@ -26,3 +26,7 @@
 - 기존 getStaticProps를 `app router에서는 변경된 async와 await 로 구성한 함수`를 만들어(getPostsNew.tsx) 받아올 페이지를 구성하였습니다.
 - 포스트를 작성할때는 mdx파일로 작성해야하기 때문에 `grayMatter를 이용하여 파싱`해주고 변환된 코드를 예쁘게 만들어준 뒤 , 이 mdx 파일들을 next-mdx-remote/rsc를 이용하여 `직렬화` 해주었습니다.
 
+---
+
+### ✨ 추가기능 및 이슈 수정 log
+(2024.02.16) - sitemap.xml 수동으로 만들고 tsconfig.node.json 파일 생성, 빌드시 추가할수 있도록 설정.  
