@@ -1,4 +1,4 @@
-import { Post } from "@/service/getPostsNew";
+import { Post } from "@/service/postDataSet";
 import Image from "next/image";
 import Link from "next/link";
 import { BsCalendarDate } from "react-icons/bs";

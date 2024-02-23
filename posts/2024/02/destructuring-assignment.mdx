@@ -10,35 +10,32 @@ draft: false
 date: 2024-02-07 00:38:44
 ---
 
-// 배열
-// 1.
-// const arr = [1,2,3,4,5];
-// const [first,second, ...rest] = arr;
-// console.log(second) // 2 출력
-// console.log(first) // 1출력
+배열
 
-// 2.
-// const array = [1,2]
-// const [a = 1, b =2 , c = 10] = array;
-// console.log(array); // [1,2]
-// console.log(c); //10출력
+1.  const arr = [1,2,3,4,5];
+    const [first,second, ...rest] = arr;
+    console.log(second) // 2 출력
+    console.log(first) // 1출력
 
-//객체구조분해할당
+2.  const array = [1,2]
+    const [a = 1, b =2 , c = 10] = array;
+    console.log(array); // [1,2]
+    console.log(c); //10출력
 
-//1.
-// const obj = {
-// a:1,
-// b:2,
-// c:3,
-// d:4,
-// e:5
-//
-}
+객체구조분해할당
 
-// const { a , b , c , ...restObj} = obj;
+1.  const obj = {
+    a:1,
+    b:2,
+    c:3,
+    d:4,
+    e:5
+    }
 
-// console.log(obj);
-// console.log(b); //2 출력 //배열과 다르게 값이 나온다.
+const { a , b , c , ...restObj} = obj;
+
+console.log(obj);
+console.log(b); //2 출력 //배열과 다르게 값이 나온다.
 
 //2.
 // const { a : first , b : second} = obj;

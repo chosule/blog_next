@@ -1,0 +1,182 @@
+---
+title: "Typescript 공변성과 반공변성"
+titlelist: "Typescript"
+description: "공변성과 반공변성을 알아야 함수끼리 대입할 수 있다"
+icon: ""
+image: "ts_thumbnail.png"
+tags:
+  - typescript
+  - 타입스크립트
+  - 타입스크립트 교과서
+  - 공변성과 반공변성
+draft: false
+date: 2024-02-22 14:09:18
+---
+
+## 객체 메서드 선언시 세가지 방식
+
+객체의 메서드를 선언할때는 세 가지 방식으로 할 수있다.
+
+```js title="객체 메서드 선언 세가지 방식"
+interface Example {
+  // 1. 메서드(매개변수) : 반환값
+  a(): void;
+
+  // 2. 메서드:(매개변수) => 반환값
+  b: () => void;
+
+  // 3. 메서드:{(매개변수): 반환값}
+  c: {
+    (): void,
+  };
+}
+```
+
+셋은 거의같지만 **한가지** 경우에서 다르다.
+
+## 공변성과 반공변성
+
+이에대해 알아봐야하는게 **공변성**과 **반공변성**이다.
+
+> 1. `공변성`: A -> B 일때 T{`<A> -> T<B>`}
+> 2. `반공변성` : A -> B 일때 T{`<B> -> T<A>`}
+> 3. `이변성`: A -> B 일때 T{`<A> -> T<B>`} 도되고 T{`<B> -> T<A>`} 도 되는경우
+> 4. `무공변성` : A -> B 일때 T{`<A> -> T<B>`} 도 안되고 T{`<B> -> T<A>`} 도 안되는경우
+
+기본적으로 `타입스크립트`는 **공변성**을 가지고 있지만, 함수의 `매개변수`는 **반공변성**(strict 가 활성화 되어 있지 않으면 **이변성**)을 갖고 있다.
+
+이를 확인하기 위해서는 TS Config 메뉴에서 strictFunctionTypes 옵션이 체크✔️ 되어 있어야 한다.
+strictFunctionTypes 옵션은 `strict 옵션이 체크되어` 있을때 `자동으로 활성화` 되긴한다.
+
+만약 strict 와 strictFunctionTypes 모두 체크되어 있지 않다면 타입스크립트는 `매개변수`에 대해 **이변성을** 갖는다.
+
+```js title="1. a -> b 코드"
+function a(x: string): number {
+  return 0;
+}
+
+type B = (x: string) => number | string;
+
+let b: B = a;
+```
+
+**a 함수**를 **b 타입**의 대입 할 수 있다.
+
+a 함수와 b의 함수 두개의 차이는 **반환값** 의 차이 밖에 없다.
+a는 number만 반환하고 b는 number와 string을 반환하는 차이 밖에 없다.
+
+이 관계를 **a -> b**라고 표현 할수 있다.
+
+반대의 상황에서는 그럼 b -> a 가 되는 상황일것 !
+
+위에 1번 코드에서 반환값을 서로 바꿔주기만 해보면 어떻게 될까?
+
+```js title="2. b -> a 코드"
+function a(x: string): number | string {
+  return 0;
+}
+
+type B = (x: string) => number;
+
+let b: B = a;
+```
+
+서로의 반환값만 a는 number 에서 -> number | string 으로,
+type B는 반환값타입을 number | string 에서 -> number로 만 바꿔준 상황이다.
+
+이때 **b함수**에서 B type을 함수a 에 대입하면 에러가 발생한다.
+
+![230222-164837](/postImage/capture1.png)
+
+sting | number 를 number에 대입할 수 없다는 **에러**가 발생한다.
+
+strict 옵션을 해제해도 여전히 에러가 발생한다.
+
+---
+
+`공변성`은 간단하게 `A -> B` 만 가능하다.
+2번 코드에서는 `B -> A` 를 했더니 **에러**가 발생한다.
+조금 간단하게 생각하면 타입스크립트는 A -> B 는 **가능**하지만 B -> A 는 **불가능** 하다.
+
+---
+
+> 즉, `타입스크립스`는 **반환값**에 대해서는 항상 **공변성**을 가진다고 볼수 있다.
+
+### 매개변수는 반공변성을 가진다.
+
+```js title="3. 매개변수는 반공변성을 가진다 b -> a"
+function a(x: sting | number): number {
+  return 0;
+}
+
+type B = (x: string) => number;
+
+let b: B = a;
+```
+
+아까 와는 다르게 반환값이 아닌 **매개변수**에 집중해야한다.
+
+매개변수를 보게되면 string -> sting | number 이므로 쉽게 말해 B -> A 인 상황이라고 할 수 있다.
+
+B의 타입을 가지고 잇는 b 함수에 a 값을 지정했는데 에러가 발생하지 않느다.
+
+반대는 불가능하다.
+
+```js title="4. 매개변수는 반공변성을 가진다 a -> b :에러"
+function a(x: string): number {
+  return 0;
+}
+
+type B = (x: string | number) => number;
+
+let b: B = a;
+```
+
+![230222-164237](/postImage/capture2.png)
+
+하지만 만약 `strict 옵션을 해제`하면 어떻게 될까? **반환값**에 대해서는 해제를 하거나 안하거나 `관계없이 에러`가 발생했지만
+**매개변수**에서 strictFunctionTypes 옵션을 `해제하면` 위에 4번코드에서 `에러가 발생하지 않는다`.
+
+즉, 매개변수는 strictFunctionTypes 옵션일때는 반공변성 이지만 , 옵션을 해제하면 이변성, a -> b 이거나 b -> a여도 된다고 말해주고 있다.
+
+처음 맨위에 `객체 메서드 선언 세가지 방식` 을 적어놨는데 메서드를 선언 할때도 타이핑 방법에 따라 `변성이 정해진다`.
+이는 **strict옵션**이 활성화 되었다는 가정하에 말한다.
+
+```js title=""
+interface SayMethod {
+  say(a: string | number): string;
+}
+
+interface SayFunction {
+  say: (a: string | number) => string;
+}
+
+interface SayCall {
+  say: {
+    (a: stinrg | number): string,
+  };
+}
+
+const sayFunc = (a: string) => "hello";
+
+const MyAddingMethod: SayMethod = {
+  say: sayFunc, //이변성
+};
+
+const MyAddingfunction: SayFunction = {
+  say: sayFunc, // 반공변성
+};
+
+const MyAddingfunction: SayCall = {
+  say: sayFunc, // 반공변성
+};
+```
+
+## 정리
+
+- 타입스크립트는 기본적으로 공변성을 가지고 있고 함수의 매개변수는 반공변성을 갖고있다.
+- 메서드(매개변수) : 반환값 은 이변성 을 가지고있다. (이해가 더 필요한 부분같다)
+- 타입스크립트 반환값
+  - a를 number | sting b를 number 라고 생각해보자.
+  - a의 반환값을 b에 대입할 수 있다. a -> b ⭕️
+  - b의 반환값을 a에 대입할 수 없다. b -> a ❌

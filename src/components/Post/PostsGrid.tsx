@@ -1,4 +1,4 @@
-import { Post } from "@/service/getPostsNew";
+import { Post } from "@/service/postDataSet";
 import PostCard from "./PostCard";
 import uuid from "react-uuid";
 

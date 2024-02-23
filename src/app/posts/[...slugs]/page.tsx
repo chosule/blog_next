@@ -1,14 +1,9 @@
-import {
-  getAllPosts,
-  getAllPostsPath,
-  getPost,
-  getPostData,
-} from "@/service/getPostsNew";
-import Mdx from "@/lips/Mdx";
+import { getAllPostsPath, getPost, getPostData } from "@/service/postDataSet";
+import Mdx from "@/lips/serializeMdx";
 import Giscus from "@/components/Blog/Giscus";
 import AdjacentPostCard from "@/components/Blog/AdjacentPostCard";
 import { Metadata } from "next";
-import Title from "@/components/Title";
+import parseToc from "@/lips/parseToc";
 
 export type Props = {
   params: {
@@ -37,12 +32,17 @@ export default async function PostPage({ params }: Props) {
   const slugs = params.slugs;
 
   const post = await getPost(slugs);
-
+  // console.log("post", post);
   const { title, date, content, tags } = post;
 
   const postPrevNext = await getPostData(slugs);
   const { prev, next } = postPrevNext;
 
+  const props = {
+    tableOfContents: parseToc(post.content),
+  };
+  // console.log("post.content", post.content);
+  console.log("test", props);
   return (
     <div className="md:my-10">
       <div className="flex flex-col gap-4">
