@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 
 export default function HomePage() {
   return (
-    <section className="flex h-full flex-col gap-10 mt-10">
+    <section className="mt-20 flex h-full flex-col gap-10 md:mt-10">
       <Hero />
       <FeaturePost />
     </section>
