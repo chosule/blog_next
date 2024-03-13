@@ -68,7 +68,7 @@ export function Header() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []); 
+  }, []);
 
   const handleSelected = (event: React.MouseEvent<HTMLLIElement>) => {
     const menuName = event.currentTarget.innerText;
@@ -84,7 +84,7 @@ export function Header() {
             scrolled ? "backdrop" : "bg-primary"
           } -translate-x-1/2 transform shadow-md`}
         ></div>
-        <nav className="fixed left-1/2 z-20 flex w-full max-w-[910px] -translate-x-1/2 transform py-6 gap-36">
+        <nav className="fixed left-1/2 z-20 flex w-full max-w-[910px] -translate-x-1/2 transform gap-36 py-6">
           <Link href="/">
             <div className="flex items-center gap-1">
               <Image src={heart_icon} alt="아이콘" width={30} height={30} />

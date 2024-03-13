@@ -7,6 +7,7 @@
 html {
   scroll-behavior: smooth;
 }
+
 html,
 body {
   ::-webkit-scrollbar {
@@ -78,7 +79,7 @@ a {
   }
 
   .tag {
-    @apply rounded-lg bg-code-darkmode text-code-darkmode py-1 px-2 text-center text-[12px] ;
+    @apply bg-code-darkmode text-code-darkmode rounded-lg px-2 py-1 text-center text-[12px];
   }
 
   .tail {
@@ -94,11 +95,11 @@ a {
     stroke-dashoffset: 15.81138801574707;
   }
 
-  .strong{
-    @apply bg-neutral-150 rounded-md p-1 dark:text-neutral-500 bg-neutral-350;
+  .strong {
+    @apply rounded-md bg-neutral-150 bg-neutral-350 p-1 dark:text-neutral-500;
   }
 
-  .contact-me-shadow{
-    box-shadow:20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff ;
+  .contact-me-shadow {
+    box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
   }
 }

@@ -33,11 +33,13 @@ export default function AdjacentPostCard({
           )}
         </div>
         <div>
-          <h3 className="pre mt-0 text-sm">
+          <h3 className="pre mt-0 text-sm dark:text-neutral-890">
             {type === "prev" && "이전 포스트"}
             {type === "next" && "다음 포스트"}
           </h3>
-          <h3 className="pre mt-0 text-base">{title}</h3>
+          <h3 className="pre text-primary mt-0 text-base dark:text-neutral-890">
+            {title}
+          </h3>
         </div>
       </Link>
     </div>
