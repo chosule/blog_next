@@ -30,7 +30,7 @@ p {
 }
 
 .prose code:not(:where(pre *)) {
-  @apply bg-code-darkmode text-code-darkmode rounded-md p-1 text-base font-light;
+  @apply text-base font-light text-neutral-550;
 }
 
 .prose
@@ -108,7 +108,7 @@ p {
 }
 
 .prose :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  @apply my-3 text-base leading-[2.2];
+  @apply my-0 text-base leading-[1.8];
 }
 
 .prose [data-rehype-pretty-code-title]::after {
