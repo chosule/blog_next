@@ -64,11 +64,11 @@ export async function getAllPostsPath(): Promise<Slugs[]> {
   }
 }
 
-//내가 만든 모든 mdx파일들중 해당페이지slug에 해당되는 mdx포스트만 가져옴
+//내가 만든 모든 mdx파일들중 해당페이지 slug에 해당되는 mdx포스트만 가져옴
 export async function getPost(slugs: any): Promise<Post> {
   const allPosts = await getAllPosts();
   const slug = `posts/${slugs.join("/")}`;
-  const post = allPosts.find((post) => post.slug === slug);
+  const post = allPosts.find((post) => !post.draft && post.slug === slug);
 
   if (!post) {
     redirect("/blog");
@@ -100,11 +100,13 @@ export function parsePosts(postPath: string): Post | undefined {
   }
 }
 
+//feature 된 post만 보여주기
 export async function getFeaturedPost() {
   const posts = await getAllPosts();
   return posts.filter((post) => post.feature === true);
 }
 
+//
 export async function getPostData(fileSlug: string[]): Promise<PostData> {
   const posts = await getAllPosts();
   const post = await getPost(fileSlug);

@@ -13,7 +13,6 @@ export type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slugs = params.slugs;
-  // const slug = `${slugs.join("/")}`;
   const post = await getPost(slugs);
   const { description, title, image } = post;
   return {
@@ -32,7 +31,6 @@ export default async function PostPage({ params }: Props) {
   const slugs = params.slugs;
 
   const post = await getPost(slugs);
-  // console.log("post", post);
   const { title, date, content, tags } = post;
 
   const postPrevNext = await getPostData(slugs);
@@ -41,8 +39,6 @@ export default async function PostPage({ params }: Props) {
   const props = {
     tableOfContents: parseToc(post.content),
   };
-  // console.log("post.content", post.content);
-  console.log("test", props);
   return (
     <div className="md:my-10">
       <div className="flex flex-col gap-4">

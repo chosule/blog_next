@@ -23,8 +23,9 @@ export default function SeriesCategory({
             height={65}
           />
           <h3
-            className={` text-xs text-neutral-145 ${
-              selected === category && "font-black text-neutral-890"
+            className={`text-primary text-xs ${
+              selected === category &&
+              "font-black text-neutral-890 dark:text-neutral-550"
             }`}
           >
             {category}
