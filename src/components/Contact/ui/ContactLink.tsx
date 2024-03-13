@@ -24,7 +24,7 @@ export default function ContactLink() {
         <p className="dark:text-neutral-900">Blog </p>
         <Link
           target="_blank"
-          href="https://next-blog-delta-lac.vercel.app/"
+          href="https://chosule-blog.vercel.app/"
           className="text-xl text-neutral-900"
         >
           <SiBloglovin className="dark:bg-neutal-900" />

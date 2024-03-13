@@ -4,9 +4,8 @@
     <url><loc>https://chosule-blog.vercel.app/about</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
     <url><loc>https://chosule-blog.vercel.app/posts</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
     <url><loc>https://chosule-blog.vercel.app/contact</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://chosule-blog.vercel.app/posts/2024/02/javascript-closer</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://chosule-blog.vercel.app/posts/2024/02/destructuring-assignment</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://chosule-blog.vercel.app/posts/2024/01/test</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+    <url><loc>https://chosule-blog.vercel.app/posts/2024/02/typescript-book-byzerocho</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://chosule-blog.vercel.app/posts/2024/02/javascript-closer</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://chosule-blog.vercel.app/posts/2024/01/page-router-ssr-ssg</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://chosule-blog.vercel.app/posts/2023/11/typescript-typw-assertion</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://chosule-blog.vercel.app/posts/2023/08/zod-react-hook-form</loc><changefreq>daily</changefreq><priority>0.7</priority></url>

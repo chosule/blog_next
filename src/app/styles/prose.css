@@ -87,7 +87,7 @@ p {
 } */
 
 .prose [data-rehype-pretty-code-title] {
-  @apply relative h-[53px]  rounded-t-lg border-b-0 border-gray-200 bg-[#434041] pl-24 pt-4 text-sm font-bold text-neutral-50 dark:bg-neutral-850;
+  @apply relative h-[53px]  rounded-t-lg border-b-0 border-gray-200 bg-[#434041] pl-20 pt-4 text-sm font-bold text-neutral-50 dark:bg-neutral-850;
   font-family: var(--font-nanum);
 }
 .prose [data-rehype-pretty-code-title] + pre {
@@ -110,6 +110,7 @@ p {
 .prose :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   @apply my-3 text-base leading-[2.2];
 }
+
 .prose [data-rehype-pretty-code-title]::after {
   content: "";
   mask-image: url("data:image/svg+xml,%3Csvg version='1.0' xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 1200.000000 1200.000000' preserveAspectRatio='xMidYMid meet'%3E%3Cg transform='translate(0.000000,1200.000000) scale(0.100000,-0.100000)'%0Afill='%23000000' stroke='none'%3E%3Cpath d='M5600 11579 c-632 -52 -1246 -225 -1815 -513 -518 -263 -950 -581%0A-1341 -988 -774 -807 -1238 -1819 -1356 -2958 -17 -166 -17 -754 0 -920 107%0A-1033 487 -1937 1142 -2719 647 -772 1551 -1343 2525 -1596 421 -109 794 -155%0A1254 -155 441 0 786 42 1201 146 1397 349 2581 1308 3220 2609 515 1048 641%0A2229 360 3370 -346 1404 -1317 2602 -2625 3240 -560 273 -1139 431 -1780 485%0A-141 12 -634 11 -785 -1z'/%3E%3C/g%3E%3C/svg%3E");
