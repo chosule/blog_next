@@ -4,6 +4,7 @@ import Giscus from "@/components/Blog/Giscus";
 import AdjacentPostCard from "@/components/Blog/AdjacentPostCard";
 import { Metadata } from "next";
 import parseToc from "@/lips/parseToc";
+import TocTop from "@/components/TocTop";
 
 export type Props = {
   params: {
@@ -31,14 +32,12 @@ export default async function PostPage({ params }: Props) {
   const slugs = params.slugs;
 
   const post = await getPost(slugs);
-  const { title, date, content, tags } = post;
-
+  const { title, date, content, tags, titlelist } = post;
   const postPrevNext = await getPostData(slugs);
   const { prev, next } = postPrevNext;
 
-  const props = {
-    tableOfContents: parseToc(post.content),
-  };
+  const tableOfContents = parseToc(post.content);
+
   return (
     <div className="md:my-10">
       <div className="flex flex-col gap-4">
@@ -53,6 +52,7 @@ export default async function PostPage({ params }: Props) {
         </div>
       </div>
       <div className="dark:prose-dark prose my-16 max-w-full">
+        <TocTop tableOfContents={tableOfContents} titleList={titlelist} />
         <Mdx source={content} />
         <Giscus />
         {/*  */}

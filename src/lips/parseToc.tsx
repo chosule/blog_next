@@ -7,6 +7,7 @@ export default function parseToc(source: string) {
     .reduce<TableOfContents>((ac, heading) => {
       const nac = [...ac];
 
+      // removeMdx => ### ## 제거
       const removeMdx = heading
         .replace(/^##*\s/, "")
         .replace(/[\*,\~]{2,}/g, "")
@@ -22,8 +23,8 @@ export default function parseToc(source: string) {
         text: removeMdx,
       };
 
+      // ### 3개 인것 = isSubTitle
       const isSubTitle = heading.split("#").length - 1 === 3;
-
       if (ac.length && isSubTitle) {
         nac.at(-1)?.subSections.push(section);
       } else {

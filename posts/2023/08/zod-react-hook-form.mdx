@@ -11,24 +11,20 @@ feature: true
 date: 2023-08-30 18:24:41
 ---
 
----
-
 ## 💡 구현동기
 
 회사에서 작은 service 프로젝트를 진행하고 있던중 비밀번호 재설정 페이지를 맡게 되었다. react-hook-form은 한번 써봣던지라 같이 사용하려 했고 ts와 관련해서는 같이 써본적이 없기에 이번에 react-hook-form과 zod를 같이 구현하는것이 좋을거라 생각했다.
 
-
 ## 📌 1. zod 를 사용하는 이유
 
-> **1. 데이터 유효성 검사**
-  `typescript`에서 사용되는 데이터 유효성 검사 및 스키마 정의를 위한 라이브러리 이다.
-  이 라이브러리를 사용하면 데이터 객체가 특정한 규칙을 따르는지 검증하고 , 데이터의 유효성을 확보할 수 있다.
-  **2. 스키마 정의**
-  zod를 사용하면 데이터 객체의 스키마를 명시적으로 정의할 수 있다. 이를 통해 어떤 종류의 데이터가 어떤 필드를 가져야 하는지, 어떤 필드가 옵셔널 하거나 필수 인지 등을 명확하게 표현할 수 있다.
-  **3. 타입 안전성 강화**
-  typescript와 함께 사용되므로 컴파일 시점에서 데이터 유효성 검사와 관련된 오류를 잡아내기 쉽다. 이로써 런타임에서 발생할 수 있는 유효성 검사 관련 버그를 사전에 방지 할 수 있다.
-  **4. 유연한 검증 로직**
-  zod는 다양한 검증 함수와 조합을 제공하여 복잡한 유효성 검사 규칙을 쉽게 구성할 수 있다.
+> **1. 데이터 유효성 검사** > `typescript`에서 사용되는 데이터 유효성 검사 및 스키마 정의를 위한 라이브러리 이다.
+> 이 라이브러리를 사용하면 데이터 객체가 특정한 규칙을 따르는지 검증하고 , 데이터의 유효성을 확보할 수 있다.
+> **2. 스키마 정의**
+> zod를 사용하면 데이터 객체의 스키마를 명시적으로 정의할 수 있다. 이를 통해 어떤 종류의 데이터가 어떤 필드를 가져야 하는지, 어떤 필드가 옵셔널 하거나 필수 인지 등을 명확하게 표현할 수 있다.
+> **3. 타입 안전성 강화**
+> typescript와 함께 사용되므로 컴파일 시점에서 데이터 유효성 검사와 관련된 오류를 잡아내기 쉽다. 이로써 런타임에서 발생할 수 있는 유효성 검사 관련 버그를 사전에 방지 할 수 있다.
+> **4. 유연한 검증 로직**
+> zod는 다양한 검증 함수와 조합을 제공하여 복잡한 유효성 검사 규칙을 쉽게 구성할 수 있다.
 
 ## 📌 2. zod 와 usehookform 같이 사용하는 이점
 
@@ -41,13 +37,13 @@ date: 2023-08-30 18:24:41
 
 ## 📌 3. 사용해보자 !!
 
-### 1.설치
+### 1. 설치
 
-```js 
+```js title="   "
 npm install react-hook-form zod @hookform/resolvers
 ```
 
-### 2.구현동작
+### 2. 구현동작
 
 **비밀번호와 관련된 설정**을 구현해야하기 때문에
 
@@ -57,7 +53,7 @@ npm install react-hook-form zod @hookform/resolvers
 
 의 동작을 구현해야한다.
 
-### 3.구현하기
+### 3. 구현하기
 
 schema 폴더를 생성하고 안에 index.ts폴더를 하나 생성해준다.
 
@@ -67,22 +63,26 @@ schema 폴더를 생성하고 안에 index.ts폴더를 하나 생성해준다.
 
 내 코드에서는 유효성이 반복적으로 사용되는 코드가있어서 공통되는 유효성검사로직을 mypagePassWordSchema 함수로 만들어 주었다.
 
-
-```js 
+```js title="   "
 function mypagePassWordSchema() {
   return z
     .string()
-    .min(8, { message: '비밀번호는 영문/숫자/특수문자 조합으로 8~15자리 입니다.' })
-    .max(15, { message: '비밀번호는 영문/숫자/특수문자 조합으로 8~15자리 입니다.' })
-    .regex(passwordPattern, { message: '특수문자 중 ; & % = - + < > ＼ 는 사용할 수 없습니다.' })
+    .min(8, {
+      message: "비밀번호는 영문/숫자/특수문자 조합으로 8~15자리 입니다.",
+    })
+    .max(15, {
+      message: "비밀번호는 영문/숫자/특수문자 조합으로 8~15자리 입니다.",
+    })
+    .regex(passwordPattern, {
+      message: "특수문자 중 ; & % = - + < > ＼ 는 사용할 수 없습니다.",
+    });
 }
-
 ```
 
 그다음 단계는 zod 라이브러리에서 제공하는 **infer** 기능을 사용한다. infer기능은 zod 스키마의 타입을 추론하기 위해 **해당 스키마가 어떤 타입을 정의 하는지를 typescript에 알려주는 기능**이다.
 
-```js
-export type TMypagePwResetSchema = z.infer<typeof myPagePwResetSchema>
+```js title="   "
+export type TMypagePwResetSchema = z.infer<typeof myPagePwResetSchema>;
 ```
 
 현재 비밀번호 / 새 비밀번호 / 새 비밀번호 확인을 nowPassword / newPassword / newPasswordCheck의 name을 사용하여 usehookform 을 설정할것이고 , myPagePwResetSchema의 object의 기능을 이용해 nowPassword / newPassword / newPasswordCheck를 맨 위에서 만든 공통된 스키마 함수mypagePassWordSchema로 검사 규칙을 지정해 준다.
@@ -92,7 +92,7 @@ refine을 이용해 데이터의 유효성을 더욱 엄격하게 검사할수 �
 내 코드에서는 두가지를 더 검사해줬는데 첫번째는 newPassword 새로운비밀번호와 newPasswordCheck 새로운비밀번호 확인이 같지 않을경우 '비밀번호가 일치하지않습니다.'라는 message를 보여주게 되고 path 옵션을 사용해 해당 경로에 해당하는 필드에 오류 메시지가 표시되게 설정해주었다.
 두번째 refine에서는 nowPassword 현재비밀번호와 newPassword 새로운 비밀번호가 같지 않아야한다고 말해주고, 만약 같을경우 '현재 비밀번호와 새 비밀번호는 같을 수 없습니다.' 라는 오류메세지가 뜨도록 설정해주었다.
 
-```js
+```js title="   "
 export const myPagePwResetSchema = z //
   .object({
     nowPassword: mypagePassWordSchema(),
@@ -100,31 +100,40 @@ export const myPagePwResetSchema = z //
     newPasswordCheck: mypagePassWordSchema(),
   })
   .refine((data) => data.newPassword === data.newPasswordCheck, {
-    path: ['newPasswordCheck'],
-    message: '비밀번호가 일치하지 않습니다.',
+    path: ["newPasswordCheck"],
+    message: "비밀번호가 일치하지 않습니다.",
   })
   .refine((data) => data.nowPassword !== data.newPassword, {
-    path: ['newPassword'],
-    message: '현재 비밀번호와 새 비밀번호는 같을 수 없습니다.',
-  })
-
+    path: ["newPassword"],
+    message: "현재 비밀번호와 새 비밀번호는 같을 수 없습니다.",
+  });
 ```
 
 ### **전체 코드**
 
-```js title="zod.ts"
-import { z } from 'zod'
-import { excludeName, passwordPattern, phoneNumberPattern } from '@/core/common/regex'
+```js title="   "
+import { z } from "zod";
+import {
+  excludeName,
+  passwordPattern,
+  phoneNumberPattern,
+} from "@/core/common/regex";
 
 function mypagePassWordSchema() {
   return z
     .string()
-    .min(8, { message: '비밀번호는 영문/숫자/특수문자 조합으로 8~15자리 입니다.' })
-    .max(15, { message: '비밀번호는 영문/숫자/특수문자 조합으로 8~15자리 입니다.' })
-    .regex(passwordPattern, { message: '특수문자 중 ; & % = - + < > ＼ 는 사용할 수 없습니다.' })
+    .min(8, {
+      message: "비밀번호는 영문/숫자/특수문자 조합으로 8~15자리 입니다.",
+    })
+    .max(15, {
+      message: "비밀번호는 영문/숫자/특수문자 조합으로 8~15자리 입니다.",
+    })
+    .regex(passwordPattern, {
+      message: "특수문자 중 ; & % = - + < > ＼ 는 사용할 수 없습니다.",
+    });
 }
 
-export type TMypagePwResetSchema = z.infer<typeof myPagePwResetSchema>
+export type TMypagePwResetSchema = z.infer<typeof myPagePwResetSchema>;
 
 export const myPagePwResetSchema = z //
   .object({
@@ -133,14 +142,13 @@ export const myPagePwResetSchema = z //
     newPasswordCheck: mypagePassWordSchema(),
   })
   .refine((data) => data.newPassword === data.newPasswordCheck, {
-    path: ['newPasswordCheck'],
-    message: '비밀번호가 일치하지 않습니다.',
+    path: ["newPasswordCheck"],
+    message: "비밀번호가 일치하지 않습니다.",
   })
   .refine((data) => data.nowPassword !== data.newPassword, {
-    path: ['newPassword'],
-    message: '현재 비밀번호와 새 비밀번호는 같을 수 없습니다.',
-  })
-
+    path: ["newPassword"],
+    message: "현재 비밀번호와 새 비밀번호는 같을 수 없습니다.",
+  });
 ```
 
 이제 components 폴더로 이동해 마저 설정해주어야한다.
@@ -149,55 +157,69 @@ usehookform에서 내가 사용할 기능들을 가져와준다.
 
 register, handleSubmit , formState를 useForm에서 가져와주고 아까 위에서 만든 zod 스키마 유효성TMypagePwResetSchema를 넣어준다. resolver기능은 zod 스키마를 사용하여 폼 필드의 유효성을 검사하고 처리하는 역할을 한다고하는데, 한마디로 useForm 훅에게 zod스키마를 이용하여 폼 필드의 유효성을 검사하도록 지시하는 역할을 한다고 보면 될 것같다.
 
-```js 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<TMypagePwResetSchema>({
-    resolver: zodResolver(myPagePwResetSchema),
-  })
+```js title="   "
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+} = useForm <
+TMypagePwResetSchema >
+{
+  resolver: zodResolver(myPagePwResetSchema),
+};
 ```
 
 마지막으로 기존비밀번호 nowPassword / 새로운 비밀번호 newPassword / 새로운비밀번호확인 newPasswordCheck 로 각각 input에 register를 설정해주고 에러가 발생했을때 errorMsg로 각각 이전 스키마에서 설정해준 message가 나올수 있도록 설정해주면 끝이 난다 !
 
-```js
+```js title="   "
 <MyInfoUI.Flex gap="40px" flexDirection="column">
-    <MyInfoUI.Text fontSize={fontSize.h6} fontWeight="700">
-      비밀번호 재설정
-    </MyInfoUI.Text>
-    <StyledFormWrapper onSubmit={handleSubmit(onSubmit, onError)}>
-      <StyledInputWrapper>
-        <StyledInputContainer>
-          <MyInfoUI.Label fontWeight="600" fontSize={fontSize.body1}>
-            현재비밀번호
-          </MyInfoUI.Label>
-          <StyledInputDiv>
-            <TextInput type="password" {...register('nowPassword')} errorMsg={errors.nowPassword?.message ?? ''} />
-          </StyledInputDiv>
-        </StyledInputContainer>
+  <MyInfoUI.Text fontSize={fontSize.h6} fontWeight="700">
+    비밀번호 재설정
+  </MyInfoUI.Text>
+  <StyledFormWrapper onSubmit={handleSubmit(onSubmit, onError)}>
+    <StyledInputWrapper>
+      <StyledInputContainer>
+        <MyInfoUI.Label fontWeight="600" fontSize={fontSize.body1}>
+          현재비밀번호
+        </MyInfoUI.Label>
+        <StyledInputDiv>
+          <TextInput
+            type="password"
+            {...register("nowPassword")}
+            errorMsg={errors.nowPassword?.message ?? ""}
+          />
+        </StyledInputDiv>
+      </StyledInputContainer>
 
-        <StyledInputContainer>
-          <MyInfoUI.Label fontWeight="600" fontSize={fontSize.body1}>
-            새 비밀번호
-          </MyInfoUI.Label>
-          <StyledInputDiv>
-            <TextInput type="password" {...register('newPassword')} errorMsg={errors.newPassword?.message ?? ''} />
-          </StyledInputDiv>
-        </StyledInputContainer>
+      <StyledInputContainer>
+        <MyInfoUI.Label fontWeight="600" fontSize={fontSize.body1}>
+          새 비밀번호
+        </MyInfoUI.Label>
+        <StyledInputDiv>
+          <TextInput
+            type="password"
+            {...register("newPassword")}
+            errorMsg={errors.newPassword?.message ?? ""}
+          />
+        </StyledInputDiv>
+      </StyledInputContainer>
 
-        <StyledInputContainer>
-          <MyInfoUI.Label fontWeight="600" fontSize={fontSize.body1}>
-            비밀번호 확인
-          </MyInfoUI.Label>
-          <StyledInputDiv>
-            <TextInput type="password" {...register('newPasswordCheck')} errorMsg={errors.newPasswordCheck?.message ?? ''} />
-          </StyledInputDiv>
-        </StyledInputContainer>
-      </StyledInputWrapper>
-      <MyInfoUI.Flex justifyContent="flex-end">
-        <StyledButton type="submit">비밀번호 재설정</StyledButton>
-      </MyInfoUI.Flex>
-    </StyledFormWrapper>
-  </MyInfoUI.Flex>
+      <StyledInputContainer>
+        <MyInfoUI.Label fontWeight="600" fontSize={fontSize.body1}>
+          비밀번호 확인
+        </MyInfoUI.Label>
+        <StyledInputDiv>
+          <TextInput
+            type="password"
+            {...register("newPasswordCheck")}
+            errorMsg={errors.newPasswordCheck?.message ?? ""}
+          />
+        </StyledInputDiv>
+      </StyledInputContainer>
+    </StyledInputWrapper>
+    <MyInfoUI.Flex justifyContent="flex-end">
+      <StyledButton type="submit">비밀번호 재설정</StyledButton>
+    </MyInfoUI.Flex>
+  </StyledFormWrapper>
+</MyInfoUI.Flex>
 ```

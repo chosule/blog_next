@@ -1,0 +1,83 @@
+---
+title: "Cloud9과 CodeCommit을 이용하여 Code 버전 관리"
+titlelist: "cloud9"
+description: "next 정적 배포를 위하여 !"
+icon: ""
+image: "aws_codecommit.png"
+tags:
+  -
+draft: true
+date: 2024-03-13 20:56:23
+---
+
+> AWS Cloud9과 CodeCommit 리포지토리에 접속 및 서비스 이용에 대한방법, 간단한 git 명령을 활용해 소스를 codeCommit으로 동기화 하는 방법을 적어본다. ✍️
+
+---
+
+AWS Cloud9에 대해 간략히 알아보자면
+
+> ## 💻 AWS Cloude9 ?
+>
+> - AWS Cloud9은 웹 브라우저만으로 코드의 개발 및 실행 디버깅을 수행할 수 있는 클라우드 기반 IDE(통합 개발 환경)이다.
+> - AWS Cloud9은 서버리스 애플리케이션을 개발할 수 있는 원활한 환경을 제공하므로 손쉽게 서버리스 애플리케이션의 리소스를 정의하고, 디버깅하고, 로컬 실행과 원격 실행간의 전환을 할 수 있으며, 서버리스 개발에 필요한 모든 SDK, 라이브러리 및 플러그인으로 개발환경을 사전에 구성하여, 서버리스 개발을 보다 손쉽게 수행할수 있는 개발환경을 제공한다.
+
+## AWS Cloud9 주요특징
+
+1. 클라우드에서 사용하기 쉬운 클라우드 기반 `IDE`
+2. `내장형 GitHub`와 내장형 Lambda BluePrint 지원
+3. 내장 SAM Local을 활용하여 `로컬 환경에서 테스트`, `디버깅` 수행 가능
+4. `AWS CodePipeline` 구성을 통해 업데이트에 대한 `빌드 자동화 가능`
+
+---
+
+## 1. CodeCommit 리포지토리 생성 후 Cloud9에 동기화 방법
+
+1. AWS사이트에 접속해 콘솔에 로그인 > `CodeCommit` 검색 > `리포지토리 생성` 누르기
+
+2. 생성할 `리포지토리 이름` 만들어주고 생성 버튼 클릭.
+
+3. `Cloud9`을 실행해줘야하는데 아직 생성이 안됐다면 콘솔에 Cloud9 검색한뒤 `환경 생성 버튼`을 누르면 간단히 생성된다.
+
+4. 이제 `Cloud9`에서 이전 포스트에서 만들어주었던 `AWS CLI 설정을 위한 키와 비밀번호 키를 설정`해줘야한다. `aws configure`을 입력하면 차례대로 `key ID`와 `Access KEY`를 입력하고 엔터를 누르면 된다. 그다음 나오는 `지역이름` 은 서울 `ap-northeast-2` 로 입력후 엔터 > 마지막은 스킵하고 엔터 그러면 `설정 끝`
+
+5. `자격증명헬퍼` 사용을 지정하고 `Git 자격 증명 헬퍼`가 경로를 `리포지토리로 전송`할 수 있도록 설정해야한다.
+   마지막에는 `exit 명령어를 사용`해서 ec2-user 권한으로 다시 돌아온다.
+   ![](https://velog.velcdn.com/images/chosule/post/d077909f-bda4-46f1-a345-5898bafd788c/image.png)
+
+6. 2번해서 생성해준 리포지토리 페이지로 들어가보면 옆에 `url복제`가 있다. `HTTPS로 복사`해주고 다시 Cloud9으로 돌아가서 `git clone HTTPS복사한걸 붙여넣기` 해준다.
+
+7. 그럼 Cloud9에 `리포지토리가 생성`되고 아직 아무것도 없기 때문에 비어있다고 나온다.
+   ![](https://velog.velcdn.com/images/chosule/post/364342f4-db10-48a2-86d1-ed287efb18d8/image.png)
+
+---
+
+## 2. GitHub 소스 CodeCommit으로 마이그레이션하는 방법
+
+### gitHub에서 관리하던 소스를 `CodeCommit으로 마이그레이션`하는 방법에 대해 알아보자
+
+1. 리포지토리를 CodeCommit 에서 다시생성하거나 원래있던 리포지토리에서 해줘도 된다. 나는 CodeCommit 리포지토리로 들어가서 `새로운 리포지토리를 생성`해주었다.
+
+2. 깃허브 사이트로 이동 후 클론할 레포에서 HTTPS 주소를 복사한다.
+
+3. Cloud9으로 돌아와서 `git-migration 폴더를 하나 생성` 해준뒤 깃허브에서 복사해온 주소를 `clone` 해준다.
+   ![](https://velog.velcdn.com/images/chosule/post/bfd4420f-e54f-4927-8204-d35895eed251/image.png)
+
+4. 동기화된 폴더로 이동후 `git push를 수행`하면 생성해준 리포지토리를 이전에 codeCommit에 생성한 `리포지토리 URL`로 원격 push 해준다.
+
+   `명령어`
+
+```js
+	cd git-migration
+	git push https://git-codecommit.ap-northeast-2.amazonaws.com/v1/repos/repo(aws codecommit에서 새로 생성해준 리포지토리) —all
+```
+
+5. AWS에서 만들었던 리포지토리로 가면 깃허브파일들이 `클론되어있는걸 확인`할수 있다.
+   ![](https://velog.velcdn.com/images/chosule/post/6f7a6328-fac3-4d28-bdc5-a0f0177e0407/image.png)
+
+---
+
+> `간단 요약` 💬
+
+1. AWS Cloud9은 웹 브라우저만으로 `코드의 개발 및 실행 디버깅`을 수행할 수 있는 `클라우드 기반 IDE(통합 개발 환경)`이다.
+2. CodeCommit에서 만든 `리포지토리`를 Cloud9에서 `동기화`해 사용할 수 있다.
+3. `깃허브 레포`를 Cloud9 에 클론해준 뒤 `CodeCommit 리포지토리에 push 해줄수 있다`.

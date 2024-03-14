@@ -106,7 +106,6 @@ export async function getFeaturedPost() {
   return posts.filter((post) => post.feature === true);
 }
 
-//
 export async function getPostData(fileSlug: string[]): Promise<PostData> {
   const posts = await getAllPosts();
   const post = await getPost(fileSlug);
