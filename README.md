@@ -20,12 +20,12 @@
 - gsap, yup, nodemailer , 그 외 등등 사용
 
 ### 4.주요 기능 구현에 대한 간단 코멘트
-    
-**📝 Dynamic route를 사용하여 포스트 페이지 동적으로 구현 / mdx 파일 html코드로 바꾸기**
-1. 기존의 getStaticPath를 app router에서는 변경된 `generateStaticParams`를 이용해 ` 경로 path 설정을 동적`으로 변경하였습니다.
-2. 기존 getStaticProps를 `app router에서는 변경된 async와 await 로 구성한 함수`를 만들어(getPostsNew.tsx) 받아올 페이지를 구성하였습니다.
-3. 포스트를 작성할때는 mdx파일로 작성해야하기 때문에 `grayMatter를 이용하여 파싱`해주고 변환된 코드를 예쁘게 만들어준 뒤 , 이 mdx 파일들을 next-mdx-remote/rsc를 이용하여 `직렬화` 해주었습니다.
-4. 반응형 으로 제작하였습니다.
+
+1. mdx 파일 들을 html 코드로 파싱 하였습니다.
+2. 기존 다이나믹 라우터의 경로를 지정해주는 getStaticPaths를 14버전 App router에서 변경된 generateStaticParams의 기능을 사용하여 빌드시 경로를 정적으로 생성해 주었습니다.
+3. postDataSet.tsx 에서  원하는 post들을 가져오기 위해 async await 비동기처리하여 프로그래밍한뒤에 다른곳에서 사용할 수 있도록 모듈화하였습니다. 
+4. Next dynamic을 이용하여 useState로 dark와 light로 상태값을 저장해준뒤 동적으로 변경해 다크모드를 구현하였습니다.
+5. Next metadata 를 사용하여 SEO에 최적화하였고 sitemap.xml 을 직접작성 한뒤 tsconfig.node.json파일을 생성하여 빌드시 추가할 수 있도록 설정하였습니다. 현재 구글sitemap에 등록 되어있습니다.
 ---
 
 ### ✨ 추가기능 및 이슈 수정 log
