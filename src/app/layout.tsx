@@ -29,7 +29,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko" className={`${nanum.variable}`} suppressHydrationWarning>
+    <html
+      lang="ko"
+      className={`${nanum.variable} [--scroll-mt:5rem]`}
+      suppressHydrationWarning
+    >
       <head>
         <ThemeScript />
         <meta
