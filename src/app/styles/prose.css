@@ -96,8 +96,8 @@ p {
 
 .prose
   :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  border-left-color: #1e90ff;
-  padding: 0;
+  quotes: none;
+  @apply rounded-xl border-s-[#1e90ff] bg-[#f8f9fa] p-3.5 not-italic dark:bg-primary;
 }
 .prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   @apply text-primary;
@@ -169,13 +169,6 @@ p {
 
   @apply h-4 w-4 bg-neutral-700 dark:bg-neutral-400;
 } */
-
-.prose
-  :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  background: #f8f9fa;
-  padding: 14px;
-  @apply dark:bg-primary;
-}
 
 .reference {
   @apply text-right text-neutral-140;
