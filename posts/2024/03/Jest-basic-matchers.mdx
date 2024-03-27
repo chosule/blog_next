@@ -1,0 +1,165 @@
+---
+title: "Jest 기본 Matchers"
+titlelist: "Jest"
+description: "Jest test 코드"
+icon: ""
+image: "jest-thumbnail.png"
+tags:
+  - Jest
+  - Test code
+draft: false
+date: 2024-03-26 23:42:14
+---
+
+> ✍️ Jest 문서를 해석하며 기억해야 할 문법이나 코드를 기록하였습니다.
+
+```js title="기본적인 문법"
+test("adding positive numbers is not zero", () => {
+  for (let a = 1; a < 10; a++) {
+    for (let b = 1; b < 10; b++) {
+      expect(a + b).not.toBe(0);
+    }
+  }
+});
+```
+
+## 1. Matcher
+
+### 1-1 공통된 Matcher
+
+1. toBe
+2. toEqual - 객체가 같은지 확인할 때
+
+### 1-2 Numbers
+
+```js title="Numbers"
+test("two plus two", () => {
+  const value = 2 + 2;
+  expect(value).toBeGreaterThan(3);
+  expect(value).toBeGreaterThanOrEqual(3.5);
+  expect(value).toBeLessThan(5);
+  expect(value).toBeLessThanOrEqual(4.5);
+
+  // toBe and toEqual are equivalent for numbers
+  expect(value).toBe(4);
+  expect(value).toEqual(4);
+});
+```
+
+소수점은 toEqual 보다 `toBeCloseTo`를 사용하는 것이 좋다.
+
+### 1-3 Strings
+
+- 같은지 확인하기 위해 `toMatch`사용하기
+- 같은게 아니라면 `.not.`toMatch 사용하기
+
+### 1-4 Arrays and iterables
+
+- toContain matchers 사용하기
+
+```js title="배열과 이터러블 일때 사용법"
+const shoppingList = [
+  "diapers",
+  "kleenex",
+  "trash bags",
+  "paper towels",
+  "milk",
+];
+
+test("the shopping list has milk on it", () => {
+  expect(shoppingList).toContain("milk");
+  expect(new Set(shoppingList)).toContain("milk");
+});
+```
+
+### 1-5 예외적인 상황
+
+- `toThrow` 사용하기
+
+```js title="  "
+function compileAndroidCode() {
+  throw new Error("you are using the wrong JDK!");
+}
+
+test("compiling android goes as expected", () => {
+  expect(() => compileAndroidCode()).toThrow();
+  expect(() => compileAndroidCode()).toThrow(Error);
+
+  // You can also use a string that must be contained in the error message or a regexp
+  expect(() => compileAndroidCode()).toThrow("you are using the wrong JDK");
+  expect(() => compileAndroidCode()).toThrow(/JDK/);
+
+  // Or you can match an exact error message using a regexp like below
+  expect(() => compileAndroidCode()).toThrow(/^you are using the wrong JDK$/); // Test fails
+  expect(() => compileAndroidCode()).toThrow(/^you are using the wrong JDK!$/); // Test pass
+});
+```
+
+---
+
+### 좀더 알아보자
+
+@types/jest 명령어를 입력후 설치하고나서 test가 있는 코드에 마우스를 올려놓게 되면 각각 들어가야하는 **type**들을 확인해 볼 수 있는데, `it`의 interface 등 기본적인 **param**들에 대해 확인해 볼 수 있다.
+
+it을 살펴보면 `name,fn,timeout` 3가지의 param을 제공해 주고 있다.
+
+![230107-364837](/image/interfaceIt.png)
+
+---
+
+## collectCoverage
+
+jest.config.js에서 collectCoverage 는 기본적으로 true라고 설정되어있는걸 확인해 볼 수 있는데,
+만약 `npm run test` 를 입력했을때 매번 test coverage가 나오길 원하지 않는다면 `collectCoverage를 false로 설정` 하면 된다.
+
+collectCoverage를 false로 설정해 놓고 `수정이 없었을 경우에` 따로 test code를 확인하려면 `jest —coverage` 명령어를 입력하면 coverage를 확인할 수 있다.
+
+```js title="jest.config.js"
+/** @type {import('jest').Config} */
+const config = {
+  // All imported modules in your tests should be mocked automatically
+  // automock: false,
+
+  // Stop running tests after `n` failures
+  // bail: 0,
+
+  // The directory where Jest should store its cached dependency information
+  // cacheDirectory: "C:\\Users\\NportVerse_231117\\AppData\\Local\\Temp\\jest",
+
+  // Automatically clear mock calls, instances, contexts and results before every test
+  clearMocks: true,
+
+  // Indicates whether the coverage information should be collected while executing the test
+  collectCoverage: false,
+};
+```
+
+### jest watch과 watchAll
+
+매번 명령어를 입력해서 test코드가 성공했는지 실패했는지 확인하는것이 번거롭다면 package.json파일에서 **watchAll** 을 추가해주면 된다.
+
+1. watchAll
+   - 수정이 있거나 없거나 상관없이 매번 test코드 결과를 알려준다.
+
+```js title="package.json"
+ "scripts": {
+    "test": "jest --watchAll"
+  },
+
+```
+
+2. watch
+
+- 많은 test코드들이 있을때 만약 매번 test 코드 결과를 보는게 아니라 변경되지않는 코드 들에 대해서는 결과를 보지않고, 내가 원하는 `작업중인 test코드에 대해서만` 확인하고 싶을 땐 watchAll이 아닌 **watch**로 설정해주면 된다.
+
+- watchAll과 는 다르게 `몇가지 설정`을 해줘야하는데
+
+  1. git init 실행
+  2. git ingnore에 node modules 추가하기
+  3. git add .
+  4. git commit 실행
+     을 함께 설정해줘야한다.
+
+- watch로 설정했을 경우에는 test코드가 변경되지 않을때는 test코드가 실행되지 않고, `test코드를 수정하고있는 상태에만 결과가 실행` 되는 걸 볼 수 있다.
+
+- coverage를 확인하고싶다면 collectCoverage와 똑같이 `jest —coverage` 을 입력해주면 확인할수 있다.
