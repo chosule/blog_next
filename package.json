@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",
     "postbuild": "npm run sitemap",
     "sitemap": "ts-node --project tsconfig.node.json ./scripts/generate-static.ts",
     "start": "next start",
