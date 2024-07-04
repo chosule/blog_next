@@ -1,0 +1,152 @@
+---
+title: "전체동의 react-hook-form으로 리팩토링하기"
+titlelist: ""
+description: ""
+icon: ""
+image: ""
+tags:
+  -
+draft: false
+date: 2024-04-04 22:54:06
+---
+
+## TroubleShooting
+
+진행중인 프로젝트에서 전체동의 시에는 전체체크가 되고 개별적으로 체크했을경우에는 개별적으로 체크하는 프로그래밍을 해야했다. checkToggle파일을 따로만들어 해야하는 로직을 useReducer로 만들었는데, 문제는 만든 로직에서 react-hook-form을 추가해야했는데 바뀐상태가 hookform에 담기지 않았다.
+
+## 기존코드
+
+```js title="CheckToggle.tsx"
+export interface CheckToggleProps {
+  name?: string;
+  isSelected: boolean;
+  onClickToggle: MouseEventHandler<HTMLInputElement>;
+  id: string;
+}
+type Props = CheckToggleProps & ICustomStyle;
+/**
+ * @description text 토글버튼
+ * @param {string} name - 토글 상태의 고유 이름값
+ * @param {boolean} isSelected - 선택 여부
+ * @param {boolean} onClickToggle - onClick 토글 이벤트
+ */
+const CheckToggle = forwardRef<HTMLInputElement, Props>(
+  ({ name, isSelected, onClickToggle, customStyle, id, ...props }, ref) => {
+    return (
+      <CircleInput
+        name={name}
+        checked={isSelected}
+        onClick={onClickToggle}
+        type="checkbox"
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);
+const CircleInput = styled.input`
+  width: 24px;
+  height: 24px;
+  border: 1px solid ${Colors.gray_D7};
+  border-radius: 50%;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+
+  &:checked::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-image: url(${exampleImage});
+    background-size: contain;
+    background-position: center;
+    color: ${Colors.white_F};
+  }
+`;
+
+CheckToggle.displayName = "CheckToggle";
+
+export default CheckToggle;
+
+```
+
+```js title="CompanyRegisterAgree.tsx"
+export default function CompanyRegisterAgree() {
+  const [state, dispathcer] = useReducer(termsListReducer, InitialTermsList);
+
+  const ClickHandleAllCheck = (id: string) => {
+    dispathcer({ type: "CHECK_TOGGLE", id });
+  };
+  const { register, control, watch, setValue } = useFormContext();
+  const { fields } = useFieldArray({
+    control,
+    name: "terms",
+  });
+  return (
+    <>
+      <StyledItemWrap>
+        {state.map(({ id, label, link, isSelected }, index) => {
+          return (
+            <StyledItemLi $id={id} key={index}>
+              <CheckToggle
+                name={id}
+                isSelected={isSelected}
+                onClickToggle={() => ClickHandleAllCheck(id)}
+                id={id}
+              />
+              <p>{label}</p>
+              <input type="checkbox" {...register(`terms.${id}.isSelected`)} />
+              <StyledLink to="/terms-detail">{link}</StyledLink>
+            </StyledItemLi>
+          );
+        })}
+      </StyledItemWrap>
+    </>
+  );
+}
+```
+
+## React Hook form
+
+### FormProvider
+
+먼저 많은 input을 한곳에서 관리하기위해 전체 form은 FormProvider로 감싸주고있다.
+
+```js title="  "
+
+function CompanyRegisterPage() {
+  const methods = useForm();
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log("data", data);
+  };
+  return (
+    <Container>
+      <Header>
+        <Logo />
+      </Header>
+      <StyledWhite>
+        <FormProvider {...methods}>
+          <TitleBar currentPage={current} maxPage={4} />
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+                ...
+              <TextButton onClick={handleCurrentPage} type="submit">
+                다음
+              </TextButton>
+            </StyledButtonWrap>
+          </form>
+        </FormProvider>
+      </StyledWhite>
+    </Container>
+  );
+}
+
+```
+
+### setValue
+
+> 이 기능을 사용하면 등록된 필드의 값을 동적으로 설정하고 양식 상태의 유효성을 검사하고 업데이트할 수 있는 옵션을 사용할 수 있습니다. 동시에 불필요한 리렌더링을 방지합니다.
+
+공식문서에서 살펴보면
