@@ -1,10 +1,9 @@
 "use client";
-import useWatchTimeout from "@/lips/useWatchTimeout";
 import { sendContactEmail } from "@/service/contact";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import SubTitle from "../SubTitle";
-import airplaneIcon from "../../../public/Image/airplaneIcon.png"
+import airplaneIcon from "../../../public/Image/airplaneIcon.png";
 import Image from "next/image";
 
 type Form = {
@@ -46,7 +45,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="flex flex-col gap-5 w-7/12">
+    <div className="flex w-7/12 flex-col gap-5">
       <SubTitle className="text-center">or send me an email</SubTitle>
       <form
         onSubmit={onSubmit}
@@ -54,7 +53,7 @@ export default function ContactForm() {
       >
         <div className="flex flex-col gap-5">
           <div className="grid gap-2 ">
-            <label htmlFor="from" className="text-primary text-md">
+            <label htmlFor="from" className="text-md text-primary">
               your email ? 👀
             </label>
             <input
@@ -69,7 +68,7 @@ export default function ContactForm() {
             />
           </div>
           <div className="grid gap-2 ">
-            <label htmlFor="subject" className="text-primary text-md">
+            <label htmlFor="subject" className="text-md text-primary">
               subject
             </label>
             <input
@@ -83,7 +82,7 @@ export default function ContactForm() {
             />
           </div>
           <div className="grid gap-2 ">
-            <label htmlFor="message" className="text-primary text-md">
+            <label htmlFor="message" className="text-md text-primary">
               message 📃
             </label>
             <textarea
@@ -99,10 +98,15 @@ export default function ContactForm() {
         </div>
         <button
           type="submit"
-          className="flex items-center gap-1 mx-auto h-10 w-32 rounded-md"
+          className="mx-auto flex h-10 w-32 items-center gap-1 rounded-md"
         >
           <h3>전송하기</h3>
-          <Image src={airplaneIcon} alt="종이비행기아이콘" width={35} height={35}/>
+          <Image
+            src={airplaneIcon}
+            alt="종이비행기아이콘"
+            width={35}
+            height={35}
+          />
         </button>
       </form>
     </div>

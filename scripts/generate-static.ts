@@ -1,11 +1,13 @@
+import { siteConfig } from "../src/config";
 import { getAllPosts } from "../src/service/postDataSet";
-import fs from "fs";
+import fs, { writeFileSync } from "fs";
+import path from "path";
 
 const createSiteMap = async () => {
   const siteUrl = "https://chosule-blog.vercel.app";
   const posts = await getAllPosts();
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.google.com/schemas/sitemap-xhtml/1.0" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     <url><loc>${siteUrl}</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
     <url><loc>${siteUrl}/about</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
     <url><loc>${siteUrl}/posts</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
@@ -18,21 +20,29 @@ const createSiteMap = async () => {
       .join("\n")}
     </urlset>`;
 
-  await fs.promises.writeFile("public/sitemap.xml", sitemap, {
-    encoding: "utf-8",
-  });
+  const publicDir = path.join(process.cwd(), "public");
+  if (!fs.existsSync(publicDir)) {
+    fs.mkdirSync(publicDir);
+  }
+  writeFileSync(path.join(publicDir, "sitemap.xml"), sitemap, "utf-8");
 };
 
 const createRobotsTxt = () => {
-  const siteUrl = "https://chosule-blog.vercel.app";
+  const siteUrl = siteConfig.url;
   const text = `
     User-agent: *
     Allow: /
     Sitemap: ${siteUrl}/sitemap.xml
     Host: ${siteUrl}
     `;
+  const publicDir = path.join(process.cwd(), "public");
+  if (!fs.existsSync(publicDir)) {
+    fs.mkdirSync(publicDir);
+  }
+  writeFileSync(path.join(publicDir, "robots.txt"), text.trim(), "utf-8");
 };
 
-(() => {
-  createSiteMap();
+(async () => {
+  await createSiteMap();
+  createRobotsTxt();
 })();
